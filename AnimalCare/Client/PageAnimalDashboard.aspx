@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h4>Proprietário</h4>
-                <p class="text-muted">Andreia Pessoa <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="text-muted"><%: User.Identity.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
                 <!-- Tabela com os animais -->
                 <div class="table-responsive">

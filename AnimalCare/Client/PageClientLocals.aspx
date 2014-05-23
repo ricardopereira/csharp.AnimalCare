@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p class="lead">Andreia Pessoa <a class="btn btn-default btn-sm" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="lead"><%: User.Identity.Name %> <a class="btn btn-default btn-sm" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
                 <!-- Tabela com os locais -->
                 <div class="table-responsive">

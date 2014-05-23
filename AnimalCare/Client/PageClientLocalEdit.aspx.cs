@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AnimalCare.Client
 {
-    public partial class PageClientLocalEdit : System.Web.UI.Page
+    public partial class PageClientLocalEdit : ClientPage
     {
         private int ownerLocalID;
 

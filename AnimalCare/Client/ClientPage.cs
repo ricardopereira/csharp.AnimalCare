@@ -2,30 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Providers.Entities;
+using System.Web.Security;
 
 namespace AnimalCare.Client
 {
     public class ClientPage : System.Web.UI.Page
     {
-        private int userID;
-
-        protected int UserID
-        {
-            get { return userID; }
-            set { userID = value; }
-        }
-
         protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(e);
+            MasterPageClient master = (MasterPageClient)Master;
+            // logOutClick: Custom event handler
+            master.logOutClick += new System.EventHandler(delegate(object sender, EventArgs args) { logOut(); });
 
-            userID = 0;
+            // Verificar se esta autenticado
+            if (!User.Identity.IsAuthenticated)
+                logIn();
+        }
 
-            // Verifica sessão activa
-            if (Session["userId"] == null)
-                Response.Redirect("../Account/Login.aspx");
+        protected void logIn()
+        {
+            // Redirecciona para a pagina de inicio de sessao
+            FormsAuthentication.RedirectToLoginPage();
+        }
 
-
+        protected void logOut()
+        {
+            // Termina a sessao
+            Session.Clear();
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
     }
 }

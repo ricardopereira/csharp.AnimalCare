@@ -9,8 +9,8 @@
     </asp:ContentPlaceHolder>
     <script src="../Scripts/jquery-2.1.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
-    <link href="../CSS/bootstrap.css" rel="stylesheet" />
-    <link href="../CSS/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content//style.css" rel="stylesheet" />
 </head>
 <body>
     <form id="MasterForm" runat="server">
@@ -38,7 +38,7 @@
                           <li><a href="PageAnimalDiary.aspx">Diário</a></li>
                       </ul>
                   </li>
-                  <li><a href="#">Terminar sessão</a></li>
+                  <li><a href="#" runat="server" onserverclick="logout_Click">Terminar sessão</a></li>
               </ul>
           </div>
         </div>

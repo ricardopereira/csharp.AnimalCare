@@ -18,10 +18,9 @@ namespace AnimalCare
             set { sqlCon = value; }
         }
 
-
         public DBConn()
         {
-            string CnnString = ConfigurationManager.ConnectionStrings["AnimalCare"].ConnectionString;
+            string CnnString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             sqlCon = new SqlConnection(CnnString);
         }
     }

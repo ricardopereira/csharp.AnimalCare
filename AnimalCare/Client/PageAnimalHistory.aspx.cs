@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AnimalCare.Client
 {
-    public partial class PageAnimalHistory : System.Web.UI.Page
+    public partial class PageAnimalHistory : ClientPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

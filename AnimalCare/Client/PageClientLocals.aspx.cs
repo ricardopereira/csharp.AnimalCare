@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AnimalCare.Client
 {
-    public partial class PageClientLocals : System.Web.UI.Page
+    public partial class PageClientLocals : ClientPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

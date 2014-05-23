@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p class="lead">Andreia Pessoa <a class="btn btn-default btn-sm" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="lead"><%: User.Identity.Name %> <a class="btn btn-default btn-sm" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
              </div>
         </div>
@@ -51,13 +51,13 @@
                         <p>
                         <asp:Label ID="lblCity" runat="server" Text="Cidade: "></asp:Label>
                         <asp:DropDownList ID="listCity" runat="server" Width="200px" DataSourceID="CitiesDS" DataTextField="Name" DataValueField="CityID"></asp:DropDownList>
-                            <asp:SqlDataSource ID="CitiesDS" runat="server" ConnectionString="<%$ ConnectionStrings:AnimalCare %>" SelectCommand="SELECT * FROM [Cities]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="CitiesDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [Cities]"></asp:SqlDataSource>
                         </p>
 
                         <p>
                         <asp:Label ID="lblCountry" runat="server" Text="País: "></asp:Label>
                         <asp:DropDownList ID="listCountry" runat="server" Width="200px" DataSourceID="CountriesDS" DataTextField="Name" DataValueField="CountryID"></asp:DropDownList>
-                            <asp:SqlDataSource ID="CountriesDS" runat="server" ConnectionString="<%$ ConnectionStrings:AnimalCare %>" SelectCommand="SELECT [CountryID], [Name] FROM [Countries]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="CountriesDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [CountryID], [Name] FROM [Countries]"></asp:SqlDataSource>
                         </p>
 
                         <p>

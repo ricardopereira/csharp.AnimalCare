@@ -18,7 +18,7 @@
             </div>
             <!-- Info -->
             <div class="col-md-9">
-                <h2>Andreia Pessoa</h2>
+                <h2><%: User.Identity.Name %></h2>
                 <span class="label label-danger">Modo edição</span>
                 <br />
                 <br />

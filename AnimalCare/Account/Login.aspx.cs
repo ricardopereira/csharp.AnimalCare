@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,6 +19,20 @@ namespace AnimalCare.Account
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+            }
+        }
+
+        protected void LoginUser_LoggedIn(object sender, EventArgs e)
+        {
+            MembershipUser user = Membership.GetUser(User.Identity.Name);
+
+            if (Roles.IsUserInRole(user.UserName, "User"))
+            {
+                Response.Redirect("../Client/PageClientDashboard.aspx");
+            }
+            else if (Roles.IsUserInRole(user.UserName, "Admin"))
+            {
+                
             }
         }
     }
