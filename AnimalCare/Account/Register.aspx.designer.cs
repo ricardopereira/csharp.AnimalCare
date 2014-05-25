@@ -7,13 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AnimalCare.Account
-{
-
-
-    public partial class Register
-    {
-
+namespace AnimalCare.Account {
+    
+    
+    public partial class Register {
+        
+        /// <summary>
+        /// pnlLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlLogin;
+        
         /// <summary>
         /// RegisterUser control.
         /// </summary>
@@ -22,7 +29,7 @@ namespace AnimalCare.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CreateUserWizard RegisterUser;
-
+        
         /// <summary>
         /// RegisterUserWizardStep control.
         /// </summary>
