@@ -2,7 +2,7 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar navbar-default" role="navigation">
         <div class="container">
             <ul class="nav navbar-nav">
                 <div class="navbar-header">
@@ -18,13 +18,13 @@
     </div>
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1">
-    <section style="position: absolute; margin-top:7.5em;" id="loginForm">
+    <section id="loginForm">
     <hgroup class="title">
-        <h1 class="text-center"><%: Title %></h1>
+        <h1 class="text-center">Iniciar Sessão</h1>
     </hgroup>
     <div class="container">
         <div class="form-signin text-center" role="form">
-            <asp:Login ID="Login1" runat="server" ViewStateMode="Disabled" RenderOuterTable="false">
+            <asp:Login ID="Login1" OnLoggedIn="Login_LoggedIn" runat="server" ViewStateMode="Disabled" RenderOuterTable="false">
                 <LayoutTemplate>
                     <p class="validation-summary-errors">
                         <asp:Literal runat="server" ID="FailureText" />
