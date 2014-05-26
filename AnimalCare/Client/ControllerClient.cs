@@ -95,10 +95,10 @@ namespace AnimalCare.Client
  
         }
 
-        public override void loadCurrentUser()
+        public override void loadCurrentUser(IIdentity currentUser)
         {
             // Current User
-            Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
+            Guid userGuid = (Guid)Membership.GetUser(currentUser.Name).ProviderUserKey;
             // Load from Owners
             SqlCommand cmd = new SqlCommand("SELECT * FROM Owners WHERE [UserId] = @id", Database.Connection);
             cmd.Parameters.AddWithValue("@id", userGuid);
@@ -131,6 +131,20 @@ namespace AnimalCare.Client
                     Bf.CountryID = dados.GetInt32(9);
             }
             dados.Close();
+        }
+
+        public void insertOwner()
+        {
+            // Current User
+            Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
+
+            String str = "INSERT INTO Owners(UserID)";
+            str += "VALUES(@UserID)";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@UserID", userGuid);
+
+            cmd.ExecuteNonQuery();
         }
 
         public SqlCommand getOwnerLocals()

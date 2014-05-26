@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Membership.OpenAuth;
+using AnimalCare.Client;
 
 namespace AnimalCare.Account
 {
@@ -20,11 +21,14 @@ namespace AnimalCare.Account
         {
             FormsAuthentication.SetAuthCookie(RegisterUser.UserName, createPersistentCookie: false);
 
+            Roles.AddUserToRole(RegisterUser.UserName, "Client");
+
             string continueUrl = RegisterUser.ContinueDestinationPageUrl;
             if (!OpenAuth.IsLocalUrl(continueUrl))
             {
-                continueUrl = "~/";
+                continueUrl = "/Account/RegistrationFinalStep.aspx";
             }
+            
             Response.Redirect(continueUrl);
         }
     }

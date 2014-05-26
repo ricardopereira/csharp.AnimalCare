@@ -24,10 +24,10 @@ namespace AnimalCare
         {
             if (currentUser.IsAuthenticated)
             {
-                loadCurrentUser();
+                loadCurrentUser(currentUser);
             }
         }
 
-        public abstract void loadCurrentUser();
+        public abstract void loadCurrentUser(IIdentity currentUser);
     }
 }

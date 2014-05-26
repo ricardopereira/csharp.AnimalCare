@@ -13,7 +13,11 @@ namespace AnimalCare.Client
         {
             listBusinessSector.Enabled = false;
 
-            //Session["userID"]
+        }
+
+        protected void OnLoad(object sender, EventArgs e)
+        {
+            
         }
 
         protected void chkBusiness_CheckedChanged(object sender, EventArgs e)
