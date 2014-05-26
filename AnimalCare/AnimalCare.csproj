@@ -103,9 +103,11 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\Manage.aspx" />
-    <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Admin\PageAdmin.aspx" />
+    <Content Include="Admin\PageAdminDashboard.aspx" />
+    <Content Include="Admin\PageAdminManager.aspx" />
+    <Content Include="Admin\PageAdminUsers.aspx" />
     <Content Include="Client\PageAnimal.aspx" />
     <Content Include="Client\PageAnimalDashboard.aspx" />
     <Content Include="Client\PageAnimalDiary.aspx" />
@@ -123,7 +125,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\style.css" />
     <Content Include="Doctor\PageDoctor.aspx" />
+    <Content Include="Doctor\PageDoctorDashboard.aspx" />
+    <Content Include="Doctor\PageDoctorServices.aspx" />
     <Content Include="Employee\PageEmployee.aspx" />
+    <Content Include="Employee\PageEmployeeAppointments.aspx" />
+    <Content Include="Employee\PageEmployeeDashboard.aspx" />
+    <Content Include="Employee\PageEmployeeSchedule.aspx" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Default.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -134,6 +141,9 @@
     <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
     <Content Include="MasterPage.Master" />
+    <Content Include="Doctor\MasterPageDoctor.Master" />
+    <Content Include="Employee\MasterPageEmployee.Master" />
+    <Content Include="Admin\MasterPageAdmin.Master" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -153,6 +163,42 @@
     <Compile Include="Account\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ControllerAdmin.cs" />
+    <Compile Include="Admin\MasterPageAdmin.Master.cs">
+      <DependentUpon>MasterPageAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MasterPageAdmin.Master.designer.cs">
+      <DependentUpon>MasterPageAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdmin.aspx.cs">
+      <DependentUpon>PageAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdmin.aspx.designer.cs">
+      <DependentUpon>PageAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminDashboard.aspx.cs">
+      <DependentUpon>PageAdminDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminDashboard.aspx.designer.cs">
+      <DependentUpon>PageAdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminManager.aspx.cs">
+      <DependentUpon>PageAdminManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminManager.aspx.designer.cs">
+      <DependentUpon>PageAdminManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminUsers.aspx.cs">
+      <DependentUpon>PageAdminUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminUsers.aspx.designer.cs">
+      <DependentUpon>PageAdminUsers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -168,26 +214,12 @@
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\OpenAuthProviders.ascx.cs">
-      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
-      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
-      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
-      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\ClientPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +332,13 @@
     </Compile>
     <Compile Include="DBConfig\DBConn.cs" />
     <Compile Include="Doctor\ControllerDoctor.cs" />
+    <Compile Include="Doctor\MasterPageDoctor.Master.cs">
+      <DependentUpon>MasterPageDoctor.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\MasterPageDoctor.Master.designer.cs">
+      <DependentUpon>MasterPageDoctor.Master</DependentUpon>
+    </Compile>
     <Compile Include="Doctor\PageDoctor.aspx.cs">
       <DependentUpon>PageDoctor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,13 +346,55 @@
     <Compile Include="Doctor\PageDoctor.aspx.designer.cs">
       <DependentUpon>PageDoctor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Doctor\PageDoctorDashboard.aspx.cs">
+      <DependentUpon>PageDoctorDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorDashboard.aspx.designer.cs">
+      <DependentUpon>PageDoctorDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServices.aspx.cs">
+      <DependentUpon>PageDoctorServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServices.aspx.designer.cs">
+      <DependentUpon>PageDoctorServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee\ControllerEmployee.cs" />
+    <Compile Include="Employee\MasterPageEmployee.Master.cs">
+      <DependentUpon>MasterPageEmployee.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\MasterPageEmployee.Master.designer.cs">
+      <DependentUpon>MasterPageEmployee.Master</DependentUpon>
+    </Compile>
     <Compile Include="Employee\PageEmployee.aspx.cs">
       <DependentUpon>PageEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Employee\PageEmployee.aspx.designer.cs">
       <DependentUpon>PageEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeAppointments.aspx.cs">
+      <DependentUpon>PageEmployeeAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeAppointments.aspx.designer.cs">
+      <DependentUpon>PageEmployeeAppointments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeDashboard.aspx.cs">
+      <DependentUpon>PageEmployeeDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeDashboard.aspx.designer.cs">
+      <DependentUpon>PageEmployeeDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeSchedule.aspx.cs">
+      <DependentUpon>PageEmployeeSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeSchedule.aspx.designer.cs">
+      <DependentUpon>PageEmployeeSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

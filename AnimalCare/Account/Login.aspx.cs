@@ -17,7 +17,6 @@ namespace AnimalCare.Account
                 Response.Redirect("/");
             }
             RegisterHyperLink.NavigateUrl = "Register.aspx";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
 
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
@@ -31,11 +30,11 @@ namespace AnimalCare.Account
             if (Roles.IsUserInRole(Login1.UserName, "Client"))
                 Response.Redirect("/Client/PageClientDashboard.aspx");
             else if (Roles.IsUserInRole(Login1.UserName, "Admin"))
-                Response.Redirect("/Admin/PageAdmin.aspx");
+                Response.Redirect("/Admin/PageAdminDashboard.aspx");
             else if (Roles.IsUserInRole(Login1.UserName, "Employee"))
-                Response.Redirect("/Employee/PageEmployee.aspx");
+                Response.Redirect("/Employee/PageEmployeeDashboard.aspx");
             else if (Roles.IsUserInRole(Login1.UserName, "Doctor"))
-                Response.Redirect("/Doctor/PageDoctor.aspx");
+                Response.Redirect("/Doctor/PageDoctorDashboard.aspx");
             else
                 Response.Redirect("/");
         }

@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="AnimalCare.Account.Login" %>
-<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <div class="navbar navbar-default" role="navigation">
@@ -46,8 +45,5 @@
             <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register</asp:HyperLink>
             if you don't have an account.
         </p>
-    </section>
-    <section id="socialLoginForm">
-        <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
     </section>
 </asp:Content>
