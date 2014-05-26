@@ -12,12 +12,16 @@ namespace AnimalCare.Client
         protected void Page_Load(object sender, EventArgs e)
         {
             listBusinessSector.Enabled = false;
-
         }
 
-        protected void OnLoad(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            
+            base.OnLoad(e);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                boxNome.Text = Ctrl.Bf.Name;
+            }
         }
 
         protected void chkBusiness_CheckedChanged(object sender, EventArgs e)

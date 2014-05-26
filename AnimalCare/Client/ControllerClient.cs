@@ -95,10 +95,10 @@ namespace AnimalCare.Client
  
         }
 
-        public override void loadCurrentUser(IIdentity currentUser)
+        public override void loadCurrentUser()
         {
             // Current User
-            Guid userGuid = (Guid)Membership.GetUser(currentUser.Name).ProviderUserKey;
+            Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
             // Load from Owners
             SqlCommand cmd = new SqlCommand("SELECT * FROM Owners WHERE [UserId] = @id", Database.Connection);
             cmd.Parameters.AddWithValue("@id", userGuid);

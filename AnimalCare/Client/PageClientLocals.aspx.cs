@@ -11,18 +11,6 @@ namespace AnimalCare.Client
 {
     public partial class PageClientLocals : ClientPage
     {
-        private ControllerClient ctrl;
-
-        public ControllerClient Ctrl
-        {
-            get
-            {
-                if (ctrl == null)
-                    ctrl = new ControllerClient(User.Identity);
-                return ctrl;
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -34,7 +22,7 @@ namespace AnimalCare.Client
 
             if (User.Identity.IsAuthenticated)
             {
-                ctrl = null;
+                refreshController();
 
                 SqlDataReader dr = Ctrl.getOwnerLocals().ExecuteReader();
 

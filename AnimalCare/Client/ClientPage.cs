@@ -9,6 +9,18 @@ namespace AnimalCare.Client
 {
     public class ClientPage : System.Web.UI.Page
     {
+        private ControllerClient ctrl;
+
+        public ControllerClient Ctrl
+        {
+            get
+            {
+                if (ctrl == null)
+                    ctrl = new ControllerClient(User.Identity);
+                return ctrl;
+            }
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             MasterPageClient master = (MasterPageClient)Master;
@@ -22,6 +34,11 @@ namespace AnimalCare.Client
         {
             // Redirecciona para a pagina de inicio de sessao
             FormsAuthentication.RedirectToLoginPage();
+        }
+
+        public void refreshController()
+        {
+            ctrl = null;
         }
     }
 }
