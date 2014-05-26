@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AnimalCare.Employee
+namespace AnimalCare.Doctor
 {
 
 
-    public partial class PageEmployee
+    public partial class PageDoctorServices
     {
     }
 }

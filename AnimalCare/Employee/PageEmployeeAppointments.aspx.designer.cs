@@ -11,7 +11,7 @@ namespace AnimalCare.Employee
 {
 
 
-    public partial class PageEmployee
+    public partial class PageEmployeeAppointments
     {
     }
 }

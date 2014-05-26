@@ -7,51 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AnimalCare.Account
-{
-
-
-    public partial class RegisterExternalLogin
-    {
-
-
+namespace AnimalCare.Employee {
+    
+    
+    public partial class MasterPageEmployee {
+        
         /// <summary>
-        /// providerMessage control.
+        /// head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label providerMessage;
-
-
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        
         /// <summary>
-        /// userNameForm control.
+        /// MasterForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder userNameForm;
-
+        protected global::System.Web.UI.HtmlControls.HtmlForm MasterForm;
+        
         /// <summary>
-        /// userName control.
+        /// ContentPlaceHolderMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userName;
-
-
-        /// <summary>
-        /// userNameMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userNameMessage;
-
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolderMain;
     }
 }
