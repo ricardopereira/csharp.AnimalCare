@@ -13,14 +13,5 @@ namespace AnimalCare.Client
         {
 
         }
-
-        public event EventHandler logOutClick;
-
-        public void logout_Click(object sender, EventArgs e)
-        {
-            // Executa o custom event handler
-            if (logOutClick != null)
-                logOutClick(sender, e);
-        }
     }
 }

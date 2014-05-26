@@ -20,7 +20,11 @@
                 <a class="btn btn-default btn-sm" href="PageClientEdit.aspx" role="button"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
                 <br />
                 <br />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+                <br />
+                <p>Nome: <asp:Literal runat="server" ID="clientName"></asp:Literal></p>
+                <p>Email: <asp:Literal runat="server" ID="clientEmail"></asp:Literal></p>
+                <p>País: <asp:Literal runat="server" ID="clientCountry"></asp:Literal></p>
+                <p>Telefone: <asp:Literal runat="server" ID="clientPhoneNumber"></asp:Literal></p>
             </div>
         </div>
     </div>

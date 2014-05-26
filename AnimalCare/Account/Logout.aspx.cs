@@ -18,6 +18,8 @@ namespace AnimalCare.Account
             }
             else
             {
+                Session.Clear();
+                Session.Abandon();
                 FormsAuthentication.SignOut();
                 Response.Redirect("/");
             }

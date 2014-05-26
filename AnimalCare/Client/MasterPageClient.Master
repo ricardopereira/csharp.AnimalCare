@@ -38,7 +38,7 @@
                           <li><a href="PageAnimalDiary.aspx">Diário</a></li>
                       </ul>
                   </li>
-                  <li><a href="#" runat="server" onserverclick="logout_Click">Terminar sessão</a></li>
+                    <li><a id="logoutLink" href="../Account/Logout.aspx">Terminar Sessão</a></li>
               </ul>
           </div>
         </div>
