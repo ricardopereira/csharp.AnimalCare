@@ -12,6 +12,10 @@ namespace AnimalCare.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/");
+            }
             RegisterHyperLink.NavigateUrl = "Register.aspx";
             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
 
@@ -22,18 +26,12 @@ namespace AnimalCare.Account
             }
         }
 
-        protected void LoginUser_LoggedIn(object sender, EventArgs e)
+        protected void Login_LoggedIn(object sender, EventArgs e)
         {
-            MembershipUser user = Membership.GetUser(User.Identity.Name);
-
-            if (Roles.IsUserInRole(user.UserName, "User"))
-            {
-                Response.Redirect("../Client/PageClientDashboard.aspx");
-            }
-            else if (Roles.IsUserInRole(user.UserName, "Admin"))
-            {
-                
-            }
+            if (Roles.IsUserInRole("Admin"))
+                Response.Redirect("~/Admin/Default.aspx");
+            else if (Roles.IsUserInRole("Client"))
+                Response.Redirect("/Client/PageClientDashboard.aspx");
         }
     }
 }

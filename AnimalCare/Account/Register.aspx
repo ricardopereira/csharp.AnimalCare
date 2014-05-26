@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="AnimalCare.Account.Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default" role="navigation">
         <div class="container">
             <ul class="nav navbar-nav">
                 <div class="navbar-header">
@@ -17,7 +17,7 @@
     </div>
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1">
-    <div style="position: absolute; margin-top: 7.5em;" class="container">
+    <div class="container">
         <div class="form-signin text-center" role="form">    
             <hgroup class="title">
                 <h1><%: Title %></h1>
