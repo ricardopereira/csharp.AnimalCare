@@ -28,10 +28,16 @@ namespace AnimalCare.Account
 
         protected void Login_LoggedIn(object sender, EventArgs e)
         {
-            if (Roles.IsUserInRole("Admin"))
-                Response.Redirect("~/Admin/Default.aspx");
-            else if (Roles.IsUserInRole("Client"))
+            if (Roles.IsUserInRole(Login1.UserName, "Client"))
                 Response.Redirect("/Client/PageClientDashboard.aspx");
+            else if (Roles.IsUserInRole(Login1.UserName, "Admin"))
+                Response.Redirect("/Admin/PageAdmin.aspx");
+            else if (Roles.IsUserInRole(Login1.UserName, "Employee"))
+                Response.Redirect("/Employee/PageEmployee.aspx");
+            else if (Roles.IsUserInRole(Login1.UserName, "Doctor"))
+                Response.Redirect("/Doctor/PageDoctor.aspx");
+            else
+                Response.Redirect("/");
         }
     }
 }
