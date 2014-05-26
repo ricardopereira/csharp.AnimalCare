@@ -30,22 +30,22 @@
                     <div class="panel-body">
                         <p>
                         <asp:Label ID="lblNome" runat="server" Text="Nome do Local: "></asp:Label>
-                        <asp:TextBox ID="boxNome" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="boxNome" class="form-control" runat="server"></asp:TextBox>
                         </p>
 
                         <p>
                         <asp:Label ID="lblAddress" runat="server" Text="Morada: "></asp:Label>
-                        <asp:TextBox ID="boxAddress" runat="server" Width="90%"></asp:TextBox>
+                        <asp:TextBox ID="boxAddress" class="form-control" runat="server" Width="90%"></asp:TextBox>
                         </p>
 
                         <p>
                         <asp:Label ID="lblZipCode" runat="server" Text="Código postal: "></asp:Label>
-                        <asp:TextBox ID="boxZipCode" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="boxZipCode" class="form-control" runat="server"></asp:TextBox>
                         </p>
 
                         <p>
                         <asp:Label ID="lblGPS" runat="server" Text="GPS: "></asp:Label>
-                        <asp:TextBox ID="boxGPS" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="boxGPS" class="form-control" runat="server"></asp:TextBox>
                         </p>
 
                         <p>

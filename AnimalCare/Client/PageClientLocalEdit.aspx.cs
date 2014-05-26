@@ -25,6 +25,13 @@ namespace AnimalCare.Client
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
             if (!IsPostBack)
             {
                 ownerLocalID = 0;
@@ -38,11 +45,11 @@ namespace AnimalCare.Client
                     // Carregar os dados
                     String str = "SELECT * FROM OwnerLocals WHERE [OwnerLocalID] = @id";
 
-                    SqlCommand cmd = new SqlCommand(str, db.SqlCnn);
+                    SqlCommand cmd = new SqlCommand(str, db.Connection);
 
                     // Preenche ID
                     cmd.Parameters.AddWithValue("@id", ownerLocalID);
-                    db.SqlCnn.Open();
+                    db.Connection.Open();
 
                     // Executa
                     SqlDataReader dados = cmd.ExecuteReader();
@@ -50,7 +57,7 @@ namespace AnimalCare.Client
                     if (!dados.HasRows)
                     {
                         dados.Close();
-                        db.SqlCnn.Close();
+                        db.Connection.Close();
                         return;
                     }
 
@@ -74,7 +81,7 @@ namespace AnimalCare.Client
                         chkIsMain.Checked = dados.GetBoolean(8);
 
                     dados.Close();
-                    db.SqlCnn.Close();
+                    db.Connection.Close();
 
                 }
                 if (ownerLocalID == 0)
@@ -92,9 +99,7 @@ namespace AnimalCare.Client
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            loadOwnerLocalID();
-
-            DBConn db = new DBConn();
+            Controller ctrl = new Controller(User.Identity);
 
             String str = "";
             if (ownerLocalID == 0)
@@ -108,7 +113,7 @@ namespace AnimalCare.Client
 
             if (str == "") return;
             // SQL Query
-            SqlCommand cmd = new SqlCommand(str, db.SqlCnn);
+            SqlCommand cmd = new SqlCommand(str, ctrl.Database.Connection);
 
             if (ownerLocalID > 0)
             {
@@ -118,7 +123,7 @@ namespace AnimalCare.Client
             else
             {
                 // Preenche o proprietário para um NOVO registo
-                cmd.Parameters.AddWithValue("@ownerid", 1); //Teste - ir à sessão
+                cmd.Parameters.AddWithValue("@ownerid", ctrl.OwnerID);
             }
 
             // Buffer
@@ -130,12 +135,10 @@ namespace AnimalCare.Client
             cmd.Parameters.AddWithValue("@city", Convert.ToInt32(listCity.SelectedValue));
             cmd.Parameters.AddWithValue("@ismain", Convert.ToInt32(chkIsMain.Checked));
 
-            db.SqlCnn.Open();
-
             // Executa
             int count = cmd.ExecuteNonQuery();
 
-            db.SqlCnn.Close();
+            ctrl.Database.Connection.Close();
 
             Response.Redirect("PageClientLocals.aspx");
         }

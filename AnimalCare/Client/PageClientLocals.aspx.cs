@@ -19,26 +19,19 @@ namespace AnimalCare.Client
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if (!this.IsPostBack)
+
+            if (User.Identity.IsAuthenticated)
             {
-                DBConn bd = new DBConn();
-                String str = "SELECT l.*, co.Name Country, ci.Name City FROM OwnerLocals l" +
-                    " INNER JOIN Countries co ON co.CountryID = l.CountryID" +
-                    " INNER JOIN Cities ci ON ci.CityID = l.CityID";
+                Controller ctrl = new Controller(User.Identity);
 
-                // Executar comando
-                SqlCommand cmd = new SqlCommand(str, bd.SqlCnn);
-
-                bd.SqlCnn.Open();
-
-                SqlDataReader dr = cmd.ExecuteReader();
+                SqlDataReader dr = ctrl.getOwnerLocals().ExecuteReader();
 
                 // Efectuar o data binding
                 tabelaLocais.DataSource = dr;
                 tabelaLocais.DataBind();
 
                 dr.Close();
-                bd.SqlCnn.Close();
+                ctrl.Database.Connection.Close();
             }
         }
 
@@ -56,16 +49,17 @@ namespace AnimalCare.Client
 
             String str = "DELETE FROM OwnerLocals WHERE [OwnerLocalID] = @id";
             // SQL Query
-            SqlCommand cmd = new SqlCommand(str, db.SqlCnn);
+            SqlCommand cmd = new SqlCommand(str, db.Connection);
             cmd.Parameters.AddWithValue("@id", ownerLocalID);
 
-            db.SqlCnn.Open();
+            db.Connection.Open();
 
             // Executa
             int count = cmd.ExecuteNonQuery();
 
-            db.SqlCnn.Close();
+            db.Connection.Close();
 
+            // Refrescar página
             Response.Redirect("PageClientLocals.aspx");
         }
     }

@@ -184,6 +184,7 @@
     <Compile Include="Client\ClientPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Client\Controller.cs" />
     <Compile Include="Client\MasterPageClient.Master.cs">
       <DependentUpon>MasterPageClient.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

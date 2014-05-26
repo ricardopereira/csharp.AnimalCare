@@ -26,9 +26,9 @@ namespace AnimalCare.Client
                     " INNER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID";
 
                 // Executar comando
-                SqlCommand cmd = new SqlCommand(str, db.SqlCnn);
+                SqlCommand cmd = new SqlCommand(str, db.Connection);
 
-                db.SqlCnn.Open();
+                db.Connection.Open();
 
                 SqlDataReader dr = cmd.ExecuteReader();
 
@@ -37,7 +37,7 @@ namespace AnimalCare.Client
                 tabelaAnimais.DataBind();
 
                 dr.Close();
-                db.SqlCnn.Close();
+                db.Connection.Close();
             }
         }
     }

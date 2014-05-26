@@ -10,18 +10,18 @@ namespace AnimalCare
 {
     public class DBConn
     {
-        SqlConnection sqlCon;
+        SqlConnection conn;
 
-        public SqlConnection SqlCnn
+        public SqlConnection Connection
         {
-            get { return sqlCon; }
-            set { sqlCon = value; }
+            get { return conn; }
+            set { conn = value; }
         }
 
         public DBConn()
         {
             string CnnString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            sqlCon = new SqlConnection(CnnString);
+            conn = new SqlConnection(CnnString);
         }
     }
 }
