@@ -99,7 +99,7 @@ namespace AnimalCare.Client
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            Controller ctrl = new Controller(User.Identity);
+            ControllerClient ctrl = new ControllerClient(User.Identity);
 
             String str = "";
             if (ownerLocalID == 0)
@@ -123,7 +123,7 @@ namespace AnimalCare.Client
             else
             {
                 // Preenche o proprietário para um NOVO registo
-                cmd.Parameters.AddWithValue("@ownerid", ctrl.OwnerID);
+                cmd.Parameters.AddWithValue("@ownerid", ctrl.Bf.OwnerID);
             }
 
             // Buffer

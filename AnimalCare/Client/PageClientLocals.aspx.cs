@@ -11,6 +11,18 @@ namespace AnimalCare.Client
 {
     public partial class PageClientLocals : ClientPage
     {
+        private ControllerClient ctrl;
+
+        public ControllerClient Ctrl
+        {
+            get
+            {
+                if (ctrl == null)
+                    ctrl = new ControllerClient(User.Identity);
+                return ctrl;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,16 +34,16 @@ namespace AnimalCare.Client
 
             if (User.Identity.IsAuthenticated)
             {
-                Controller ctrl = new Controller(User.Identity);
+                ctrl = null;
 
-                SqlDataReader dr = ctrl.getOwnerLocals().ExecuteReader();
+                SqlDataReader dr = Ctrl.getOwnerLocals().ExecuteReader();
 
                 // Efectuar o data binding
                 tabelaLocais.DataSource = dr;
                 tabelaLocais.DataBind();
 
                 dr.Close();
-                ctrl.Database.Connection.Close();
+                Ctrl.Database.Connection.Close();
             }
         }
 

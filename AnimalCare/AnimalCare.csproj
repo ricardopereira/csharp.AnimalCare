@@ -192,7 +192,7 @@
     <Compile Include="Client\ClientPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Client\Controller.cs" />
+    <Compile Include="Client\ControllerClient.cs" />
     <Compile Include="Client\MasterPageClient.Master.cs">
       <DependentUpon>MasterPageClient.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -299,6 +299,7 @@
       <DependentUpon>PageClientLocals.aspx</DependentUpon>
     </Compile>
     <Compile Include="DBConfig\DBConn.cs" />
+    <Compile Include="Doctor\ControllerDoctor.cs" />
     <Compile Include="Doctor\PageDoctor.aspx.cs">
       <DependentUpon>PageDoctor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -306,6 +307,7 @@
     <Compile Include="Doctor\PageDoctor.aspx.designer.cs">
       <DependentUpon>PageDoctor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Employee\ControllerEmployee.cs" />
     <Compile Include="Employee\PageEmployee.aspx.cs">
       <DependentUpon>PageEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -323,6 +325,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global\Controller.cs" />
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -334,7 +337,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Global\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
