@@ -13,13 +13,31 @@ namespace AnimalCare.Client {
     public partial class PageClientAppointments {
         
         /// <summary>
-        /// calDateFrom control.
+        /// calDateAppointment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calDateFrom;
+        protected global::System.Web.UI.WebControls.Calendar calDateAppointment;
+        
+        /// <summary>
+        /// listHour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList listHour;
+        
+        /// <summary>
+        /// listMinutes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList listMinutes;
         
         /// <summary>
         /// TiposEspecialidadesDS control.
@@ -31,13 +49,13 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.SqlDataSource TiposEspecialidadesDS;
         
         /// <summary>
-        /// CheckBoxList1 control.
+        /// chkAnimais control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkAnimais;
         
         /// <summary>
         /// Animais control.

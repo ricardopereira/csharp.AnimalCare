@@ -228,10 +228,94 @@ namespace AnimalCare.Client
             return cmd;
         }
 
+        public void deleteOwnerLocal(int ownerLocalID)
+        {
+            if (ownerLocalID <= 0)
+                return;
+
+            // ToDo - Verificar relações
+
+            String str = "DELETE FROM OwnerLocals WHERE [OwnerLocalID] = @id";
+            // SQL Query
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", ownerLocalID);
+
+            // Executa
+            int count = cmd.ExecuteNonQuery();
+        }
+
         public SqlCommand getOwnerAnimals()
         {
+            String str = "SELECT a.* FROM OwnerAnimalsRelation rel" +
+                " INNER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
+                " WHERE rel.OwnerID = @id AND rel.Active = 1";
 
-            return null;
+            // Executar comando
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
+
+            return cmd;
+        }
+
+        public SqlCommand getAppointments(DateTime dateFrom, DateTime dateTo, int animalID=0)
+        {
+            String str = "SELECT * FROM Appointments" +
+                " WHERE DateAppointment >  @dateFrom AND DateAppointment < @dateTo";
+
+            if (animalID > 0)
+                str += " AND AnimalID = @animalID";
+
+            // Executar comando
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+            cmd.Parameters.AddWithValue("@dateFrom", dateTo);
+
+            if (animalID > 0)
+                cmd.Parameters.AddWithValue("@animalID", animalID);
+
+            return cmd;
+        }
+
+        public void insertAppointment(int animalID, 
+            int appointmentTypeID, DateTime dateAppointment, String reason, Boolean urgent, int state)
+        {
+            if (dateAppointment == null || dateAppointment.ToBinary() == 0)
+                return;
+
+            String str = "INSERT INTO Appointments VALUES " +
+                "(@ownerID,@animalID,NULL,@appointmentTypeID,@dateAppointment,CURRENT_TIMESTAMP,@reason,@urgent,@state)";
+
+            // SQL Query
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+
+            // Buffer
+            cmd.Parameters.AddWithValue("@ownerID", Bf.OwnerID);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
+            //cmd.Parameters.AddWithValue("@animalGroupID", null);
+            cmd.Parameters.AddWithValue("@appointmentTypeID", appointmentTypeID);
+            cmd.Parameters.AddWithValue("@dateAppointment", dateAppointment);
+            cmd.Parameters.AddWithValue("@reason", reason);
+            cmd.Parameters.AddWithValue("@urgent", urgent);
+            cmd.Parameters.AddWithValue("@state", state);
+
+            // Executa
+            cmd.ExecuteNonQuery();
+        }
+
+        public void deleteAppointment(int appointmentID)
+        {
+            if (appointmentID <= 0)
+                return;
+
+            // ToDo - Verificar relações
+
+            String str = "DELETE FROM Appointments WHERE [AppointmentID] = @id";
+            // SQL Query
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", appointmentID);
+
+            // Executa
+            int count = cmd.ExecuteNonQuery();
         }
     }
 }
