@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <!-- Cliente -->
                 <h4>Proprietário</h4>
-                <p class="text-muted"><%: User.Identity.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
             </div>
         </div>

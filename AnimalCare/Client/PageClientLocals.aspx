@@ -68,7 +68,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <asp:Repeater ID="tabelaLocais" runat="server">
+                                <asp:Repeater ID="tblLocals" runat="server">
                                     <ItemTemplate>
                                     <tr>
                                         <td>

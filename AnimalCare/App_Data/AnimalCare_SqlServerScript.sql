@@ -24,14 +24,14 @@ CREATE TABLE [dbo].[Countries] (
 CREATE TABLE [dbo].[Owners] (
   [OwnerID] INT NOT NULL IDENTITY,
   [UserID] UNIQUEIDENTIFIER NOT NULL,
-  [Name] VARCHAR(45) NOT NULL,
+  [Name] VARCHAR(45) NULL,
   [Business] BIT NULL,
   [BusinessSectorID] INT NULL,
   [TaxNumber] VARCHAR(15) NULL,
   [MobileNumber] VARCHAR(20) NULL,
   [FaxNumber] VARCHAR(20) NULL,
   [Inactive] BIT NULL,
-  [CountryID] INT NOT NULL,
+  [CountryID] INT NULL,
   PRIMARY KEY ([OwnerID]),
   CONSTRAINT [fk_Owners_Users]
     FOREIGN KEY ([UserID])
