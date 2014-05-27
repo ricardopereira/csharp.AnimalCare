@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -79,6 +80,43 @@ namespace AnimalCare.Client
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("PageClient.aspx");
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (FileUpload.HasFile)
+            {
+                try
+                {
+                    /* Folder Structure: Images/OwnerID/.. */
+                    string path = Request.PhysicalApplicationPath + "Images\\";
+                    path += Ctrl.Bf.OwnerID + "\\";
+
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    else
+                        if(Directory.Exists(path + "profile.jpg")) /* There is a profile photo */
+                            Directory.Delete(path + "profile.jpg");
+
+                    if (FileUpload.PostedFile.ContentType == "image/jpeg")
+                    {
+                        if (FileUpload.PostedFile.ContentLength < 2048000)
+                        {
+                            string extension = Path.GetExtension(FileUpload.PostedFile.FileName);
+                            FileUpload.SaveAs(path + "profile" + extension);
+                            uploadMessage.Text = "Imagem carregada!";
+                        }
+                        else
+                            uploadMessage.Text = "Tamanho máximo: 2Mb";
+                    }
+                    else
+                        uploadMessage.Text = "Tipo de ficheiro inválido";
+                }
+                catch (Exception ex)
+                {
+                    uploadMessage.Text = "Ocorreu um erro: " + ex; ;
+                }
+            }
         }
     }
 }

@@ -23,7 +23,6 @@
                 <br />
                 <br />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                <button type="button" class="btn btn-sm btn-default">Carregar foto</button>
             </div>
         </div>
         <div class="row">
@@ -88,6 +87,19 @@
                         <asp:Label ID="lblFaxNumber" runat="server" Text="Fax: "></asp:Label>
                         <asp:TextBox ID="boxFaxNumber" runat="server"></asp:TextBox>
                         </p>
+                    </div>
+                </div>
+
+                <!-- Relativos a imagem perfil -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Imagem de Perfil</h3>
+                    </div>
+                    <div class="panel-body">
+                        <asp:FileUpload ID="FileUpload" runat="server" />
+                        <br />
+                        <asp:Button ID="btnUpload" CssClass="btn btn-sm btn-default" runat="server" Text="Carregar Foto" OnClick="btnUpload_Click"></asp:Button>
+                        <asp:Literal ID="uploadMessage" runat="server"></asp:Literal>
                     </div>
                 </div>
 
