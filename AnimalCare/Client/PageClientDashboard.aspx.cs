@@ -23,15 +23,22 @@ namespace AnimalCare.Client
             {
                 refreshController();
 
+                SqlDataReader dr;
                 DateTime dateFirst = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 DateTime dateLast = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1);
 
-                SqlDataReader dr = Ctrl.getAppointments(dateFirst, dateLast).ExecuteReader();
-
+                // Marcacoes
+                dr = Ctrl.getAppointments(dateFirst, dateLast).ExecuteReader();
                 // Efectuar o data binding
                 tblAppointments.DataSource = dr;
                 tblAppointments.DataBind();
+                dr.Close();
 
+                // Agenda
+                dr = Ctrl.getScheduleEvents(dateFirst, dateLast).ExecuteReader();
+                // Efectuar o data binding
+                tblSchedule.DataSource = dr;
+                tblSchedule.DataBind();
                 dr.Close();
             }
         }

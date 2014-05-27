@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Principal;
@@ -9,6 +10,12 @@ using System.Web.Security;
 
 namespace AnimalCare.Client
 {
+    public enum AppointmentState {
+        [Description("Sem estado")] astNone, 
+        [Description("Aceite")] astAccepted,
+        [Description("Rejeitado")] astRejected
+    };
+
     public class ClientBuffer
     {
         private int ownerID;
@@ -119,7 +126,11 @@ namespace AnimalCare.Client
             Bf.Email = ms.Email;
 
             // Load from Owners
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Owners WHERE [UserId] = @id", Database.Connection);
+            String str = "SELECT o.*, c.Name as Country FROM Owners o" +
+                " LEFT OUTER JOIN Countries c ON c.CountryID = o.CountryID" +
+                " WHERE [UserId] = @id";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@id", userGuid);
             // Abre a base de dados
             Database.Connection.Open();
@@ -147,25 +158,11 @@ namespace AnimalCare.Client
                 if (!dados.IsDBNull(8))
                     Bf.Inactive = dados.GetBoolean(8);
                 if (!dados.IsDBNull(9))
-                {
                     Bf.CountryID = dados.GetInt32(9);
-                }
+                if (!dados.IsDBNull(10))
+                    Bf.Country = dados.GetString(10);
             }
             dados.Close();
-            setCountryById();
-        }
-
-        private void setCountryById()
-        {
-            if (Bf.CountryID != 0)
-            {
-                SqlCommand cmdCountry = new SqlCommand("SELECT Name FROM Countries WHERE [CountryID] = @countryID", Database.Connection);
-                cmdCountry.Parameters.AddWithValue("@countryID", Bf.CountryID);
-                SqlDataReader data = cmdCountry.ExecuteReader();
-                data.Read();
-                Bf.Country = data.GetString(0);
-                data.Close();
-            }
         }
 
         public void insertOwner()
@@ -260,7 +257,8 @@ namespace AnimalCare.Client
         public SqlCommand getAppointments(DateTime dateFrom, DateTime dateTo, int animalID=0)
         {
             String str = "SELECT * FROM Appointments" +
-                " WHERE DateAppointment >  @dateFrom AND DateAppointment < @dateTo";
+                " WHERE DateAppointment >  @dateFrom AND DateAppointment < @dateTo" +
+                "  AND OwnerID = @id";
 
             if (animalID > 0)
                 str += " AND AnimalID = @animalID";
@@ -269,6 +267,7 @@ namespace AnimalCare.Client
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
             cmd.Parameters.AddWithValue("@dateTo", dateTo);
+            cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
 
             if (animalID > 0)
                 cmd.Parameters.AddWithValue("@animalID", animalID);
@@ -316,6 +315,29 @@ namespace AnimalCare.Client
 
             // Executa
             int count = cmd.ExecuteNonQuery();
+        }
+
+        public SqlCommand getScheduleEvents(DateTime dateFrom, DateTime dateTo, int animalID = 0)
+        {
+            String str = "SELECT s.*, k.Description as ServiceKind, a.Name as Animal FROM Schedule s" +
+                " INNER JOIN ServiceKinds k ON k.ServiceKindID = s.ServiceKindID" +
+                " INNER JOIN Animals a ON a.AnimalID = s.AnimalID" +
+                " WHERE DateEvent >= @dateFrom AND DateEvent <= @dateTo" +
+                "  AND OwnerID = @id";
+
+            if (animalID > 0)
+                str += " AND AnimalID = @animalID";
+
+            // Executar comando
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+            cmd.Parameters.AddWithValue("@dateTo", dateTo);
+            cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
+
+            if (animalID > 0)
+                cmd.Parameters.AddWithValue("@animalID", animalID);
+
+            return cmd;
         }
     }
 }
