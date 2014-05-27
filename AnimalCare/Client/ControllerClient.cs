@@ -11,9 +11,10 @@ using System.Web.Security;
 namespace AnimalCare.Client
 {
     public enum AppointmentState {
-        [Description("Sem estado")] astNone, 
+        [Description("Em espera")] astNone, 
         [Description("Aceite")] astAccepted,
-        [Description("Rejeitado")] astRejected
+        [Description("Rejeitado")] astRejected,
+        [Description("Cancelado")] astCanceled
     };
 
     public class ClientBuffer
@@ -241,16 +242,17 @@ namespace AnimalCare.Client
             int count = cmd.ExecuteNonQuery();
         }
 
+        public String getOwnerAnimalsSQL()
+        {
+            return "SELECT a.* FROM OwnerAnimalsRelation rel" +
+                " INNER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
+                " WHERE rel.OwnerID = " + Bf.OwnerID + " AND rel.Active = 1";
+        }
+
         public SqlCommand getOwnerAnimals()
         {
-            String str = "SELECT a.* FROM OwnerAnimalsRelation rel" +
-                " INNER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
-                " WHERE rel.OwnerID = @id AND rel.Active = 1";
-
             // Executar comando
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
-
+            SqlCommand cmd = new SqlCommand(getOwnerAnimalsSQL(), Database.Connection);
             return cmd;
         }
 
@@ -276,7 +278,7 @@ namespace AnimalCare.Client
         }
 
         public void insertAppointment(int animalID, 
-            int appointmentTypeID, DateTime dateAppointment, String reason, Boolean urgent, int state)
+            int appointmentTypeID, DateTime dateAppointment, String reason, Boolean urgent=false, int state=0)
         {
             if (dateAppointment == null || dateAppointment.ToBinary() == 0)
                 return;

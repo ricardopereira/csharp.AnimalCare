@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Marcação<small> consultas</small></h1>
+                <h1 class="page-header">Marcação<small> pedido de marcação</small></h1>
             </div>
         </div>
         <div class="row well span2">
@@ -22,7 +22,6 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <!-- Histórico clínico -->
                 <br />
                 <!--Filtro -->
                 <div class="panel panel-default">
@@ -30,6 +29,7 @@
                         <h3 class="panel-title">Calendário</h3>
                     </div>
                     <div class="panel-body">
+                        <!-- DADOS -->
                         <div class="row">
                             <div class="col-md-4">
                                 <p><asp:Calendar ID="calDateAppointment" runat="server"></asp:Calendar></p>
@@ -39,23 +39,47 @@
                                 </p>
                             </div>
                             <div class="col-md-8">
-                                Especialidade: <asp:DropDownList runat="server" DataSourceID="TiposEspecialidadesDS" DataTextField="Description" DataValueField="AppointmentTypeID">
-                                </asp:DropDownList>                            
-                                <asp:SqlDataSource ID="TiposEspecialidadesDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AppointmentTypes]"></asp:SqlDataSource>
+                                <p>
+                                <asp:Label ID="lblReason" runat="server" Text="Motivo: "></asp:Label>
+                                <asp:TextBox ID="boxReason" runat="server" class="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorReason" runat="server" ControlToValidate="boxReason"
+                                    CssClass="field-validation-error text-danger" ErrorMessage="Especifique o motivo." />
+                                </p>
+
+                                <asp:Label ID="lblAppointmentTypes" runat="server" Text="Tipo de marcação: "></asp:Label>
+                                <asp:DropDownList ID="listAppointmentTypes" runat="server" DataSourceID="AppointmentTypesDS" DataTextField="Description" DataValueField="AppointmentTypeID">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="AppointmentTypesDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AppointmentTypes]"></asp:SqlDataSource>
+
+                                <p>
+                                <asp:Label ID="lblUrgent" runat="server" Text="Urgente: "></asp:Label>
+                                <asp:CheckBox ID="chkUrgent" runat="server" OnCheckedChanged="chkUrgent_CheckedChanged" AutoPostBack="true"></asp:CheckBox>
+                                </p>
 
                                 <br /><br />
-                                Animais:
-                                <asp:CheckBoxList ID="chkAnimais" runat="server" DataSourceID="Animais" DataTextField="Name" DataValueField="AnimalID">
+                                
+                                <asp:Label ID="lblAnimais" runat="server" Text="Animais:"></asp:Label>
+                                <asp:CheckBoxList ID="chkAnimais" runat="server" DataSourceID="AnimaisDS" DataTextField="Name" DataValueField="AnimalID">
                                 </asp:CheckBoxList>
-                                <asp:SqlDataSource ID="Animais" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Name], [AnimalID], [OwnerLocalID] FROM [Animals] WHERE ([OwnerLocalID] = @OwnerLocalID)">
-                                    <SelectParameters>
-                                        <asp:SessionParameter Name="OwnerLocalID" SessionField="userId" Type="Int32" DefaultValue="1" />
-                                    </SelectParameters>
+                                <asp:SqlDataSource ID="AnimaisDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Name], [AnimalID] FROM [Animals]">
                                 </asp:SqlDataSource>
                                 <br />
-                                <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Solicitar consulta" OnClick="btnSave_Click"></asp:Button>
+
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- Espaço em branco -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Solicitar pedido" OnClick="btnSave_Click"></asp:Button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

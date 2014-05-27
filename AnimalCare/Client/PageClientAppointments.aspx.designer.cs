@@ -40,13 +40,85 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.DropDownList listMinutes;
         
         /// <summary>
-        /// TiposEspecialidadesDS control.
+        /// lblReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource TiposEspecialidadesDS;
+        protected global::System.Web.UI.WebControls.Label lblReason;
+        
+        /// <summary>
+        /// boxReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox boxReason;
+        
+        /// <summary>
+        /// RequiredFieldValidatorReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorReason;
+        
+        /// <summary>
+        /// lblAppointmentTypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAppointmentTypes;
+        
+        /// <summary>
+        /// listAppointmentTypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList listAppointmentTypes;
+        
+        /// <summary>
+        /// AppointmentTypesDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource AppointmentTypesDS;
+        
+        /// <summary>
+        /// lblUrgent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUrgent;
+        
+        /// <summary>
+        /// chkUrgent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkUrgent;
+        
+        /// <summary>
+        /// lblAnimais control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnimais;
         
         /// <summary>
         /// chkAnimais control.
@@ -58,13 +130,13 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.CheckBoxList chkAnimais;
         
         /// <summary>
-        /// Animais control.
+        /// AnimaisDS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Animais;
+        protected global::System.Web.UI.WebControls.SqlDataSource AnimaisDS;
         
         /// <summary>
         /// btnSave control.

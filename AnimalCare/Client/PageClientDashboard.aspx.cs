@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -19,7 +21,7 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
 
-            if (User.Identity.IsAuthenticated)
+            if (!IsPostBack && User.Identity.IsAuthenticated)
             {
                 refreshController();
 
@@ -41,6 +43,11 @@ namespace AnimalCare.Client
                 tblSchedule.DataBind();
                 dr.Close();
             }
+        }
+
+        protected void btnCancelAppointment_Click(object sender, EventArgs e)
+        {
+            // ToDo - Cancelar marcação
         }
     }
 }

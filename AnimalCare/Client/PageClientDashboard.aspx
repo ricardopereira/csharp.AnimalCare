@@ -18,14 +18,14 @@
 
         <div class="row">
             <!-- PERFIL -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <p class="lead"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-sm" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
             </div>
 
             <!-- MARCACOES -->
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <!-- Tabela com as marcacoes -->
                 <div class="table-responsive">
                     <div class="panel panel-default">
@@ -34,7 +34,7 @@
                         <div class="panel-body">
                             <!-- Conteudo para o painel: Talvez colocar os botões -->
                             <div class="btn-group">
-                                <a class="btn btn-success" href="#" role="button">Nova marcação</a>
+                                <a class="btn btn-success" href="PageClientAppointments.aspx" role="button">Nova marcação</a>
                             </div>
                         </div>
                         <table class="table table-striped">
@@ -52,7 +52,12 @@
                                     <tr>
                                         <td>
                                             <!-- Opcoes de linha -->
-                                            <a class="btn btn-warning btn-xs" href="#" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a class="btn btn-warning btn-xs" href="#" role="button" runat="server"><span class="glyphicon glyphicon-edit"></span></a>
+
+                                            <asp:Button ID="btnCancelAppointment" runat="server" CssClass="btn btn-danger btn-xs" 
+                                                Text="Cancelar" OnClick="btnCancelAppointment_Click" 
+                                                Visible='<%# Convert.ToInt32(Eval("State")) == (int)AnimalCare.Client.AppointmentState.astNone %>'></asp:Button>
+
                                         </td>
                                         <td><%# Eval("DateAppointment")%></td>
                                         <td><%# Eval("Reason")%></td>

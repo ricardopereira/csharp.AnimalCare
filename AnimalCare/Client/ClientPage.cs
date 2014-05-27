@@ -40,5 +40,10 @@ namespace AnimalCare.Client
         {
             ctrl = null;
         }
+
+        public void refreshPage()
+        {
+            Response.Redirect(System.IO.Path.GetFileName(Request.Url.AbsolutePath));
+        }
     }
 }

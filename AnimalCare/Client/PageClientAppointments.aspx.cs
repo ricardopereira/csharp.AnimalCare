@@ -18,8 +18,10 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
 
-            if (!IsPostBack)
+            if (!IsPostBack && User.Identity.IsAuthenticated)
             {
+                AnimaisDS.SelectCommand = Ctrl.getOwnerAnimalsSQL();
+
                 // Horas
                 listHour.Items.Clear();
                 for (int i = 0; i < 24; i++)
@@ -35,15 +37,26 @@ namespace AnimalCare.Client
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            DateTime aux = calDateAppointment.SelectedDate;
+            DateTime dateAux = calDateAppointment.SelectedDate;
 
-            aux = aux.AddHours(Convert.ToInt16(listHour.SelectedItem.Text));
-            aux = aux.AddMinutes(Convert.ToInt16(listMinutes.SelectedItem.Text));
+            dateAux = dateAux.AddHours(Convert.ToInt16(listHour.SelectedItem.Text));
+            dateAux = dateAux.AddMinutes(Convert.ToInt16(listMinutes.SelectedItem.Text));
 
-            // Teste
-            Ctrl.insertAppointment(2, 1, aux, "Teste", false, 1);
+            for (int i = 0; i < chkAnimais.Items.Count; i++)
+            {
+                if (chkAnimais.Items[i].Selected)
+                {
+                    Ctrl.insertAppointment(Convert.ToInt32(chkAnimais.Items[i].Value), 
+                        Convert.ToInt32(listAppointmentTypes.SelectedValue), dateAux, boxReason.Text, chkUrgent.Checked);
+                }
+            }
 
-            Response.Redirect(System.IO.Path.GetFileName(Request.Url.AbsolutePath));
+            Response.Redirect("PageClientDashboard.aspx");
+        }
+
+        protected void chkUrgent_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
