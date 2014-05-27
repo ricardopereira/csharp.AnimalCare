@@ -74,6 +74,22 @@ namespace AnimalCare.Client
             get { return businessSectorID; }
             set { businessSectorID = value; }
         }
+
+        private string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
+        private string country;
+
+        public string Country
+        {
+            get { return country; }
+            set { country = value; }
+        }
     }
 
     public class ControllerClient : Controller
@@ -99,6 +115,9 @@ namespace AnimalCare.Client
         {
             // Current User
             Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
+            MembershipUser ms = Membership.GetUser(); /* Load user email */
+            Bf.Email = ms.Email;
+
             // Load from Owners
             SqlCommand cmd = new SqlCommand("SELECT * FROM Owners WHERE [UserId] = @id", Database.Connection);
             cmd.Parameters.AddWithValue("@id", userGuid);
@@ -128,9 +147,25 @@ namespace AnimalCare.Client
                 if (!dados.IsDBNull(8))
                     Bf.Inactive = dados.GetBoolean(8);
                 if (!dados.IsDBNull(9))
+                {
                     Bf.CountryID = dados.GetInt32(9);
+                }
             }
             dados.Close();
+            setCountryById();
+        }
+
+        private void setCountryById()
+        {
+            if (Bf.CountryID != 0)
+            {
+                SqlCommand cmdCountry = new SqlCommand("SELECT Name FROM Countries WHERE [CountryID] = @countryID", Database.Connection);
+                cmdCountry.Parameters.AddWithValue("@countryID", Bf.CountryID);
+                SqlDataReader data = cmdCountry.ExecuteReader();
+                data.Read();
+                Bf.Country = data.GetString(0);
+                data.Close();
+            }
         }
 
         public void insertOwner()
@@ -144,6 +179,38 @@ namespace AnimalCare.Client
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@UserID", userGuid);
 
+            cmd.ExecuteNonQuery();
+        }
+
+        public void updateUserInfo(string name, string taxNumber, int country, int business, int businessID, string mobileNumber, string faxNumber)
+        {
+            String str = "UPDATE Owners SET Name = @name";
+            str += ",Business = @business";
+            str += ",BusinessSectorID = @businessID";
+            str += ",TaxNumber = @taxNumber";
+            str += ",MobileNumber = @mobileNumber";
+            str += ",FaxNumber = @faxNumber";
+            str += ",CountryID = @countryID";
+            str += " WHERE OwnerID = @ownerID";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@OwnerID", Bf.OwnerID);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@taxNumber", taxNumber);
+            cmd.Parameters.AddWithValue("@countryID", country);
+            cmd.Parameters.AddWithValue("@mobileNumber", mobileNumber);
+            if(business != 0)
+                cmd.Parameters.AddWithValue("@business", business);
+            else
+                cmd.Parameters.AddWithValue("@business", DBNull.Value);
+            if (businessID != 0)
+                cmd.Parameters.AddWithValue("@businessID", businessID);
+            else
+                cmd.Parameters.AddWithValue("@businessID", DBNull.Value);
+            if (faxNumber != "")
+                cmd.Parameters.AddWithValue("@faxNumber", faxNumber);
+            else
+                cmd.Parameters.AddWithValue("@faxNumber", DBNull.Value);
             cmd.ExecuteNonQuery();
         }
 

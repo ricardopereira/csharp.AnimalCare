@@ -21,10 +21,10 @@
                 <br />
                 <br />
                 <br />
-                <p>Nome: <asp:Literal runat="server" ID="clientName"></asp:Literal></p>
-                <p>Email: <asp:Literal runat="server" ID="clientEmail"></asp:Literal></p>
-                <p>País: <asp:Literal runat="server" ID="clientCountry"></asp:Literal></p>
-                <p>Telefone: <asp:Literal runat="server" ID="clientPhoneNumber"></asp:Literal></p>
+                <p>Nome: <%: Ctrl.Bf.Name %></p>
+                <p>Email: <%: Ctrl.Bf.Email %></p>
+                <p>País: <%: Ctrl.Bf.Country %></p>
+                <p>Telefone: <%: Ctrl.Bf.MobileNumber %></p>
             </div>
         </div>
     </div>

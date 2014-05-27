@@ -38,18 +38,23 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                        <asp:Label ID="lblNome" runat="server" Text="Nome: "></asp:Label>
-                        <asp:TextBox ID="boxNome" runat="server"></asp:TextBox>
+                        <asp:Label ID="lblName" runat="server" Text="Nome: "></asp:Label>
+                        <asp:TextBox ID="boxName" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxName"
+                        CssClass="field-validation-error text-danger" ErrorMessage="Especifique o utilizador." />
                         </p>
 
                         <p>
                         <asp:Label ID="lblTaxNumber" runat="server" Text="NIF: "></asp:Label>
                         <asp:TextBox ID="boxTaxNumber" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="boxTaxNumber"
+                        CssClass="field-validation-error text-danger" ErrorMessage="Especifique o NIF." />
                         </p>
 
                         <p>
                         <asp:Label ID="lblCountry" runat="server" Text="País: "></asp:Label>
-                        <asp:DropDownList ID="listCountry" runat="server" Width="200"></asp:DropDownList>
+                        <asp:DropDownList ID="listCountry" runat="server" Width="200px" DataSourceID="Countries" DataTextField="Name" DataValueField="CountryID"></asp:DropDownList>
+                            <asp:SqlDataSource ID="Countries" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Name], [CountryID] FROM [Countries]"></asp:SqlDataSource>
                         </p>
 
                         <p>
@@ -59,7 +64,9 @@
 
                         <p>
                         <asp:Label ID="lblBusinessSector" runat="server" Text="Sector da empresa: "></asp:Label>
-                        <asp:DropDownList ID="listBusinessSector" runat="server" Width="200"></asp:DropDownList>
+                        <asp:DropDownList ID="listBusinessSector" runat="server" Width="200px" DataSourceID="BusinessSectorID" DataTextField="Name" DataValueField="BusinessSectorID"></asp:DropDownList>
+                            <asp:SqlDataSource ID="BusinessSectorID" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [BusinessSectorID], [Name] FROM [BusinessSector]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
                         </p>
                     </div>
                 </div>
@@ -73,6 +80,8 @@
                         <p>
                         <asp:Label ID="lblMobileNumber" runat="server" Text="Telemóvel: "></asp:Label>
                         <asp:TextBox ID="boxMobileNumber" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="boxMobileNumber"
+                        CssClass="field-validation-error text-danger" ErrorMessage="Especifique o número de contacto." />
                         </p>
 
                         <p>
@@ -89,7 +98,6 @@
                         <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" OnClick="btnCancel_Click"></asp:Button>
                     </div>
                 </div>
-            </div>
             <div class="col-md-2"></div>
         </div>
     </div>
