@@ -34,8 +34,8 @@
                             <div class="col-md-4">
                                 <p><asp:Calendar ID="calDateAppointment" runat="server"></asp:Calendar></p>
                                 <p>
-                                    <asp:DropDownList ID="listHour" runat="server"></asp:DropDownList>
-                                    <asp:DropDownList ID="listMinutes" runat="server"></asp:DropDownList>
+                                    Hora:<asp:DropDownList ID="listHour" runat="server"></asp:DropDownList>
+                                    :<asp:DropDownList ID="listMinutes" runat="server"></asp:DropDownList>(HH:MM)
                                 </p>
                             </div>
                             <div class="col-md-8">
