@@ -27,11 +27,10 @@ namespace AnimalCare.Client
                 SqlDataReader dr = Ctrl.getOwnerLocals().ExecuteReader();
 
                 // Efectuar o data binding
-                tabelaLocais.DataSource = dr;
-                tabelaLocais.DataBind();
+                tblLocals.DataSource = dr;
+                tblLocals.DataBind();
 
                 dr.Close();
-                Ctrl.Database.Connection.Close();
             }
         }
 

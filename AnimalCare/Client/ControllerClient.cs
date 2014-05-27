@@ -268,7 +268,7 @@ namespace AnimalCare.Client
             // Executar comando
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
-            cmd.Parameters.AddWithValue("@dateFrom", dateTo);
+            cmd.Parameters.AddWithValue("@dateTo", dateTo);
 
             if (animalID > 0)
                 cmd.Parameters.AddWithValue("@animalID", animalID);
