@@ -249,6 +249,11 @@ namespace AnimalCare.Client
                 " WHERE rel.OwnerID = " + Bf.OwnerID + " AND rel.Active = 1";
         }
 
+        public int getOwnerAnimalsCount()
+        {
+            return (int)getOwnerAnimals().ExecuteScalar();
+        }
+
         public SqlCommand getOwnerAnimals()
         {
             // Executar comando
@@ -256,14 +261,29 @@ namespace AnimalCare.Client
             return cmd;
         }
 
+        public SqlCommand getAppointments()
+        {
+            return getAppointments(getDefaultDateFrom(), getDefaultDateTo());
+        }
+
         public SqlCommand getAppointments(DateTime dateFrom, DateTime dateTo, int animalID=0)
         {
-            String str = "SELECT * FROM Appointments" +
-                " WHERE DateAppointment >  @dateFrom AND DateAppointment < @dateTo" +
-                "  AND OwnerID = @id";
+            String str = "SELECT ap.*, a.Name as Animal, apt.Description as AppointmentType, " +
+                " CASE"+
+                "  WHEN State = 0 THEN 'Em espera'" + 
+                "  WHEN State = 1 THEN 'Aceite'" +
+                "  WHEN State = 2 THEN 'Rejeitado'" +
+                "  WHEN State = 3 THEN 'Cancelado'" +
+                " END as StateStr" +
+                " FROM Appointments ap" +
+                "  INNER JOIN OwnerAnimalsRelation rel ON rel.OwnerID = " + Bf.OwnerID + " AND rel.Active = 1" +
+                "  INNER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
+                "  LEFT OUTER JOIN AppointmentTypes apt ON apt.AppointmentTypeID = ap.AppointmentTypeID" +
+                " WHERE DateAppointment > @dateFrom AND DateAppointment < @dateTo" +
+                "  AND ap.OwnerID = @id AND State <> " + (int)AppointmentState.astCanceled;
 
             if (animalID > 0)
-                str += " AND AnimalID = @animalID";
+                str += " AND ap.AnimalID = @animalID";
 
             // Executar comando
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
@@ -317,6 +337,65 @@ namespace AnimalCare.Client
 
             // Executa
             int count = cmd.ExecuteNonQuery();
+        }
+
+        public void cancelAppointment(int appointmentID)
+        {
+            if (appointmentID <= 0)
+                return;
+
+            String str = "UPDATE Appointments SET State = " + (int)AppointmentState.astCanceled + " WHERE [AppointmentID] = @id";
+            // SQL Query
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", appointmentID);
+
+            // Executa
+            int count = cmd.ExecuteNonQuery();
+        }
+
+        public DateTime getDefaultDateFrom()
+        {
+            return DateTime.Now.AddDays(-15);
+        }
+
+        public DateTime getDefaultDateTo()
+        {
+            return DateTime.Now.AddDays(+15);
+        }
+
+        public bool hasAcceptedAppointments()
+        {
+            return hasAcceptedAppointments(getDefaultDateFrom(),getDefaultDateTo());
+        }
+
+        public bool hasAcceptedAppointments(DateTime dateFrom, DateTime dateTo, int animalID = 0)
+        {
+            String str = "SELECT *" +
+                " FROM Appointments" +
+                " WHERE DateAppointment > @dateFrom AND DateAppointment < @dateTo" +
+                "  AND OwnerID = @id AND State = " + (int)AppointmentState.astAccepted;
+
+            if (animalID > 0)
+                str += " AND AnimalID = @animalID";
+
+            // Executar comando
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+            cmd.Parameters.AddWithValue("@dateTo", dateTo);
+            cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
+
+            if (animalID > 0)
+                cmd.Parameters.AddWithValue("@animalID", animalID);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            bool has = dr.HasRows;
+            dr.Close();
+            return has;
+        }
+
+        public SqlCommand getScheduleEvents()
+        {
+            return getScheduleEvents(getDefaultDateFrom(),getDefaultDateTo());
         }
 
         public SqlCommand getScheduleEvents(DateTime dateFrom, DateTime dateTo, int animalID = 0)

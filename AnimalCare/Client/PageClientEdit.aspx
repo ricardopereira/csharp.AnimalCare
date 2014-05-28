@@ -38,14 +38,14 @@
                     <div class="panel-body">
                         <p>
                         <asp:Label ID="lblName" runat="server" Text="Nome: "></asp:Label>
-                        <asp:TextBox ID="boxName" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="boxName" runat="server" MaxLength="45"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxName"
                         CssClass="field-validation-error text-danger" ErrorMessage="Especifique o utilizador." />
                         </p>
 
                         <p>
                         <asp:Label ID="lblTaxNumber" runat="server" Text="NIF: "></asp:Label>
-                        <asp:TextBox ID="boxTaxNumber" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="boxTaxNumber" runat="server" MaxLength="15"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="boxTaxNumber"
                         CssClass="field-validation-error text-danger" ErrorMessage="Especifique o NIF." />
                         </p>
@@ -78,14 +78,14 @@
                     <div class="panel-body">
                         <p>
                         <asp:Label ID="lblMobileNumber" runat="server" Text="Telemóvel: "></asp:Label>
-                        <asp:TextBox ID="boxMobileNumber" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="boxMobileNumber" runat="server" MaxLength="20"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="boxMobileNumber"
                         CssClass="field-validation-error text-danger" ErrorMessage="Especifique o número de contacto." />
                         </p>
 
                         <p>
                         <asp:Label ID="lblFaxNumber" runat="server" Text="Fax: "></asp:Label>
-                        <asp:TextBox ID="boxFaxNumber" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="boxFaxNumber" runat="server" MaxLength="20"></asp:TextBox>
                         </p>
                     </div>
                 </div>

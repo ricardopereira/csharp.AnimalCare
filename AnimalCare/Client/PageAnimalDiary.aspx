@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <!-- Cliente -->
                 <h4>Proprietário</h4>
-                <p class="text-muted"><%: User.Identity.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
                 <!-- Animal -->
                 <h4>Animal seleccionado</h4>
@@ -74,7 +74,7 @@
                                                 <p>
                                                 <asp:Label ID="lblDiaryType" runat="server" Text="Tipo: "></asp:Label>
                                                 <asp:DropDownList ID="listDiaryType" runat="server" Width="200px" DataSourceID="TiposDiarioDS" DataTextField="Description" DataValueField="AnimalDiaryTypeID"></asp:DropDownList>
-                                                    <asp:SqlDataSource ID="TiposDiarioDS" runat="server" ConnectionString="<%$ ConnectionStrings:AnimalCare %>" SelectCommand="SELECT * FROM [AnimalDiaryTypes]"></asp:SqlDataSource>
+                                                    <asp:SqlDataSource ID="TiposDiarioDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalDiaryTypes]"></asp:SqlDataSource>
                                                 </p>
 
                                                 <p>

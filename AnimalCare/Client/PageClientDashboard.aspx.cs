@@ -26,18 +26,16 @@ namespace AnimalCare.Client
                 refreshController();
 
                 SqlDataReader dr;
-                DateTime dateFirst = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                DateTime dateLast = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1);
 
                 // Marcacoes
-                dr = Ctrl.getAppointments(dateFirst, dateLast).ExecuteReader();
+                dr = Ctrl.getAppointments().ExecuteReader();
                 // Efectuar o data binding
                 tblAppointments.DataSource = dr;
                 tblAppointments.DataBind();
                 dr.Close();
 
                 // Agenda
-                dr = Ctrl.getScheduleEvents(dateFirst, dateLast).ExecuteReader();
+                dr = Ctrl.getScheduleEvents().ExecuteReader();
                 // Efectuar o data binding
                 tblSchedule.DataSource = dr;
                 tblSchedule.DataBind();
@@ -47,7 +45,18 @@ namespace AnimalCare.Client
 
         protected void btnCancelAppointment_Click(object sender, EventArgs e)
         {
-            // ToDo - Cancelar marcação
+            //Ctrl.cancelAppointment();
+        }
+
+        protected void tblAppointments_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("CancelAppointment"))
+            {
+                int AppointmentID = Convert.ToInt32(e.CommandArgument);
+                Ctrl.cancelAppointment(AppointmentID);
+                refreshPage();
+            }
+            //((Button)e.CommandSource).Text
         }
     }
 }
