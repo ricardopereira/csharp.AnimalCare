@@ -27,7 +27,7 @@ namespace AnimalCare.Client
                 boxName.Text = Ctrl.Bf.Name;
                 boxTaxNumber.Text = Ctrl.Bf.TaxNumber;
 
-                if(Ctrl.Bf.CountryID != 0) /* Country previously selected */
+                if (Ctrl.Bf.CountryID != 0) /* Country previously selected */
                     listCountry.SelectedValue = Convert.ToString(Ctrl.Bf.CountryID);
 
                 if (Ctrl.Bf.Business)
@@ -46,15 +46,16 @@ namespace AnimalCare.Client
             }
         }
 
+
         protected void setProfileImage()
-        {
-            // Check if there is a profile image
-            string path = Request.PhysicalApplicationPath + "Images\\" + Ctrl.Bf.OwnerID;
-            if (Directory.Exists(path))
-                profileImage.Attributes["src"] = "../Images/" + Ctrl.Bf.OwnerID + "/profile.jpg";
-            else
-                profileImage.Attributes["src"] = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=";
-        }
+         {
+             // Check if there is a profile image
+             string path = Request.PhysicalApplicationPath + "Images\\" + Ctrl.Bf.OwnerID;
+             if (Directory.Exists(path))
+                 profileImage.Attributes["src"] = "../Images/" + Ctrl.Bf.OwnerID + "/profile.jpg";
+             else
+                 profileImage.Attributes["src"] = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=";
+         }
 
         protected void chkBusiness_CheckedChanged(object sender, EventArgs e)
         {
@@ -66,13 +67,13 @@ namespace AnimalCare.Client
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string name = boxName.Text;
-            string taxNumber = boxTaxNumber.Text;
+            string name = boxName.Text.Trim();
+            string taxNumber = boxTaxNumber.Text.Trim();
             int country = Convert.ToInt16(listCountry.SelectedValue);
             int business;
             int businessID;
-            string mobileNumber = boxMobileNumber.Text;
-            string faxNumber = boxFaxNumber.Text;
+            string mobileNumber = boxMobileNumber.Text.Trim();
+            string faxNumber = boxFaxNumber.Text.Trim();
 
             if(chkBusiness.Checked)
             {

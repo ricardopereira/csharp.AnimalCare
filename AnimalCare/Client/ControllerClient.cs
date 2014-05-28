@@ -10,13 +10,6 @@ using System.Web.Security;
 
 namespace AnimalCare.Client
 {
-    public enum AppointmentState {
-        [Description("Em espera")] astNone, 
-        [Description("Aceite")] astAccepted,
-        [Description("Rejeitado")] astRejected,
-        [Description("Cancelado")] astCanceled
-    };
-
     public class ClientBuffer
     {
         private int ownerID;
@@ -119,6 +112,11 @@ namespace AnimalCare.Client
  
         }
 
+        public override int getUniqueID()
+        {
+            return Bf.OwnerID;
+        }
+
         public override void loadCurrentUser()
         {
             // Current User
@@ -133,6 +131,7 @@ namespace AnimalCare.Client
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@id", userGuid);
+
             // Abre a base de dados
             Database.Connection.Open();
             // Executa e extrai informação
@@ -213,66 +212,66 @@ namespace AnimalCare.Client
         }
 
         public void insertAnimalInfo(int localID, string name, string identityNumber, int quantity, int animalRace, int animalCondition, int animalHabitat, DateTime birth, int sex)
-        {
-            String str = "INSERT INTO Animals (OwnerLocalID, Name,IdentityNumber,Quantity,AnimalRaceID,AnimalConditionID,AnimalHabitatID,Sex";
-            if (!birth.Equals(new DateTime(0001, 01, 01)))
-                str += ",DateBorn)";
-            else
-                str += ")";
-            str += " VALUES(@localID,@name,@identityNumber,@quantity,@animalRace,@animalCondition,@animalHabitatID,@sex";
-            if (!birth.Equals(new DateTime(0001, 01, 01)))
-                str += ",@birth);";
-            else
-                str += ");";
-
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@localID", localID);
-            cmd.Parameters.AddWithValue("@name", name);
-            cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
-            cmd.Parameters.AddWithValue("@quantity", quantity);
-            cmd.Parameters.AddWithValue("@animalRace", animalRace);
-            cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
-            cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
-            cmd.Parameters.AddWithValue("@sex", sex);
-            if (!birth.Equals(new DateTime(0001, 01, 01)))
-                cmd.Parameters.AddWithValue("@birth", birth);
-
-            cmd.ExecuteNonQuery();
-        }
-
-        public void updateAnimalInfo(int localID, int animalID, string name, string identityNumber, int quantity,int animalRace,int animalCondition,int animalHabitat,DateTime birth, DateTime death, int sex)
-        {
-            String str = "UPDATE Animals SET Name = @name";
-            str += ",OwnerLocalID = @ownerLocalID";
-            str += ",IdentityNumber = @identityNumber";
-            str += ",Quantity = @quantity";
-            str += ",AnimalRaceID = @animalRace";
-            str += ",AnimalConditionID = @animalCondition";
-            str += ",AnimalHabitatID = @animalHabitatID";
-            str += ",Sex = @sex";
-            if(!birth.Equals(new DateTime(0001,01,01)))
-                str += ",DateBorn = @birth";
-            if (!death.Equals(new DateTime(0001,01,01)))
-                str += ",DateDeath = @death";
-            str += " WHERE AnimalID = @animalID";
-
+         {
+             String str = "INSERT INTO Animals (OwnerLocalID, Name,IdentityNumber,Quantity,AnimalRaceID,AnimalConditionID,AnimalHabitatID,Sex";
+             if (!birth.Equals(new DateTime(0001, 01, 01)))
+                 str += ",DateBorn)";
+             else
+                 str += ")";
+             str += " VALUES(@localID,@name,@identityNumber,@quantity,@animalRace,@animalCondition,@animalHabitatID,@sex";
+             if (!birth.Equals(new DateTime(0001, 01, 01)))
+                 str += ",@birth);";
+             else
+                 str += ");";
+ 
              SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@animalID", animalID);
-            cmd.Parameters.AddWithValue("@ownerLocalID", localID);
-            cmd.Parameters.AddWithValue("@name", name);
-            cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
-            cmd.Parameters.AddWithValue("@quantity", quantity);
-            cmd.Parameters.AddWithValue("@animalRace", animalRace);
-            cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
-            cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
-            cmd.Parameters.AddWithValue("@sex", sex);
-            if (!birth.Equals(new DateTime(0001,01,01)))
-                cmd.Parameters.AddWithValue("@birth", birth);
-            if (!death.Equals(new DateTime(0001,01,01)))
-                cmd.Parameters.AddWithValue("@death", death);
-
-            cmd.ExecuteNonQuery();
-        }
+             cmd.Parameters.AddWithValue("@localID", localID);
+             cmd.Parameters.AddWithValue("@name", name);
+             cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
+             cmd.Parameters.AddWithValue("@quantity", quantity);
+             cmd.Parameters.AddWithValue("@animalRace", animalRace);
+             cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
+             cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
+             cmd.Parameters.AddWithValue("@sex", sex);
+             if (!birth.Equals(new DateTime(0001, 01, 01)))
+                 cmd.Parameters.AddWithValue("@birth", birth);
+ 
+             cmd.ExecuteNonQuery();
+         }
+ 
+         public void updateAnimalInfo(int localID, int animalID, string name, string identityNumber, int quantity,int animalRace,int animalCondition,int animalHabitat,DateTime birth, DateTime death, int sex)
+         {
+             String str = "UPDATE Animals SET Name = @name";
+             str += ",OwnerLocalID = @ownerLocalID";
+             str += ",IdentityNumber = @identityNumber";
+             str += ",Quantity = @quantity";
+             str += ",AnimalRaceID = @animalRace";
+             str += ",AnimalConditionID = @animalCondition";
+             str += ",AnimalHabitatID = @animalHabitatID";
+             str += ",Sex = @sex";
+             if(!birth.Equals(new DateTime(0001,01,01)))
+                 str += ",DateBorn = @birth";
+             if (!death.Equals(new DateTime(0001,01,01)))
+                 str += ",DateDeath = @death";
+             str += " WHERE AnimalID = @animalID";
+ 
+              SqlCommand cmd = new SqlCommand(str, Database.Connection);
+             cmd.Parameters.AddWithValue("@animalID", animalID);
+             cmd.Parameters.AddWithValue("@ownerLocalID", localID);
+             cmd.Parameters.AddWithValue("@name", name);
+             cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
+             cmd.Parameters.AddWithValue("@quantity", quantity);
+             cmd.Parameters.AddWithValue("@animalRace", animalRace);
+             cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
+             cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
+             cmd.Parameters.AddWithValue("@sex", sex);
+             if (!birth.Equals(new DateTime(0001,01,01)))
+                 cmd.Parameters.AddWithValue("@birth", birth);
+             if (!death.Equals(new DateTime(0001,01,01)))
+                 cmd.Parameters.AddWithValue("@death", death);
+ 
+             cmd.ExecuteNonQuery();
+         }
 
         public SqlCommand getOwnerLocals()
         {
@@ -306,8 +305,10 @@ namespace AnimalCare.Client
 
         public String getOwnerAnimalsSQL()
         {
-            return "SELECT a.* FROM OwnerAnimalsRelation rel" +
+            return "SELECT a.*, r.Name Race, s.Name Specie FROM OwnerAnimalsRelation rel" +
                 " INNER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
+                " INNER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
+                " INNER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
                 " WHERE rel.OwnerID = " + Bf.OwnerID + " AND rel.Active = 1";
         }
 
@@ -316,47 +317,39 @@ namespace AnimalCare.Client
             return (int)getOwnerAnimals().ExecuteScalar();
         }
 
-        public SqlCommand getOwnerAnimals()
+        public SqlCommand getOwnerAnimals(String filter="")
         {
+            String sql = getOwnerAnimalsSQL();
+
+            if (!filter.Trim().Equals("")) {
+                sql += " AND (" + 
+                       " a.Name LIKE '%'+@filter+'%' OR" + 
+                       " a.IdentityNumber LIKE '%'+@filter+'%' OR"+
+                       " s.Name LIKE '%'+@filter+'%' OR" +
+                       " r.Name LIKE '%'+@filter+'%' " +
+                       ")";
+                //WHERE CONTAINS((Author, Title, PostContent), @userInput);
+            }
+
             // Executar comando
-            SqlCommand cmd = new SqlCommand(getOwnerAnimalsSQL(), Database.Connection);
+            SqlCommand cmd = new SqlCommand(sql, Database.Connection);
+
+            if (!filter.Trim().Equals("")) {
+                cmd.Parameters.AddWithValue("@filter", filter);
+            }
+
             return cmd;
         }
 
         public SqlCommand getAppointments()
         {
-            return getAppointments(getDefaultDateFrom(), getDefaultDateTo());
-        }
+            AppointmentState[] states = new AppointmentState[3];
+            // Lista dos estados a carregar
+            states[0] = AppointmentState.astWaiting;
+            states[1] = AppointmentState.astAccepted;
+            states[2] = AppointmentState.astRejected;
 
-        public SqlCommand getAppointments(DateTime dateFrom, DateTime dateTo, int animalID=0)
-        {
-            String str = "SELECT ap.*, a.Name as Animal, apt.Description as AppointmentType, " +
-                " CASE"+
-                "  WHEN State = 0 THEN 'Em espera'" + 
-                "  WHEN State = 1 THEN 'Aceite'" +
-                "  WHEN State = 2 THEN 'Rejeitado'" +
-                "  WHEN State = 3 THEN 'Cancelado'" +
-                " END as StateStr" +
-                " FROM Appointments ap" +
-                "  INNER JOIN OwnerAnimalsRelation rel ON rel.OwnerID = " + Bf.OwnerID + " AND rel.Active = 1" +
-                "  INNER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
-                "  LEFT OUTER JOIN AppointmentTypes apt ON apt.AppointmentTypeID = ap.AppointmentTypeID" +
-                " WHERE DateAppointment > @dateFrom AND DateAppointment < @dateTo" +
-                "  AND ap.OwnerID = @id AND State <> " + (int)AppointmentState.astCanceled;
-
-            if (animalID > 0)
-                str += " AND ap.AnimalID = @animalID";
-
-            // Executar comando
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
-            cmd.Parameters.AddWithValue("@dateTo", dateTo);
-            cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
-
-            if (animalID > 0)
-                cmd.Parameters.AddWithValue("@animalID", animalID);
-
-            return cmd;
+            return getAppointments(getDefaultDateFrom(), getDefaultDateTo(), states);
         }
 
         public void insertAppointment(int animalID, 
@@ -415,44 +408,9 @@ namespace AnimalCare.Client
             int count = cmd.ExecuteNonQuery();
         }
 
-        public DateTime getDefaultDateFrom()
-        {
-            return DateTime.Now.AddDays(-15);
-        }
-
-        public DateTime getDefaultDateTo()
-        {
-            return DateTime.Now.AddDays(+15);
-        }
-
         public bool hasAcceptedAppointments()
         {
-            return hasAcceptedAppointments(getDefaultDateFrom(),getDefaultDateTo());
-        }
-
-        public bool hasAcceptedAppointments(DateTime dateFrom, DateTime dateTo, int animalID = 0)
-        {
-            String str = "SELECT *" +
-                " FROM Appointments" +
-                " WHERE DateAppointment > @dateFrom AND DateAppointment < @dateTo" +
-                "  AND OwnerID = @id AND State = " + (int)AppointmentState.astAccepted;
-
-            if (animalID > 0)
-                str += " AND AnimalID = @animalID";
-
-            // Executar comando
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
-            cmd.Parameters.AddWithValue("@dateTo", dateTo);
-            cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
-
-            if (animalID > 0)
-                cmd.Parameters.AddWithValue("@animalID", animalID);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            bool has = dr.HasRows;
-            dr.Close();
-            return has;
+            return hasAppointments(AppointmentState.astAccepted, getDefaultDateFrom(), getDefaultDateTo());
         }
 
         public SqlCommand getScheduleEvents()

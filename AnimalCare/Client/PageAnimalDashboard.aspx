@@ -21,38 +21,39 @@
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading">Animais</div>
+
+                        <!-- BOTOES -->
                         <div class="panel-body">
-                            <!-- Conteudo para o painel: Talvez colocar os botões -->
-                            <p class="text-muted">Opções da grelha</p>
                             <div class="btn-toolbar" role="toolbar">
                                 <div class="btn-group">
                                     <a class="btn btn-success" href="PageAnimalNew.aspx" role="button">Novo animal</a>
                                 </div>
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-default">Selecção</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Selecção</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Seleccionar tudo</a></li>
-                                        <li><a href="#">Inverter selecção</a></li>
-                                        <li><a href="#">Retirar selecção</a></li>
-                                    </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <!-- Conteudo para o painel: Talvez colocar os botões -->
+                            <p class="text-muted">Opções da grelha</p>
+                            <div class="btn-toolbar" role="toolbar">
+
+                                <div class="input-group">
+                                    <asp:TextBox ID="boxFilter" class="form-control" runat="server" type="text"></asp:TextBox>
+
+                                    <!-- PESQUISAR -->
+                                    <span class="input-group-btn">
+                                        <asp:Button ID="btnSearch" CssClass="btn btn-success" Text="Pesquisar" runat="server" type="button" OnClick="btnSearch_Click"></asp:Button>
+                                    </span>
+
+                                    <!-- ORDENAR -->
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ordenação <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Ascedente</a></li>
+                                            <li><a href="#">Descendente</a></li>
+                                        </ul>
+                                    </span>
                                 </div>
-                                <!-- /btn-group -->
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-default">Ordenação</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Ordenação</span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Ascedente</a></li>
-                                        <li><a href="#">Decrescente</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /btn-group -->
+
                             </div>
                         </div>
 

@@ -109,8 +109,8 @@
 
                                 <!-- /btn-group -->
                                 <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-primary">Ordenação</button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <button type="button" class="btn btn-default">Ordenação</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                         <span class="sr-only">Ordenação</span>
                                     </button>

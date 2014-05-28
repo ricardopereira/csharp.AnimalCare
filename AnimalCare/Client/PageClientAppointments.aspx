@@ -77,6 +77,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Solicitar pedido" OnClick="btnSave_Click"></asp:Button>
+                                <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" CausesValidation="false" OnClick="btnCancel_Click"></asp:Button>
                             </div>
                         </div>
 

@@ -18,27 +18,24 @@ namespace AnimalCare.Client
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
             if (!this.IsPostBack)
             {
-                DBConn db = new DBConn();
-                String str = "SELECT a.*, r.Name Race, s.Name Specie FROM Animals a" + 
-                    " INNER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID"+
-                    " INNER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID";
-
-                // Executar comando
-                SqlCommand cmd = new SqlCommand(str, db.Connection);
-
-                db.Connection.Open();
-
-                SqlDataReader dr = cmd.ExecuteReader();
-
+                SqlDataReader dr = Ctrl.getOwnerAnimals().ExecuteReader();
                 // Efectuar o data binding
                 tabelaAnimais.DataSource = dr;
                 tabelaAnimais.DataBind();
-
                 dr.Close();
-                db.Connection.Close();
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            SqlDataReader dr = Ctrl.getOwnerAnimals(boxFilter.Text.Trim()).ExecuteReader();
+            // Efectuar o data binding
+            tabelaAnimais.DataSource = dr;
+            tabelaAnimais.DataBind();
+            dr.Close();
         }
     }
 }

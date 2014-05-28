@@ -65,7 +65,7 @@
 
                                             <asp:Button ID="btnCancelAppointment" runat="server" CssClass="btn btn-danger btn-xs" 
                                                 Text="Cancelar" OnClick="btnCancelAppointment_Click" CommandName="CancelAppointment" CommandArgument='<%# Eval("AppointmentID") %>'
-                                                Visible='<%# Convert.ToInt32(Eval("State")) == (int)AnimalCare.Client.AppointmentState.astNone %>'></asp:Button>
+                                                Visible='<%# Convert.ToInt32(Eval("State")) == (int)AnimalCare.AppointmentState.astWaiting %>'></asp:Button>
                                         </td>
                                         <td><%# Eval("DateAppointment") %></td>
                                         <td><%# Eval("Reason") %></td>
@@ -81,9 +81,9 @@
         </div><!-- ROW -->
 
         <div class="row">
-            <!-- MARCACOES -->
+            <!-- AGENDA -->
             <div class="col-md-12">
-                <!-- Tabela com as marcacoes -->
+                <!-- Tabela com os eventos -->
                 <div class="table-responsive">
                     <div class="panel panel-default">
                         <!-- Default panel contents -->

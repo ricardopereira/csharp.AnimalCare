@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AnimalCare.Doctor
 {
-    public partial class PageDoctorServices : System.Web.UI.Page
+    public partial class PageDoctorServices : DoctorPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
