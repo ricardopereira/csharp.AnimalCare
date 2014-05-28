@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client/MasterPageClient.Master" AutoEventWireup="true" CodeBehind="PageAnimalEdit.aspx.cs" Inherits="AnimalCare.Client.PageAnimalEdit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client/MasterPageClient.Master" AutoEventWireup="true" CodeBehind="PageAnimalNew.aspx.cs" Inherits="AnimalCare.Client.PageAnimalNew" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -20,14 +20,10 @@
             </div>
         </div>
         <div class="row">
-            <!-- Avatar -->
-            <div class="col-md-3">
-                <img runat="server" id="animalImage" data-src="holder.js/200x200" class="img-thumbnail" alt="animal image" style="width: 200px; height: 200px;">
-            </div>
             <!-- Info -->
             <div class="col-md-9">
-                <h2><asp:Label ID="animalName" runat="server"></asp:Label></h2>
-                <span class="label label-danger">Modo edição</span>
+                <h2>Novo animal</h2>
+                <span class="label label-success">Modo inserção</span>
                 <br />
             </div>
         </div>
@@ -49,11 +45,6 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxName"
                         CssClass="field-validation-error text-danger" ErrorMessage="Especifique o nome do animal." />
                         </p>
-                        <p>                        
-                            <asp:Label ID="Label1" runat="server" Text="Local: "></asp:Label>
-                            <asp:DropDownList ID="ddlLocals" runat="server">
-                        </asp:DropDownList>
-                        </p>
                         <p>
                         <asp:Label ID="lblIdentity" runat="server" Text="Núm. Identidade: "></asp:Label>
                         <asp:TextBox ID="boxIdentity" runat="server" MaxLength="50"></asp:TextBox>
@@ -72,14 +63,24 @@
                         <asp:TextBox ID="boxNumberAnimals" runat="server" Visible="False" Width="36px"></asp:TextBox>
                         </p>
                         <p>
+                            <asp:Label ID="lblLocals" runat="server" Text="Locais: "></asp:Label>                        
+                            <asp:DropDownList ID="ddlLocals" runat="server">
+                            </asp:DropDownList>
+                        </p>
+                        <p>
                             <asp:Label ID="lblSpecies" runat="server" Text="Espécie: "></asp:Label>                        
-                            <asp:DropDownList ID="ddlSpecies" runat="server" DataSourceID="Species" DataTextField="Name" DataValueField="AnimalSpecieID" AutoPostBack="True" OnSelectedIndexChanged="ddlSpecies_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlSpecies" runat="server" DataSourceID="Species" DataTextField="Name" DataValueField="AnimalSpecieID" AutoPostBack="True">
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="Species" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [AnimalSpecieID], [Name] FROM [AnimalSpecies]"></asp:SqlDataSource>
                         </p>
                         <p>
                             <asp:Label ID="lblRaces" runat="server" Text="Raça: "></asp:Label>                        
-                            <asp:DropDownList ID="ddlRaces" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlRaces" runat="server" DataSourceID="Races" DataTextField="Name" DataValueField="AnimalRaceID"></asp:DropDownList>
+                            <asp:SqlDataSource ID="Races" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalRaces] WHERE ([AnimalSpecieID] = @AnimalSpecieID)">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="ddlSpecies" Name="AnimalSpecieID" PropertyName="SelectedValue" Type="Int32" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
                         </p>
                         <p>
                             <asp:Label ID="lblHabitat" runat="server" Text="Habitat: "></asp:Label>                        
@@ -115,38 +116,13 @@
                                 <TodayDayStyle BackColor="#CCCCCC" />
                             </asp:Calendar>
                         </div>
-                        <div class="col-md-6">
-                            <strong>Data Falecimento:</strong><br />
-                            <asp:Label ID="lblDecease" runat="server" Text="Faleceu: "></asp:Label>                        
-                            <asp:CheckBox ID="chkDeceased" runat="server" OnCheckedChanged="chkDeceased_CheckedChanged" AutoPostBack="true" />
-                                <asp:Calendar ID="CalendarDeath" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="16px" NextPrevFormat="FullMonth" Width="237px" Visible="False">
-                                <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                                <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                                <OtherMonthDayStyle ForeColor="#999999" />
-                                <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                                <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                                <TodayDayStyle BackColor="#CCCCCC" />
-                            </asp:Calendar>
                         </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Relativos a imagem do animal -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Imagem do Animal</h3>
-                    </div>
-                    <div class="panel-body">
-                        <asp:FileUpload ID="FileUpload" runat="server" />
-                        <br />
-                        <asp:Button ID="btnUpload" CssClass="btn btn-sm btn-default" runat="server" Text="Carregar Foto Animal" OnClick="btnUpload_Click"></asp:Button>
-                        <asp:Literal ID="uploadMessage" runat="server"></asp:Literal>
                     </div>
                 </div>
                 <!-- Painel com Botões -->
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Gravar" OnClick="btnSave_Click"></asp:Button>
+                        <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Inserir Animal" OnClick="btnSave_Click"></asp:Button>
                         <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" OnClick="btnCancel_Click"></asp:Button>
                     </div>
                 </div>
@@ -154,5 +130,5 @@
             <div class="col-md-2"></div>
         </div>
     </div>
-
 </asp:Content>
+

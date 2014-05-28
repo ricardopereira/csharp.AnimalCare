@@ -18,6 +18,15 @@
                 <!-- Tabela com os locais -->
                 <div class="table-responsive">
                     <div class="panel panel-default">
+                        <!-- Mensagem Erro -->
+                        <asp:Panel ID="pnlError" runat="server" Visible="false">
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4>Erro na Inserção de um Novo Animal</h4>
+                                <p>Foi automaticamente encaminhado para esta página, por ter tentado inserir um novo animal</p>
+                                <p>sem que previamente tenha definido o(s) seu(s) locai(s).</p>
+                            </div>
+                        </asp:Panel>
                         <!-- Default panel contents -->
                         <div class="panel-heading">Locais</div>
                         <div class="panel-body">
