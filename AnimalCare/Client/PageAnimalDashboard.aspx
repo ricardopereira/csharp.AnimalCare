@@ -25,6 +25,9 @@
                             <!-- Conteudo para o painel: Talvez colocar os botões -->
                             <p class="text-muted">Opções da grelha</p>
                             <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a class="btn btn-success" href="PageAnimalNew.aspx" role="button">Novo animal</a>
+                                </div>
                                 <div class="btn-group dropdown">
                                     <button type="button" class="btn btn-default">Selecção</button>
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -39,8 +42,8 @@
                                 </div>
                                 <!-- /btn-group -->
                                 <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-primary">Ordenação</button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <button type="button" class="btn btn-default">Ordenação</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <span class="caret"></span>
                                         <span class="sr-only">Ordenação</span>
                                     </button>
@@ -69,8 +72,8 @@
                                     <tr>
                                         <td>
                                             <!-- Opcoes de linha -->
-                                            <a class="btn btn-primary btn-xs" href="PageAnimal.aspx" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                            <a class="btn btn-warning btn-xs" href="PageAnimalEdit.aspx" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a class="btn btn-primary btn-xs" href="PageAnimal.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                            <a class="btn btn-warning btn-xs" href="PageAnimalEdit.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
                                         </td>
                                         <td>
                                             <%# Eval("AnimalID")%>

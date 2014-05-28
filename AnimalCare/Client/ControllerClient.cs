@@ -192,7 +192,7 @@ namespace AnimalCare.Client
             str += " WHERE OwnerID = @ownerID";
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@OwnerID", Bf.OwnerID);
+            cmd.Parameters.AddWithValue("@ownerID", Bf.OwnerID);
             cmd.Parameters.AddWithValue("@name", name);
             cmd.Parameters.AddWithValue("@taxNumber", taxNumber);
             cmd.Parameters.AddWithValue("@countryID", country);
@@ -209,6 +209,68 @@ namespace AnimalCare.Client
                 cmd.Parameters.AddWithValue("@faxNumber", faxNumber);
             else
                 cmd.Parameters.AddWithValue("@faxNumber", DBNull.Value);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void insertAnimalInfo(int localID, string name, string identityNumber, int quantity, int animalRace, int animalCondition, int animalHabitat, DateTime birth, int sex)
+        {
+            String str = "INSERT INTO Animals (OwnerLocalID, Name,IdentityNumber,Quantity,AnimalRaceID,AnimalConditionID,AnimalHabitatID,Sex";
+            if (!birth.Equals(new DateTime(0001, 01, 01)))
+                str += ",DateBorn)";
+            else
+                str += ")";
+            str += " VALUES(@localID,@name,@identityNumber,@quantity,@animalRace,@animalCondition,@animalHabitatID,@sex";
+            if (!birth.Equals(new DateTime(0001, 01, 01)))
+                str += ",@birth);";
+            else
+                str += ");";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@localID", localID);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
+            cmd.Parameters.AddWithValue("@quantity", quantity);
+            cmd.Parameters.AddWithValue("@animalRace", animalRace);
+            cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
+            cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
+            cmd.Parameters.AddWithValue("@sex", sex);
+            if (!birth.Equals(new DateTime(0001, 01, 01)))
+                cmd.Parameters.AddWithValue("@birth", birth);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void updateAnimalInfo(int localID, int animalID, string name, string identityNumber, int quantity,int animalRace,int animalCondition,int animalHabitat,DateTime birth, DateTime death, int sex)
+        {
+            String str = "UPDATE Animals SET Name = @name";
+            str += ",OwnerLocalID = @ownerLocalID";
+            str += ",IdentityNumber = @identityNumber";
+            str += ",Quantity = @quantity";
+            str += ",AnimalRaceID = @animalRace";
+            str += ",AnimalConditionID = @animalCondition";
+            str += ",AnimalHabitatID = @animalHabitatID";
+            str += ",Sex = @sex";
+            if(!birth.Equals(new DateTime(0001,01,01)))
+                str += ",DateBorn = @birth";
+            if (!death.Equals(new DateTime(0001,01,01)))
+                str += ",DateDeath = @death";
+            str += " WHERE AnimalID = @animalID";
+
+             SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
+            cmd.Parameters.AddWithValue("@ownerLocalID", localID);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
+            cmd.Parameters.AddWithValue("@quantity", quantity);
+            cmd.Parameters.AddWithValue("@animalRace", animalRace);
+            cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
+            cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
+            cmd.Parameters.AddWithValue("@sex", sex);
+            if (!birth.Equals(new DateTime(0001,01,01)))
+                cmd.Parameters.AddWithValue("@birth", birth);
+            if (!death.Equals(new DateTime(0001,01,01)))
+                cmd.Parameters.AddWithValue("@death", death);
+
             cmd.ExecuteNonQuery();
         }
 

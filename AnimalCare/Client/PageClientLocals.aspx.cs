@@ -22,6 +22,9 @@ namespace AnimalCare.Client
 
             if (User.Identity.IsAuthenticated)
             {
+                if (!string.IsNullOrEmpty(Request.QueryString["Error"]))
+                    pnlError.Visible = true;                
+
                 refreshController();
 
                 SqlDataReader dr = Ctrl.getOwnerLocals().ExecuteReader();
