@@ -71,7 +71,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Gravar" OnClick="btnSave_Click"></asp:Button>
-                        <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" OnClick="btnCancel_Click"></asp:Button>
+                        <asp:Button ID="btnCancel" CausesValidation="false" CssClass="btn btn-default" runat="server" Text="Cancelar" OnClick="btnCancel_Click"></asp:Button>
                     </div>
                 </div>
             </div>
