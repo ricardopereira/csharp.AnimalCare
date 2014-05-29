@@ -131,7 +131,10 @@
     <Content Include="Employee\PageEmployee.aspx" />
     <Content Include="Employee\PageEmployeeAppointments.aspx" />
     <Content Include="Employee\PageEmployeeDashboard.aspx" />
-    <Content Include="Employee\PageEmployeeSchedule.aspx" />
+    <Content Include="Employee\PageEmployeeScheduleAnimal.aspx" />
+    <Content Include="Employee\PageEmployeeScheduleEdit.aspx" />
+    <Content Include="Employee\PageEmployeeScheduleNew.aspx" />
+    <Content Include="Employee\PageEmployeeScheduleOwner.aspx" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Default.aspx" />
     <Content Include="Client\PageAnimalNew.aspx" />
@@ -404,12 +407,33 @@
     <Compile Include="Employee\PageEmployeeDashboard.aspx.designer.cs">
       <DependentUpon>PageEmployeeDashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Employee\PageEmployeeSchedule.aspx.cs">
-      <DependentUpon>PageEmployeeSchedule.aspx</DependentUpon>
+    <Compile Include="Employee\PageEmployeeScheduleAnimal.aspx.cs">
+      <DependentUpon>PageEmployeeScheduleAnimal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Employee\PageEmployeeSchedule.aspx.designer.cs">
-      <DependentUpon>PageEmployeeSchedule.aspx</DependentUpon>
+    <Compile Include="Employee\PageEmployeeScheduleAnimal.aspx.designer.cs">
+      <DependentUpon>PageEmployeeScheduleAnimal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeScheduleEdit.aspx.cs">
+      <DependentUpon>PageEmployeeScheduleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeScheduleEdit.aspx.designer.cs">
+      <DependentUpon>PageEmployeeScheduleEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeScheduleNew.aspx.cs">
+      <DependentUpon>PageEmployeeScheduleNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeScheduleNew.aspx.designer.cs">
+      <DependentUpon>PageEmployeeScheduleNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeScheduleOwner.aspx.cs">
+      <DependentUpon>PageEmployeeScheduleOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeScheduleOwner.aspx.designer.cs">
+      <DependentUpon>PageEmployeeScheduleOwner.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -431,6 +455,7 @@
     </Compile>
     <Compile Include="Client\PageAnimalNew.aspx.cs">
       <DependentUpon>PageAnimalNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Client\PageAnimalNew.aspx.designer.cs">
       <DependentUpon>PageAnimalNew.aspx</DependentUpon>
