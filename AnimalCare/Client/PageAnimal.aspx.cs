@@ -26,7 +26,7 @@ namespace AnimalCare.Client
 
             if (User.Identity.IsAuthenticated)
             {
-                if (animalID > 0) /* #16 - Verificar dono */
+                if (animalID > 0)
                 {
                     if (!IsPostBack)
                     {

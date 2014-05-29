@@ -18,8 +18,9 @@ namespace AnimalCare.Client
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
-            HasLocals();
+            
+            if(User.Identity.IsAuthenticated && !IsPostBack)
+                HasLocals();
         }
 
         private void HasLocals()
@@ -33,6 +34,7 @@ namespace AnimalCare.Client
                 dataLocals.Close();
                 Response.Redirect("/Client/PageClientLocals.aspx?Error=message");
             }
+            dataLocals.Close();
         }
 
         private void PopulateDDLLocals(SqlDataReader dataLocals)
@@ -63,6 +65,7 @@ namespace AnimalCare.Client
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            int recordID;
             string name = boxName.Text;
             string identityNumber = boxIdentity.Text;
             int quantity;
@@ -78,8 +81,8 @@ namespace AnimalCare.Client
             else
                 quantity = 1;
 
-            Ctrl.insertAnimalInfo(localID, name, identityNumber, quantity, animalRace, animalCondition, animalHabitat, birth, sex);
-
+            recordID = Ctrl.insertAnimalInfo(localID, name, identityNumber, quantity, animalRace, animalCondition, animalHabitat, birth, sex);
+            Ctrl.insertOwnerAnimalsRel(recordID);
             Response.Redirect("PageAnimalDashboard.aspx");
         }
     }
