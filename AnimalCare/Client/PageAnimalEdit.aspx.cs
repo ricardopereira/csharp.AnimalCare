@@ -29,70 +29,75 @@ namespace AnimalCare.Client
 
             if (User.Identity.IsAuthenticated)
             {
-                if (animalID > 0) /* #16 - Verificar dono */
+                if (animalID > 0)
                 {
-                    if (!IsPostBack)
+                    if (Ctrl.isOwnerOfAnimal(animalID))
                     {
-                        SetProfileImage();
-                        PopulateDDLLocals();
-                        
-                        SqlDataReader animalData = Ctrl.getAnimalByID(animalID).ExecuteReader();
-
-                        if (!animalData.HasRows)
+                        if (!IsPostBack)
                         {
-                            animalData.Close();
-                            Ctrl.Database.Connection.Close();
-                            return;
-                        }
+                            SetProfileImage();
+                            PopulateDDLLocals();
 
-                        animalData.Read();
+                            SqlDataReader animalData = Ctrl.getAnimalByID(animalID).ExecuteReader();
 
-                        if (!animalData.IsDBNull(1))
-                            ddlLocals.SelectedValue = Convert.ToString(animalData.GetInt32(1));
-                        if (!animalData.IsDBNull(2))
-                        {
-                            animalName.Text = animalData.GetString(2);
-                            boxName.Text = animalData.GetString(2);
-                        }
-                        if (!animalData.IsDBNull(3))
-                            boxIdentity.Text = animalData.GetString(3);
-                        if (!animalData.IsDBNull(4))
-                        {
-                            numberOfAnimals = animalData.GetInt32(4);
-                            if (numberOfAnimals > 1)
+                            if (!animalData.HasRows)
                             {
-                                chkGroup.Checked = true;
-                                boxNumberAnimals.Text = Convert.ToString(numberOfAnimals);
+                                animalData.Close();
+                                Ctrl.Database.Connection.Close();
+                                return;
                             }
-                            else
-                                chkGroup.Checked = false;
-                        }
-                        if (!animalData.IsDBNull(5))
-                            raceID = animalData.GetInt32(5);
-                        if (!animalData.IsDBNull(6))
-                            ddlCondition.SelectedValue = Convert.ToString(animalData.GetInt32(6));
-                        if (!animalData.IsDBNull(7))
-                            ddlHabitat.SelectedValue = Convert.ToString(animalData.GetInt32(7));
-                        if (!animalData.IsDBNull(8))
-                            CalendarBirth.SelectedDate = animalData.GetDateTime(8);
-                        if (!animalData.IsDBNull(9))
-                        {
-                            CalendarDeath.SelectedDate = Convert.ToDateTime(animalData.GetString(9));
-                            chkDeceased.Checked = true;
-                        }
-                        if (!animalData.IsDBNull(10))
-                            ddlSex.SelectedValue = Convert.ToString(animalData.GetInt16(10));
-                        animalData.Close();
 
-                         //Get Specie by Race
-                        SqlDataReader dataSpecie = Ctrl.getSpecieByRace(raceID).ExecuteReader();
-                        dataSpecie.Read();
-                        specieID = dataSpecie.GetInt32(0);
-                        ddlSpecies.SelectedValue = Convert.ToString(specieID);
-                        dataSpecie.Close();
-                        PopulateDDLRaces(specieID);
-                        ddlRaces.SelectedValue = Convert.ToString(raceID);
+                            animalData.Read();
+
+                            if (!animalData.IsDBNull(1))
+                                ddlLocals.SelectedValue = Convert.ToString(animalData.GetInt32(1));
+                            if (!animalData.IsDBNull(2))
+                            {
+                                animalName.Text = animalData.GetString(2);
+                                boxName.Text = animalData.GetString(2);
+                            }
+                            if (!animalData.IsDBNull(3))
+                                boxIdentity.Text = animalData.GetString(3);
+                            if (!animalData.IsDBNull(4))
+                            {
+                                numberOfAnimals = animalData.GetInt32(4);
+                                if (numberOfAnimals > 1)
+                                {
+                                    chkGroup.Checked = true;
+                                    boxNumberAnimals.Text = Convert.ToString(numberOfAnimals);
+                                }
+                                else
+                                    chkGroup.Checked = false;
+                            }
+                            if (!animalData.IsDBNull(5))
+                                raceID = animalData.GetInt32(5);
+                            if (!animalData.IsDBNull(6))
+                                ddlCondition.SelectedValue = Convert.ToString(animalData.GetInt32(6));
+                            if (!animalData.IsDBNull(7))
+                                ddlHabitat.SelectedValue = Convert.ToString(animalData.GetInt32(7));
+                            if (!animalData.IsDBNull(8))
+                                CalendarBirth.SelectedDate = animalData.GetDateTime(8);
+                            if (!animalData.IsDBNull(9))
+                            {
+                                CalendarDeath.SelectedDate = Convert.ToDateTime(animalData.GetString(9));
+                                chkDeceased.Checked = true;
+                            }
+                            if (!animalData.IsDBNull(10))
+                                ddlSex.SelectedValue = Convert.ToString(animalData.GetInt16(10));
+                            animalData.Close();
+
+                            //Get Specie by Race
+                            SqlDataReader dataSpecie = Ctrl.getSpecieByRace(raceID).ExecuteReader();
+                            dataSpecie.Read();
+                            specieID = dataSpecie.GetInt32(0);
+                            ddlSpecies.SelectedValue = Convert.ToString(specieID);
+                            dataSpecie.Close();
+                            PopulateDDLRaces(specieID);
+                            ddlRaces.SelectedValue = Convert.ToString(raceID);
+                        }
                     }
+                    else
+                        Response.Redirect("PageAnimalDashboard.aspx");
                 } else
                     Response.Redirect("PageAnimalDashboard.aspx");
             }
