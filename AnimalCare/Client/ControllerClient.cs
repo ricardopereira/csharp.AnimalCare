@@ -211,40 +211,45 @@ namespace AnimalCare.Client
             cmd.ExecuteNonQuery();
         }
 
-            public int insertAnimalInfo(int localID, string name, string identityNumber, int quantity, int animalRace, int animalCondition, int animalHabitat, DateTime birth, int sex) 
-            {
-                String str = "INSERT INTO Animals (OwnerLocalID, Name,IdentityNumber,Quantity,AnimalRaceID,AnimalConditionID,AnimalHabitatID,Sex";
-                if (!birth.Equals(new DateTime(0001, 01, 01)))
-                    str += ",DateBorn)";
-                else
-                    str += ")";
-                str += " VALUES(@localID,@name,@identityNumber,@quantity,@animalRace,@animalCondition,@animalHabitatID,@sex";
-                if (!birth.Equals(new DateTime(0001, 01, 01)))
-                    str += ",@birth);";
-                else
-                    str += ");";
+        public int insertAnimalInfo(int localID, string name, string identityNumber, int quantity, int animalRace, int animalCondition, int animalHabitat, DateTime birth, int sex) 
+        {
+            String str = "INSERT INTO Animals (OwnerLocalID, Name,IdentityNumber,Quantity,AnimalRaceID,AnimalConditionID,AnimalHabitatID,Sex";
+            if (!birth.Equals(new DateTime(0001, 01, 01)))
+                str += ",DateBorn)";
+            else
+                str += ")";
+            str += " VALUES(@localID,@name,@identityNumber,@quantity,@animalRace,@animalCondition,@animalHabitatID,@sex";
+            if (!birth.Equals(new DateTime(0001, 01, 01)))
+                str += ",@birth);";
+            else
+                str += ");";
  
-                SqlCommand cmd = new SqlCommand(str, Database.Connection);
-                cmd.Parameters.AddWithValue("@localID", localID);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
-                cmd.Parameters.AddWithValue("@quantity", quantity);
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@localID", localID);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@identityNumber", identityNumber);
+            cmd.Parameters.AddWithValue("@quantity", quantity);
+
+            if (animalRace == 0)
+                cmd.Parameters.AddWithValue("@animalRace", DBNull.Value);
+            else
                 cmd.Parameters.AddWithValue("@animalRace", animalRace);
-                cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
-                cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
-                cmd.Parameters.AddWithValue("@sex", sex);
-                if (!birth.Equals(new DateTime(0001, 01, 01)))
-                    cmd.Parameters.AddWithValue("@birth", birth);
 
-                cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@animalCondition", animalCondition);
+            cmd.Parameters.AddWithValue("@animalHabitatID", animalHabitat);
+            cmd.Parameters.AddWithValue("@sex", sex);
+            if (!birth.Equals(new DateTime(0001, 01, 01)))
+                cmd.Parameters.AddWithValue("@birth", birth);
 
-                cmd.Parameters.Clear();
-                cmd.CommandText="SELECT @@IDENTITY";
-                int animalID = Convert.ToInt32(cmd.ExecuteScalar());
-                cmd.Dispose();
-                cmd = null;
-                return animalID;
-            }
+            cmd.ExecuteNonQuery();
+
+            cmd.Parameters.Clear();
+            cmd.CommandText="SELECT @@IDENTITY";
+            int animalID = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Dispose();
+            cmd = null;
+            return animalID;
+        }
 
         public void insertOwnerAnimalsRel(int animalID)
         {
@@ -463,10 +468,14 @@ namespace AnimalCare.Client
 
         public String getOwnerAnimalsSQL()
         {
-            return "SELECT a.*, r.Name Race, s.Name Specie FROM OwnerAnimalsRelation rel" +
+            return "SELECT a.*, r.Name Race, s.Name Specie, c.Description Condition, h.Description Habitat, rel.OwnerID OwnerID, o.Name Owner " +
+                " FROM OwnerAnimalsRelation rel" +
                 " INNER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
-                " INNER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
-                " INNER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
+                " LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
+                " LEFT OUTER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
+                " LEFT OUTER JOIN AnimalConditions c ON c.AnimalConditionID = a.AnimalConditionID" +
+                " LEFT OUTER JOIN AnimalHabitats h ON h.AnimalHabitatID = a.AnimalHabitatID" +
+                " LEFT OUTER JOIN Owners o ON o.OwnerID = rel.OwnerID" +
                 " WHERE rel.OwnerID = " + Bf.OwnerID + " AND rel.Active = 1";
         }
 

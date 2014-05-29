@@ -69,10 +69,22 @@ namespace AnimalCare.Client
             string name = boxName.Text;
             string identityNumber = boxIdentity.Text;
             int quantity;
-            int localID = Convert.ToInt32(ddlLocals.SelectedValue);
-            int animalRace = Convert.ToInt32(ddlRaces.SelectedValue);
-            int animalCondition = Convert.ToInt32(ddlCondition.SelectedValue);
-            int animalHabitat = Convert.ToInt32(ddlHabitat.SelectedValue);
+            int localID;
+            int animalRace = 0;
+            int animalCondition = 0;
+            int animalHabitat = 0;
+
+            localID = Convert.ToInt32(ddlLocals.SelectedValue);
+
+            if (!ddlRaces.SelectedValue.Equals(""))
+                animalRace = Convert.ToInt32(ddlRaces.SelectedValue);
+
+            if (!ddlCondition.SelectedValue.Equals(""))
+                animalCondition = Convert.ToInt32(ddlCondition.SelectedValue);
+
+            if (!ddlHabitat.SelectedValue.Equals(""))
+                animalHabitat = Convert.ToInt32(ddlHabitat.SelectedValue);
+
             DateTime birth = CalendarBirth.SelectedDate;
             int sex = Convert.ToInt16(ddlSex.SelectedValue);
 

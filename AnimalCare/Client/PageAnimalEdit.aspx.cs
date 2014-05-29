@@ -51,13 +51,16 @@ namespace AnimalCare.Client
 
                             if (!animalData.IsDBNull(1))
                                 ddlLocals.SelectedValue = Convert.ToString(animalData.GetInt32(1));
+
                             if (!animalData.IsDBNull(2))
                             {
                                 animalName.Text = animalData.GetString(2);
                                 boxName.Text = animalData.GetString(2);
                             }
+
                             if (!animalData.IsDBNull(3))
                                 boxIdentity.Text = animalData.GetString(3);
+
                             if (!animalData.IsDBNull(4))
                             {
                                 numberOfAnimals = animalData.GetInt32(4);
@@ -69,32 +72,42 @@ namespace AnimalCare.Client
                                 else
                                     chkGroup.Checked = false;
                             }
+
                             if (!animalData.IsDBNull(5))
                                 raceID = animalData.GetInt32(5);
+
                             if (!animalData.IsDBNull(6))
                                 ddlCondition.SelectedValue = Convert.ToString(animalData.GetInt32(6));
+
                             if (!animalData.IsDBNull(7))
                                 ddlHabitat.SelectedValue = Convert.ToString(animalData.GetInt32(7));
+
                             if (!animalData.IsDBNull(8))
                                 CalendarBirth.SelectedDate = animalData.GetDateTime(8);
+
                             if (!animalData.IsDBNull(9))
                             {
                                 CalendarDeath.SelectedDate = animalData.GetDateTime(9);
                                 chkDeceased.Checked = true;
                                 CalendarDeath.Visible = true;
                             }
+
                             if (!animalData.IsDBNull(10))
                                 ddlSex.SelectedValue = Convert.ToString(animalData.GetInt16(10));
+
                             animalData.Close();
 
                             //Get Specie by Race
-                            SqlDataReader dataSpecie = Ctrl.getSpecieByRace(raceID).ExecuteReader();
-                            dataSpecie.Read();
-                            specieID = dataSpecie.GetInt32(0);
-                            ddlSpecies.SelectedValue = Convert.ToString(specieID);
-                            dataSpecie.Close();
-                            PopulateDDLRaces(specieID);
-                            ddlRaces.SelectedValue = Convert.ToString(raceID);
+                            if (raceID > 0)
+                            {
+                                SqlDataReader dataSpecie = Ctrl.getSpecieByRace(raceID).ExecuteReader();
+                                dataSpecie.Read();
+                                specieID = dataSpecie.GetInt32(0);
+                                ddlSpecies.SelectedValue = Convert.ToString(specieID);
+                                dataSpecie.Close();
+                                PopulateDDLRaces(specieID);
+                                ddlRaces.SelectedValue = Convert.ToString(raceID);
+                            }
                         }
                     }
                     else
@@ -108,6 +121,7 @@ namespace AnimalCare.Client
 
         private void PopulateDDLRaces(int specieID)
         {
+            if (specieID <= 0) return;
 
             SqlDataReader dataRaces = Ctrl.getRaceInfo(specieID).ExecuteReader();
 
@@ -176,21 +190,25 @@ namespace AnimalCare.Client
                 firstMsg.Visible = true;
                 secondMsg.Visible = false;
                 return;
-            } else 
-                if(!birth.Equals(new DateTime(0001,01,01)))
-                    if(!death.Equals(new DateTime(0001,01,01)))
-                        if(birth.Date > death.Date)
+            } else
+                if (!birth.Equals(new DateTime(0001, 01, 01)))
+                {
+                    if (!death.Equals(new DateTime(0001, 01, 01)))
+                    {
+                        if (birth.Date > death.Date)
                         {
                             pnlErrorDate.Visible = true;
                             secondMsg.Visible = true;
                             firstMsg.Visible = false;
                             return;
                         }
-            else
-            {
-                Ctrl.updateAnimalInfo(localID, animalID, name, identityNumber, quantity, animalRace, animalCondition, animalHabitat, birth, death, sex);
-                Response.Redirect("PageAnimal.aspx?AnimalID=" + animalID);
-            }
+                    }
+                }
+                else
+                {
+                    Ctrl.updateAnimalInfo(localID, animalID, name, identityNumber, quantity, animalRace, animalCondition, animalHabitat, birth, death, sex);
+                    Response.Redirect("PageAnimal.aspx?AnimalID=" + animalID);
+                }
         }
 
         protected void chkGroup_CheckedChanged(object sender, EventArgs e)
