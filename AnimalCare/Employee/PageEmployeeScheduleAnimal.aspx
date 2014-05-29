@@ -39,7 +39,7 @@
                         <div class="table-responsive">
                             <div class="panel panel-primary">
                                 <!-- Default panel contents -->
-                                <div class="panel-heading">Resultado</div>
+                                <div class="panel-heading">Animais</div>
 
                                 <table class="table table-striped">
                                     <thead>
@@ -87,8 +87,7 @@
                         <!-- BOTOES -->
                         <div class="row">
                             <div class="col-lg-12">
-                                <asp:Button ID="btnNext" CssClass="btn btn-primary" runat="server" Text="Próximo passo" OnClick="btnNext_Click"></asp:Button>
-                                <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" OnClick="btnCancel_Click"></asp:Button>
+                                <asp:Button ID="btnVoltar" CssClass="btn btn-primary" runat="server" Text="Voltar" PostBackUrl="~/Employee/PageEmployeeScheduleOwner.aspx"></asp:Button>
                             </div>
                         </div>
                     </div>

@@ -41,7 +41,7 @@
                             <div class="col-md-8">
                                 <p>
                                 <asp:Label ID="lblDetail" runat="server" Text="Motivo: "></asp:Label>
-                                <asp:TextBox ID="boxDetail" runat="server" class="form-control"></asp:TextBox>
+                                <asp:TextBox ID="boxDetail" runat="server" class="form-control" MaxLength="45"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorReason" runat="server" ControlToValidate="boxDetail"
                                     CssClass="field-validation-error text-danger" ErrorMessage="Especifique algum detalhe da marcação." />
                                 </p>

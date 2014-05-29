@@ -30,6 +30,7 @@
                 </p>
 
                 <br />
+
                 <!-- Animal -->
                 <h4>Animal</h4>
                 <p class="text-muted">
@@ -64,7 +65,7 @@
                         <!-- MOTIVO de rejeicao -->
                         <p>
                         <asp:Label ID="lblReason" runat="server" Text="Motivo: "></asp:Label>
-                        <asp:TextBox ID="boxReason" runat="server" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="boxReason" runat="server" class="form-control" MaxLength="45"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorReason" runat="server" ControlToValidate="boxReason"
                             CssClass="field-validation-error text-danger" ErrorMessage="Especifique o motivo." />
                         </p>

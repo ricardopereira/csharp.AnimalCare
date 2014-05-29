@@ -27,9 +27,14 @@ namespace AnimalCare.Employee
 
                 // Marcacoes
                 dr = Ctrl.getAppointments().ExecuteReader();
-                // Efectuar o data binding
                 tblAppointments.DataSource = dr;
                 tblAppointments.DataBind();
+                dr.Close();
+
+                // Eventos
+                dr = Ctrl.getSchedule().ExecuteReader();
+                tblSchedule.DataSource = dr;
+                tblSchedule.DataBind();
                 dr.Close();
             }
         }

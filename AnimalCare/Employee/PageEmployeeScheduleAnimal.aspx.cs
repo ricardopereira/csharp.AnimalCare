@@ -21,10 +21,10 @@ namespace AnimalCare.Employee
         {
             base.OnLoad(e);
 
-            loadParameters();
-
             if (!IsPostBack && User.Identity.IsAuthenticated)
             {
+                loadParameters();
+
                 refreshController();
 
                 if (ownerID > 0)
@@ -54,16 +54,6 @@ namespace AnimalCare.Employee
                 int.TryParse(Request.QueryString["OwnerID"], out ownerID);
             else
                 ownerID = 0;
-        }
-
-        protected void btnNext_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("PageEmployeeScheduleNew.aspx");
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("PageEmployeeDashboard.aspx");
         }
     }
 }

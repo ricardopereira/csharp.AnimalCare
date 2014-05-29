@@ -275,7 +275,7 @@ CREATE TABLE [dbo].[Schedule] (
   [DateEvent] DATETIME NOT NULL,
   [Notified] BIT NULL,
   [Present] BIT NULL,
-  [DateCreated] BIT NOT NULL,
+  [DateCreated] DATETIME NOT NULL,
   [CreatedBy] UNIQUEIDENTIFIER NOT NULL,
   [ServiceKindID] INT NOT NULL,
   [OwnerID] INT NOT NULL,

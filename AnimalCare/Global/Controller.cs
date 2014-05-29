@@ -96,7 +96,7 @@ namespace AnimalCare
                 " FROM Owners o" +
                 " LEFT OUTER JOIN Countries co ON co.CountryID = o.CountryID" +
                 " LEFT OUTER JOIN BusinessSector b ON b.BusinessSectorID = o.BusinessSectorID" +
-                " WHERE o.Inactive = 0 OR o.Inactive IS NULL";
+                " WHERE (o.Inactive = 0 OR o.Inactive IS NULL) ";
 
             if (!filter.Trim().Equals(""))
             {
@@ -135,6 +135,32 @@ namespace AnimalCare
             return result;
         }
 
+        public SqlCommand getAnimal(int animalID)
+        {
+            String str = getAnimalsSQL() + " WHERE a.AnimalID = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", animalID);
+            return cmd;
+        }
+
+        public String getAnimalName(int animalID)
+        {
+            String result = "";
+            if (animalID <= 0) return result;
+            String str = "SELECT Name FROM Animals WHERE AnimalID = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", animalID);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                dr.Read();
+                if (!dr.IsDBNull(0))
+                    result = dr.GetString(0);
+            }
+            dr.Close();
+            return result;
+        }
+
         public int getOwnerByAnimalID(int animalID)
         {
             int ownerID = 0;
@@ -151,6 +177,75 @@ namespace AnimalCare
             }
             dr.Close();
             return ownerID;
+        }
+
+        public int getOwnerByAppointmentID(int appointmentID)
+        {
+            int ownerID = 0;
+            if (appointmentID <= 0) return ownerID;
+            String str = "SELECT OwnerID FROM Appointments WHERE AppointmentID = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", appointmentID);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                dr.Read();
+                if (!dr.IsDBNull(0))
+                    ownerID = dr.GetInt32(0);
+            }
+            dr.Close();
+            return ownerID;
+        }
+
+        public int getAnimalByAppointmentID(int appointmentID)
+        {
+            int animalID = 0;
+            if (appointmentID <= 0) return animalID;
+            String str = "SELECT AnimalID FROM Appointments WHERE AppointmentID = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", appointmentID);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                dr.Read();
+                if (!dr.IsDBNull(0))
+                    animalID = dr.GetInt32(0);
+            }
+            dr.Close();
+            return animalID;
+        }
+
+        public String getAnimalsSQL()
+        {
+            /*
+            0-AnimalID
+            1-OwnerLocalID
+            2-Name
+            3-IdentityNumber
+            4-Quantity
+            5-AnimalRaceID
+            6-AnimalConditionID
+            7-AnimalHabitatID
+            8-DateBorn
+            9-DateDeath
+            10-Sex
+            11-ProfileImageID
+            12-OwnerID
+            13-Owner
+            14-Race
+            15-Specie
+            16-Condition
+            17-Habitat
+            */
+
+            return "SELECT a.*, rel.OwnerID OwnerID, o.Name Owner, r.Name Race, s.Name Specie, c.Description Condition, h.Description Habitat " +
+                " FROM Animals a" +
+                " INNER JOIN OwnerAnimalsRelation rel ON rel.AnimalID = a.AnimalID AND rel.Active = 1" +
+                " LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
+                " LEFT OUTER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
+                " LEFT OUTER JOIN AnimalConditions c ON c.AnimalConditionID = a.AnimalConditionID" +
+                " LEFT OUTER JOIN AnimalHabitats h ON h.AnimalHabitatID = a.AnimalHabitatID" +
+                " LEFT OUTER JOIN Owners o ON o.OwnerID = rel.OwnerID";
         }
 
         public SqlCommand getAllAnimals(int ownerID)
@@ -245,6 +340,26 @@ namespace AnimalCare
 
         public String getAllAppointmentsSQL()
         {
+            /*
+            0-[AppointmentID] INT NOT NULL IDENTITY,
+            1-[OwnerID] INT NOT NULL,
+            2-[AnimalID] INT NULL,
+            3-[AnimalGroupID] INT NULL,
+            4-[AppointmentTypeID] INT NOT NULL,
+            5-[DateAppointment] DATETIME NOT NULL,
+            6-[DateCreated] DATETIME NOT NULL,
+            7-[Reason] VARCHAR(45) NULL,
+            8-[Detail] VARCHAR(45) NULL,
+            9-[Urgent] BIT NULL,
+            10-[State] SMALLINT NULL,
+            11-Animal
+            12-Owner
+            13-AppointmentType
+            14-Specie
+            15-Race
+            16-StateStr
+             */
+
             String sql = "SELECT ap.*, a.Name as Animal, o.Name as Owner," +
                 " apt.Description as AppointmentType, species.Name as Specie, races.Name as Race, " +
                 " CASE" +
@@ -317,6 +432,59 @@ namespace AnimalCare
             bool has = dr.HasRows;
             dr.Close();
             return has;
+        }
+
+        public String getAllScheduleSQL()
+        {
+            /*
+            0-[ScheduleID] INT NOT NULL IDENTITY,
+            1-[Description] VARCHAR(50) NULL,
+            2-[DateEvent] DATETIME NOT NULL,
+            3-[Notified] BIT NULL,
+            4-[Present] BIT NULL,
+            5-[DateCreated] BIT NOT NULL,
+            6-[CreatedBy] UNIQUEIDENTIFIER NOT NULL,
+            7-[ServiceKindID] INT NOT NULL,
+            8-[OwnerID] INT NOT NULL,
+            9-[AnimalID] INT NULL,
+            10-[AnimalGroupID] INT NULL,
+            11-[ProfessionalID] INT NOT NULL,
+            12-[Priority] SMALLINT NULL
+            13-Owner
+            14-Animal
+            15-Professional
+            16-ServiceKind
+             */
+
+            String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind" +
+                " FROM Schedule sh" +
+                "  LEFT OUTER JOIN Animals a ON a.AnimalID = sh.AnimalID" +
+                "  LEFT OUTER JOIN Owners o ON o.OwnerID = sh.OwnerID" +
+                "  LEFT OUTER JOIN Professionals p ON p.ProfessionalID = sh.ProfessionalID" +
+                "  LEFT OUTER JOIN ServiceKinds sk ON sk.ServiceKindID = sh.ServiceKindID";
+            return sql;
+        }
+
+        public SqlCommand getAllSchedule(DateTime dateFrom, DateTime dateTo, bool present = false, bool notified = false, int professionalID = 0)
+        {
+            String str = getAllScheduleSQL() +
+                " WHERE DateEvent > @dateFrom AND DateEvent < @dateTo" +
+                "   AND Present = @present AND Notified = @notified";
+
+            if (professionalID > 0)
+                str += " AND ProfessionalID = @professionalID";
+
+            // Executar comando
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+            cmd.Parameters.AddWithValue("@dateTo", dateTo);
+            cmd.Parameters.AddWithValue("@present", present);
+            cmd.Parameters.AddWithValue("@notified", notified);
+
+            if (professionalID > 0)
+                cmd.Parameters.AddWithValue("@professionalID", professionalID);
+
+            return cmd;
         }
     }
 }

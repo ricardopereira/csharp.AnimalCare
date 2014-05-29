@@ -21,10 +21,10 @@ namespace AnimalCare.Employee
         {
             base.OnLoad(e);
 
-            loadAppointmentID();
-
             if (User.Identity.IsAuthenticated)
             {
+                loadAppointmentID();
+
                 if (appointmentID > 0) /* #16 - Verificar dono */
                 {
                     if (!IsPostBack)
@@ -143,20 +143,20 @@ namespace AnimalCare.Employee
             if (Convert.ToInt16(rdbState.SelectedValue) == (int)AppointmentState.astRejected) 
                 return;
 
-            Response.Redirect(String.Format("PageEmployeeScheduleNew.aspx&AppointmentID={0}", appointmentID));
+            Response.Redirect(String.Format("PageEmployeeScheduleNew.aspx/?AppointmentID={0}", appointmentID));
         }
 
         protected void rdbState_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (rdbState.SelectedIndex == 1)
             {
-                lblReason.Visible = true;
+                boxReason.Visible = true;
             }
             else
             {
                 boxReason.Visible = false;
             }
-            boxReason.Visible = boxReason.Visible;
+            lblReason.Visible = boxReason.Visible;
             btnSave.CausesValidation = boxReason.Visible;
         }
     }
