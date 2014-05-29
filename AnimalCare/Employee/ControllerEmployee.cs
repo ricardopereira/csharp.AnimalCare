@@ -139,12 +139,75 @@ namespace AnimalCare.Employee
 
         public SqlCommand getAppointments()
         {
-            return getAppointments(getDefaultDateFrom(), getDefaultDateTo());
+            AppointmentState[] states = new AppointmentState[3];
+            // Lista dos estados a carregar
+            states[0] = AppointmentState.astWaiting;
+            states[1] = AppointmentState.astAccepted;
+            states[2] = AppointmentState.astCanceled;
+
+            return getAllAppointments(getMinDate(), getMaxDate(), states);
         }
 
         public bool hasWaitingAppointments()
         {
-            return hasAppointments(AppointmentState.astWaiting, getMinDate(), getMaxDate());
+            return existsAppointments(AppointmentState.astWaiting, getMinDate(), getMaxDate());
+        }
+
+        public void ignoreAppointment(int appointmentID)
+        {
+            String str = "UPDATE Appointments SET" +
+                         "  State = @state" +
+                         " WHERE AppointmentID = @id";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", appointmentID);
+            cmd.Parameters.AddWithValue("@state", (int)AppointmentState.astDone);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void saveAppointment(int appointmentID, int newState, String reason)
+        {
+            String str = "UPDATE Appointments SET" +
+                         "  State = @state," +
+                         "  Reason = @reason" +
+                         " WHERE AppointmentID = @id";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", appointmentID);
+            cmd.Parameters.AddWithValue("@reason", reason);
+            cmd.Parameters.AddWithValue("@state", newState);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void createEvent(int appointmentID)
+        {
+              /*[ScheduleID] INT NOT NULL IDENTITY,
+              [Description] VARCHAR(50) NULL,
+              [DateEvent] DATETIME NOT NULL,
+              [Notified] BIT NULL,
+              [Present] BIT NULL,
+              [DateCreated] BIT NOT NULL,
+              [CreatedBy] UNIQUEIDENTIFIER NOT NULL,
+              [ServiceKindID] INT NOT NULL,
+              [OwnerID] INT NOT NULL,
+              [AnimalID] INT NULL,
+              [AnimalGroupID] INT NULL,
+              [ProfessionalID] INT NOT NULL,
+              [Priority] SMALLINT NULL,*/
+
+            return;
+
+            String str = "INSERT INTO Schedule(UserID)";
+            str += "VALUES(@UserID)";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            //cmd.Parameters.AddWithValue("@UserID", );
+
+            cmd.ExecuteNonQuery();
+
+            saveAppointment(appointmentID, (int)AppointmentState.astAccepted, "Verifique a agenda");
         }
     }
 }

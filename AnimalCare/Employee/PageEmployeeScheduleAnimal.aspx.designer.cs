@@ -7,36 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AnimalCare.Client {
+namespace AnimalCare.Employee {
     
     
-    public partial class PageClientDashboard {
+    public partial class PageEmployeeScheduleAnimal {
         
         /// <summary>
-        /// lblAnimalsCount control.
+        /// lblOwner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAnimalsCount;
+        protected global::System.Web.UI.WebControls.Label lblOwner;
         
         /// <summary>
-        /// tblAppointments control.
+        /// tblAnimals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater tblAppointments;
+        protected global::System.Web.UI.WebControls.Repeater tblAnimals;
         
         /// <summary>
-        /// tblSchedule control.
+        /// btnNext control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater tblSchedule;
+        protected global::System.Web.UI.WebControls.Button btnNext;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

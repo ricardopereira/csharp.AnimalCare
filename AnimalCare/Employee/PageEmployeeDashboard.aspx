@@ -26,22 +26,20 @@
 
         <div class="row">
             <!-- PERFIL -->
-            <div class="col-md-4">
+            <div class="col-lg-12">
                 <p class="lead"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-sm" href="PageEmployee.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
             </div>
-
+        </div>
+        <div class="row">
             <!-- MARCACOES -->
-            <div class="col-md-8">
+            <div class="col-lg-12">
                 <!-- Tabela com as marcacoes -->
                 <div class="table-responsive">
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading">Pedido de marcações</div>
                         <div class="panel-body">
-                            <!-- Conteudo para o painel: Talvez colocar os botões -->
-                            <div class="btn-group">
-                                <a class="btn btn-success" href="PageEmployeeAppointments.aspx" role="button">Nova marcação</a>
-                            </div>
+                            Todas as marcações de clientes em espera de uma resposta:
                         </div>
 
                         <table class="table table-striped">
@@ -49,6 +47,8 @@
                                 <tr>
                                     <th></th>
                                     <th>Data</th>
+                                    <th>Proprietário</th>
+                                    <th>Animal</th>
                                     <th>Descrição</th>
                                     <th>Estado</th>
                                 </tr>
@@ -58,9 +58,14 @@
                                     <ItemTemplate>
                                     <tr>
                                         <td>
+                                            <a class="btn btn-primary btn-xs" href="PageEmployeeAppointments.aspx?AppointmentID=<%# Eval("AppointmentID")%>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
 
+                                            <asp:Label ID="lblUrgent" CssClass="label label-danger" runat="server" Text="Urgente"
+                                                Visible='<%# Convert.ToBoolean(Eval("Urgent")) %>'></asp:Label>
                                         </td>
-                                        <td><%# Eval("DateAppointment") %></td>
+                                        <td><asp:Label Text='<%# Eval("DateAppointment") %>' runat="server" Font-Strikeout='<%# Convert.ToInt32(Eval("State")) == (int)AnimalCare.AppointmentState.astCanceled %>'></asp:Label></td>
+                                        <td><%# Eval("Owner") %></td>
+                                        <td><%# Eval("Animal") %></td>
                                         <td><%# Eval("Reason") %></td>
                                         <td><%# Eval("StateStr") %></td>
                                     </tr>
@@ -70,6 +75,7 @@
                         </table>
                     </div>
                 </div>
+
             </div>
         </div><!-- ROW -->
 

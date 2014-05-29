@@ -7,36 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AnimalCare.Client {
+namespace AnimalCare.Employee {
     
     
-    public partial class PageClientDashboard {
+    public partial class PageEmployeeScheduleOwner {
         
         /// <summary>
-        /// lblAnimalsCount control.
+        /// tblOwners control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAnimalsCount;
+        protected global::System.Web.UI.WebControls.Repeater tblOwners;
         
         /// <summary>
-        /// tblAppointments control.
+        /// btnNext control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater tblAppointments;
+        protected global::System.Web.UI.WebControls.Button btnNext;
         
         /// <summary>
-        /// tblSchedule control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater tblSchedule;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

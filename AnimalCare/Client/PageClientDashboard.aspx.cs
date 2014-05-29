@@ -25,6 +25,8 @@ namespace AnimalCare.Client
             {
                 refreshController();
 
+                lblAnimalsCount.Text += Convert.ToString(Ctrl.getOwnerAnimalsCount());
+
                 SqlDataReader dr;
 
                 // Marcacoes
