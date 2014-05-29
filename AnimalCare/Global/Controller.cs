@@ -86,9 +86,9 @@ namespace AnimalCare
                 return value.ToString();
         }
 
-        public SqlCommand getAllOwners()
+        public SqlCommand getAllOwners(string filter = "")
         {
-            String str = "SELECT o.*, co.Name Country, b.Name Sector, " +
+            String sql = "SELECT o.*, co.Name Country, b.Name Sector, " +
                 " CASE" +
                 "  WHEN Business = 0 THEN 'Particular'" +
                 "  WHEN Business = 1 THEN 'Empresa'" +
@@ -96,10 +96,23 @@ namespace AnimalCare
                 " FROM Owners o" +
                 " LEFT OUTER JOIN Countries co ON co.CountryID = o.CountryID" +
                 " LEFT OUTER JOIN BusinessSector b ON b.BusinessSectorID = o.BusinessSectorID" +
-                " WHERE o.Inactive = 0 OR o.Inactive IS NULL ORDER BY o.Name";
+                " WHERE o.Inactive = 0 OR o.Inactive IS NULL";
+
+            if (!filter.Trim().Equals(""))
+            {
+                sql += " AND (" +
+                       " o.Name LIKE '%'+@filter+'%' OR" +
+                       " TaxNumber LIKE '%'+@filter+'%' " +
+                       ")";
+            }
+
+            sql += " ORDER BY o.Name";
 
             // Executar comando
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            SqlCommand cmd = new SqlCommand(sql, Database.Connection);
+
+            if (!filter.Trim().Equals(""))
+                cmd.Parameters.AddWithValue("@filter", filter);
 
             return cmd;
         }

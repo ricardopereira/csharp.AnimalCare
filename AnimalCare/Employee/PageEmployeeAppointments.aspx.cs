@@ -150,14 +150,14 @@ namespace AnimalCare.Employee
         {
             if (rdbState.SelectedIndex == 1)
             {
-                boxReason.Visible = true;
-                btnSave.CausesValidation = true;
+                lblReason.Visible = true;
             }
             else
             {
                 boxReason.Visible = false;
-                btnSave.CausesValidation = false;
             }
+            boxReason.Visible = boxReason.Visible;
+            btnSave.CausesValidation = boxReason.Visible;
         }
     }
 }
