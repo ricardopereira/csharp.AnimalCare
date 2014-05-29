@@ -373,6 +373,61 @@ namespace AnimalCare.Client
             return cmd;
         }
 
+        public bool isOwnerOfAnimal(int animalID)
+        {
+            int dbOwnerID;
+
+            String str = "SELECT ol.OwnerID FROM Animals a";
+            str += " INNER JOIN OwnerLocals ol ON a.OwnerLocalID = ol.OwnerLocalID";
+            str += " WHERE [AnimalID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", animalID);
+            
+            SqlDataReader animalData = cmd.ExecuteReader();
+            if (!animalData.HasRows)
+            {
+                animalData.Close();
+                return false;
+            }
+            else
+            {
+                animalData.Read();
+                dbOwnerID = animalData.GetInt32(0);
+                animalData.Close();
+                if (dbOwnerID != Bf.OwnerID)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool isOwnerOfLocal(int ownerLocalID)
+        {
+            int dbOwnerID;
+
+            String str = "SELECT OwnerID FROM OwnerLocals";
+            str += " WHERE [OwnerLocalID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", ownerLocalID);
+
+            SqlDataReader localData = cmd.ExecuteReader();
+            if (!localData.HasRows)
+            {
+                localData.Close();
+                return false;
+            }
+            else
+            {
+                localData.Read();
+                dbOwnerID = localData.GetInt32(0);
+                localData.Close();
+                if (dbOwnerID != Bf.OwnerID)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
         public void deleteOwnerLocal(int ownerLocalID)
         {
             if (ownerLocalID <= 0)
