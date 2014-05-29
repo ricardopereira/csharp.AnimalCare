@@ -39,6 +39,14 @@
             <div class="col-md-8">
 
                 <div class="panel panel-default">
+                    <asp:Panel ID="pnlErrorDate" runat="server" Visible="false">
+                        <div class="alert alert-danger fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4>Erro com as datas</h4>
+                            <asp:Label ID="firstMsg" runat="server" Visible="false"><p>Ao especificar a data de falecimento, deve especificar também a de nascimento.</p></asp:Label>
+                            <asp:Label ID="secondMsg" runat="server" Visible="false"><p>A data de nascimento não pode ser superior à de falecimento.</p></asp:Label>
+                         </div>
+                    </asp:Panel>
                     <div class="panel-heading">
                         <h3 class="panel-title">Dados</h3>
                     </div>

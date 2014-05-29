@@ -79,8 +79,9 @@ namespace AnimalCare.Client
                                 CalendarBirth.SelectedDate = animalData.GetDateTime(8);
                             if (!animalData.IsDBNull(9))
                             {
-                                CalendarDeath.SelectedDate = Convert.ToDateTime(animalData.GetString(9));
+                                CalendarDeath.SelectedDate = animalData.GetDateTime(9);
                                 chkDeceased.Checked = true;
+                                CalendarDeath.Visible = true;
                             }
                             if (!animalData.IsDBNull(10))
                                 ddlSex.SelectedValue = Convert.ToString(animalData.GetInt16(10));
@@ -167,11 +168,29 @@ namespace AnimalCare.Client
             if (chkDeceased.Checked)
                 death = CalendarDeath.SelectedDate;
             else
-                death = new DateTime(0001,01,01); /* Fake data for Serialization */
+                death = new DateTime(0001,01,01); /* Fake date for Serialization */
 
-            Ctrl.updateAnimalInfo(localID,animalID,name,identityNumber,quantity,animalRace,animalCondition,animalHabitat,birth,death,sex);
-            
-            Response.Redirect("PageAnimal.aspx?AnimalID=" + animalID);
+            if (birth.Equals(new DateTime(0001, 01, 01)) && !death.Equals(new DateTime(0001,01,01)))
+            {
+                pnlErrorDate.Visible = true;
+                firstMsg.Visible = true;
+                secondMsg.Visible = false;
+                return;
+            } else 
+                if(!birth.Equals(new DateTime(0001,01,01)))
+                    if(!death.Equals(new DateTime(0001,01,01)))
+                        if(birth.Date > death.Date)
+                        {
+                            pnlErrorDate.Visible = true;
+                            secondMsg.Visible = true;
+                            firstMsg.Visible = false;
+                            return;
+                        }
+            else
+            {
+                Ctrl.updateAnimalInfo(localID, animalID, name, identityNumber, quantity, animalRace, animalCondition, animalHabitat, birth, death, sex);
+                Response.Redirect("PageAnimal.aspx?AnimalID=" + animalID);
+            }
         }
 
         protected void chkGroup_CheckedChanged(object sender, EventArgs e)

@@ -76,6 +76,8 @@ namespace AnimalCare.Client
                             lblBornDate.Text = Convert.ToString(animalData.GetDateTime(7));
                         if (!animalData.IsDBNull(8))
                             lblPlace.Text = animalData.GetString(8);
+                        if (!animalData.IsDBNull(9))
+                            lblDeath.Visible = true;
                     }
                 }
                 else

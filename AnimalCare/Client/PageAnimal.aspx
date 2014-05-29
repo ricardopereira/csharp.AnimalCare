@@ -26,7 +26,7 @@
             </div>
             <!-- Info -->
             <div class="col-md-9">
-                <h2><asp:Label ID="lblMainName" runat="server"></asp:Label></h2>
+                <h2><asp:Label ID="lblMainName" runat="server"></asp:Label>  <asp:Label ID="lblDeath" CssClass="glyphicon glyphicon-cloud" runat="server"></asp:Label></h2>
                 <a class="btn btn-default btn-sm" runat="server" id="editLink" role="button"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
                 <br />
                 <br />

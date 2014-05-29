@@ -31,6 +31,33 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label animalName;
         
         /// <summary>
+        /// pnlErrorDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlErrorDate;
+        
+        /// <summary>
+        /// firstMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label firstMsg;
+        
+        /// <summary>
+        /// secondMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label secondMsg;
+        
+        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>
