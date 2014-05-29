@@ -10,17 +10,17 @@ namespace AnimalCare.Employee
 {
     public class EmployeeBuffer
     {
-        private int profissionalID;
+        private int professionalID;
         private String name;
         private string email;
         private String codeWorker;
         private String workNumber;
         private String personalNumber;
 
-        public int ProfissionalID
+        public int ProfessionalID
         {
-            get { return profissionalID; }
-            set { profissionalID = value; }
+            get { return professionalID; }
+            set { professionalID = value; }
         }
 
         public String Name
@@ -75,7 +75,7 @@ namespace AnimalCare.Employee
 
         public override int getUniqueID()
         {
-            return Bf.ProfissionalID;
+            return Bf.ProfessionalID;
         }
 
         public override void loadCurrentUser()
@@ -101,7 +101,7 @@ namespace AnimalCare.Employee
                 dados.Read();
                 // Retornar o OwnerID
                 if (!dados.IsDBNull(0))
-                    Bf.ProfissionalID = dados.GetInt32(0);
+                    Bf.ProfessionalID = dados.GetInt32(0);
                 if (!dados.IsDBNull(2))
                     Bf.Name = dados.GetString(2);
                 if (!dados.IsDBNull(3))
@@ -118,17 +118,32 @@ namespace AnimalCare.Employee
             dados.Close();
         }
 
+        public void insertEmployeeInfo(String name, String codeWorker, String workNumber, String personalNumber)
+        {
+            Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
+            String str = "INSERT INTO Professionals VALUES (@userID, @name, @codeWorker, @workNumber, @personalNumber)";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@userID", userGuid);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@codeWorker", codeWorker);
+            cmd.Parameters.AddWithValue("@workNumber", workNumber);
+            cmd.Parameters.AddWithValue("@personalNumber", personalNumber);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public void updateEmployeeInfo(String name, String codeWorker, String workNumber, String personalNumber)
         {
-            String str = "UPDATE Profissionals SET" +
+            String str = "UPDATE Professionals SET" +
                          "  Name = @name," +
                          "  CodeWorker = @codeWorker," +
                          "  WorkNumber = @workNumber," +
                          "  PersonalNumber = @personalNumber" +
-                         " WHERE ProfissionalID = @profissionalID";
+                         " WHERE ProfessionalID = @professionalID";
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@profissionalID", Bf.ProfissionalID);
+            cmd.Parameters.AddWithValue("@professionalID", Bf.ProfessionalID);
             cmd.Parameters.AddWithValue("@name", name);
             cmd.Parameters.AddWithValue("@codeWorker", codeWorker);
             cmd.Parameters.AddWithValue("@workNumber", workNumber);

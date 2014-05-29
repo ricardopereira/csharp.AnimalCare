@@ -128,10 +128,12 @@
     <Content Include="Content\style.css" />
     <Content Include="Doctor\PageDoctor.aspx" />
     <Content Include="Doctor\PageDoctorDashboard.aspx" />
+    <Content Include="Doctor\PageDoctorEdit.aspx" />
     <Content Include="Doctor\PageDoctorServices.aspx" />
     <Content Include="Employee\PageEmployee.aspx" />
     <Content Include="Employee\PageEmployeeAppointments.aspx" />
     <Content Include="Employee\PageEmployeeDashboard.aspx" />
+    <Content Include="Employee\PageEmployeeEdit.aspx" />
     <Content Include="Employee\PageEmployeeScheduleAnimal.aspx" />
     <Content Include="Employee\PageEmployeeScheduleEdit.aspx" />
     <Content Include="Employee\PageEmployeeScheduleNew.aspx" />
@@ -376,6 +378,13 @@
     <Compile Include="Doctor\PageDoctorDashboard.aspx.designer.cs">
       <DependentUpon>PageDoctorDashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Doctor\PageDoctorEdit.aspx.cs">
+      <DependentUpon>PageDoctorEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorEdit.aspx.designer.cs">
+      <DependentUpon>PageDoctorEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Doctor\PageDoctorServices.aspx.cs">
       <DependentUpon>PageDoctorServices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -414,6 +423,13 @@
     </Compile>
     <Compile Include="Employee\PageEmployeeDashboard.aspx.designer.cs">
       <DependentUpon>PageEmployeeDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeEdit.aspx.cs">
+      <DependentUpon>PageEmployeeEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\PageEmployeeEdit.aspx.designer.cs">
+      <DependentUpon>PageEmployeeEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\PageEmployeeScheduleAnimal.aspx.cs">
       <DependentUpon>PageEmployeeScheduleAnimal.aspx</DependentUpon>

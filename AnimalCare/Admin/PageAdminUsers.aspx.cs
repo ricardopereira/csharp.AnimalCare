@@ -13,5 +13,20 @@ namespace AnimalCare.Admin
         {
 
         }
+
+        protected void btnAddAdmin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Account/Register.aspx?Admin=true");
+        }
+
+        protected void btnAddEmployee_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Account/Register.aspx?Employee=true");
+        }
+
+        protected void btnAddDoctor_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Account/Register.aspx?Doctor=true");
+        }
     }
 }

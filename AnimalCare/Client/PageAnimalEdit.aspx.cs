@@ -143,9 +143,10 @@ namespace AnimalCare.Client
             dataLocals.Close();
         }
 
-        private void AnimalIDParam() {
+        private void AnimalIDParam()
+        {
             /* AnimalID Get Param Specified */
-            if(!string.IsNullOrEmpty(Request.QueryString["AnimalID"]))
+            if (!string.IsNullOrEmpty(Request.QueryString["AnimalID"]))
                 int.TryParse(Request.QueryString["AnimalID"], out animalID);
             else
                 animalID = 0;

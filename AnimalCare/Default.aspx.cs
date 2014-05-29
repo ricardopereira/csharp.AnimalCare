@@ -24,9 +24,9 @@ namespace AnimalCare
                 else if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
                     link = "/Admin/PageAdminDashboard";
                 else if (Roles.IsUserInRole(User.Identity.Name, "Employee"))
-                    link = "/Employee/PageEmployeeDashboard";
+                    link = "/Employee/PageEmployee";
                 else if (Roles.IsUserInRole(User.Identity.Name, "Doctor"))
-                    link = "/Doctor/PageDoctorDashboard";
+                    link = "/Doctor/PageDoctor";
 
                 profileId.HRef = String.Format("{0}.aspx",link);
             }

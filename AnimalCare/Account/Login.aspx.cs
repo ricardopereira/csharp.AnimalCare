@@ -32,9 +32,9 @@ namespace AnimalCare.Account
             else if (Roles.IsUserInRole(Login1.UserName, "Admin"))
                 Response.Redirect("/Admin/PageAdminDashboard.aspx");
             else if (Roles.IsUserInRole(Login1.UserName, "Employee"))
-                Response.Redirect("/Employee/PageEmployeeDashboard.aspx");
+                Response.Redirect("/Employee/PageEmployee.aspx");
             else if (Roles.IsUserInRole(Login1.UserName, "Doctor"))
-                Response.Redirect("/Doctor/PageDoctorDashboard.aspx");
+                Response.Redirect("/Doctor/PageDoctor.aspx");
             else
                 Response.Redirect("/");
         }
