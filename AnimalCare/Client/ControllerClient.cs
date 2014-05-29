@@ -273,6 +273,47 @@ namespace AnimalCare.Client
              cmd.ExecuteNonQuery();
          }
 
+        public void updateLocalInfo(int ownerLocalID, string name, string address, string zipCode, string gps, int country, int city, bool main)
+        {
+             String str = "UPDATE OwnerLocals SET Name = @name";
+             str += ",Address = @address";
+             str += ",ZipCode = @zipCode";
+             str += ",GPS = @gps";
+             str += ",CountryID = @country";
+             str += ",CityID = @city";
+             str += ",Main = @main";
+             str += " WHERE OwnerLocalID = @ownerLocalID";
+
+             SqlCommand cmd = new SqlCommand(str, Database.Connection);
+             cmd.Parameters.AddWithValue("@ownerLocalID", ownerLocalID);
+             cmd.Parameters.AddWithValue("@name", name);
+             cmd.Parameters.AddWithValue("@address", address);
+             cmd.Parameters.AddWithValue("@zipCode", zipCode);
+             cmd.Parameters.AddWithValue("@gps", gps);
+             cmd.Parameters.AddWithValue("@country", country);
+             cmd.Parameters.AddWithValue("@city", city);
+             cmd.Parameters.AddWithValue("@main", main);
+
+             cmd.ExecuteNonQuery();
+        }
+
+        public void insertLocalInfo(string name, string address, string zipCode, string gps, int country, int city, bool main)
+        {
+            String str = "INSERT INTO OwnerLocals (OwnerID,Name,Address,ZipCode,GPS,CountryID,CityID,Main) VALUES (@ownerID,@name,@address,@zipCode,@gps,@country,@city,@main)";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@ownerID", Bf.OwnerID);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@address", address);
+            cmd.Parameters.AddWithValue("@zipCode", zipCode);
+            cmd.Parameters.AddWithValue("@gps", gps);
+            cmd.Parameters.AddWithValue("@country", country);
+            cmd.Parameters.AddWithValue("@city", city);
+            cmd.Parameters.AddWithValue("@main", main);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public SqlCommand getOwnerLocals()
         {
             String str = "SELECT l.*, co.Name Country, ci.Name City FROM OwnerLocals l" +
@@ -284,6 +325,51 @@ namespace AnimalCare.Client
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@id", Bf.OwnerID);
 
+            return cmd;
+        }
+
+        public SqlCommand getLocalByID(int localID)
+        {
+            String str = "SELECT * FROM OwnerLocals WHERE [OwnerLocalID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", localID);
+            return cmd;            
+        }
+
+        public SqlCommand getAnimalByID(int animalID)
+        {
+            String str = "SELECT * FROM Animals WHERE [AnimalID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", animalID);
+            return cmd;
+        }
+
+        public SqlCommand getAnimalInfo(int animalID)
+        {
+            String str = "SELECT a.Name, a.IdentityNumber, a.Quantity, ar.Name, ans.Name, ac.Description, a.Sex, a.DateBorn, oc.Name";
+            str += " FROM Animals a";
+            str += " INNER JOIN AnimalRaces ar ON ar.AnimalRaceID = a.AnimalRaceID";
+            str += " INNER JOIN AnimalSpecies ans ON ans.AnimalSpecieID = ar.AnimalSpecieID";
+            str += " INNER JOIN AnimalConditions ac ON a.AnimalConditionID = ac.AnimalConditionID";
+            str += " INNER JOIN OwnerLocals oc ON oc.OwnerLocalID = a.OwnerLocalID";
+            str += " WHERE [AnimalID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", animalID);
+            return cmd;
+        }
+
+        public SqlCommand getSpecieByRace(int raceID)
+        {
+            String str = "SELECT AnimalSpecieID FROM AnimalRaces WHERE [AnimalRaceID] = @sid";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@sid", raceID);
+            return cmd;
+        }
+
+        public SqlCommand getRaceInfo(int specieID) {
+            String str = "SELECT AnimalRaceId, Name FROM AnimalRaces WHERE [AnimalSpecieID] = @sid";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@sid", specieID);
             return cmd;
         }
 

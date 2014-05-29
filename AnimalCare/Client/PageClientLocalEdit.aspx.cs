@@ -12,17 +12,6 @@ namespace AnimalCare.Client
     {
         private int ownerLocalID;
 
-        public void loadOwnerLocalID()
-        {
-            if (!string.IsNullOrEmpty(Request.QueryString["OwnerLocalID"]))
-            {
-                // Modo edição
-                int.TryParse(Request.QueryString["OwnerLocalID"], out ownerLocalID);
-            }
-            else
-                ownerLocalID = 0;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,113 +21,78 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
 
-            if (!IsPostBack)
+            OwnerLocalIDParam();
+
+            if (User.Identity.IsAuthenticated)
             {
-                ownerLocalID = 0;
-
-                if (!string.IsNullOrEmpty(Request.QueryString["OwnerLocalID"]))
+                if (ownerLocalID > 0) /* #15 - Verificar dono */
                 {
-                    // Modo edição
-                    int.TryParse(Request.QueryString["OwnerLocalID"], out ownerLocalID);
-
-                    DBConn db = new DBConn();
-                    // Carregar os dados
-                    String str = "SELECT * FROM OwnerLocals WHERE [OwnerLocalID] = @id";
-
-                    SqlCommand cmd = new SqlCommand(str, db.Connection);
-
-                    // Preenche ID
-                    cmd.Parameters.AddWithValue("@id", ownerLocalID);
-                    db.Connection.Open();
-
-                    // Executa
-                    SqlDataReader dados = cmd.ExecuteReader();
-
-                    if (!dados.HasRows)
+                    if (!IsPostBack)
                     {
-                        dados.Close();
-                        db.Connection.Close();
-                        return;
+
+                        SqlDataReader localsData = Ctrl.getLocalByID(ownerLocalID).ExecuteReader();
+                        if (!localsData.HasRows)
+                        {
+                            localsData.Close();
+                            Ctrl.Database.Connection.Close();
+                            return;
+                        }
+
+                        localsData.Read();
+
+                        // Set Buffer
+                        if (!localsData.IsDBNull(2))
+                            boxName.Text = localsData.GetString(2);
+                        if (!localsData.IsDBNull(3))
+                            boxAddress.Text = localsData.GetString(3);
+                        if (!localsData.IsDBNull(4))
+                            boxZipCode.Text = localsData.GetString(4);
+                        if (!localsData.IsDBNull(5))
+                            boxGPS.Text = localsData.GetString(5);
+                        if (!localsData.IsDBNull(6))
+                            listCountry.SelectedValue = Convert.ToString(localsData.GetInt32(6));
+                        if (!localsData.IsDBNull(7))
+                            listCity.SelectedValue = Convert.ToString(localsData.GetInt32(7));
+                        if (!localsData.IsDBNull(8))
+                            chkIsMain.Checked = localsData.GetBoolean(8);
+
+                        localsData.Close();
                     }
-
-                    dados.Read();
-                    //string.Format("{0}"
-
-                    // Set Buffer
-                    if (!dados.IsDBNull(2))
-                        boxNome.Text = dados.GetString(2);
-                    if (!dados.IsDBNull(3))
-                        boxAddress.Text = dados.GetString(3);
-                    if (!dados.IsDBNull(4))
-                        boxZipCode.Text = dados.GetString(4);
-                    if (!dados.IsDBNull(5))
-                        boxGPS.Text = dados.GetString(5);
-                    if (!dados.IsDBNull(6))
-                        listCountry.SelectedValue = Convert.ToString(dados.GetInt32(6));
-                    if (!dados.IsDBNull(7))
-                        listCity.SelectedValue = Convert.ToString(dados.GetInt32(7));
-                    if (!dados.IsDBNull(8))
-                        chkIsMain.Checked = dados.GetBoolean(8);
-
-                    dados.Close();
-                    db.Connection.Close();
-
-                }
-                if (ownerLocalID == 0)
-                {
-                    // OwnerLocalID a zero
-
                 }
                 else
-                {
-                    // Sem OwnerLocalID
-
-                }
+                    Response.Redirect("PageClientLocals.aspx");
             }
+            else
+                Response.Redirect("/");
+        }
+
+        public void OwnerLocalIDParam()
+        {
+            if (!string.IsNullOrEmpty(Request.QueryString["OwnerLocalID"]))
+            {
+                /* LocalID Get Param Specified */
+                int.TryParse(Request.QueryString["OwnerLocalID"], out ownerLocalID);
+            }
+            else
+                ownerLocalID = 0;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ControllerClient ctrl = new ControllerClient(User.Identity);
+            string name = boxName.Text;
+            string address = boxAddress.Text;
+            string zipCode = boxZipCode.Text;
+            string GPS = boxGPS.Text;
+            int country = Convert.ToInt32(listCountry.SelectedValue);
+            int city = Convert.ToInt32(listCity.SelectedValue);
+            bool main;
 
-            String str = "";
-            if (ownerLocalID == 0)
-            {
-                str = "INSERT INTO OwnerLocals VALUES (@ownerid,@name,@address,@zipcode,@gps,@country,@city,@ismain)";
-            }
+            if(chkIsMain.Checked)
+                main=true;
             else
-            {
-                str = "UPDATE OwnerLocals SET [Name] = @name, [Address] = @address, [ZipCode] = @zipcode, [gps] = @gps, [CountryID] = @country, [CityID] = @city, [Main] = @ismain  WHERE [OwnerLocalID] = @id";
-            }
+                main=false;
 
-            if (str == "") return;
-            // SQL Query
-            SqlCommand cmd = new SqlCommand(str, ctrl.Database.Connection);
-
-            if (ownerLocalID > 0)
-            {
-                // Preenche ID para UPDATE
-                cmd.Parameters.AddWithValue("@id", ownerLocalID);
-            }
-            else
-            {
-                // Preenche o proprietário para um NOVO registo
-                cmd.Parameters.AddWithValue("@ownerid", ctrl.Bf.OwnerID);
-            }
-
-            // Buffer
-            cmd.Parameters.AddWithValue("@name", boxNome.Text);
-            cmd.Parameters.AddWithValue("@address", boxAddress.Text);
-            cmd.Parameters.AddWithValue("@gps", boxGPS.Text);
-            cmd.Parameters.AddWithValue("@zipcode", boxZipCode.Text);
-            cmd.Parameters.AddWithValue("@country", Convert.ToInt32(listCountry.SelectedValue));
-            cmd.Parameters.AddWithValue("@city", Convert.ToInt32(listCity.SelectedValue));
-            cmd.Parameters.AddWithValue("@ismain", Convert.ToInt32(chkIsMain.Checked));
-
-            // Executa
-            int count = cmd.ExecuteNonQuery();
-
-            ctrl.Database.Connection.Close();
+            Ctrl.updateLocalInfo(ownerLocalID, name, address, zipCode, GPS, country, city, main);
 
             Response.Redirect("PageClientLocals.aspx");
         }

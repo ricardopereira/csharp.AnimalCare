@@ -122,6 +122,7 @@
     <Content Include="Client\PageClientDashboard.aspx" />
     <Content Include="Client\PageClientEdit.aspx" />
     <Content Include="Client\PageClientLocalEdit.aspx" />
+    <Content Include="Client\PageClientLocalNew.aspx" />
     <Content Include="Client\PageClientLocals.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\style.css" />
@@ -332,6 +333,13 @@
     <Compile Include="Client\PageClientLocalEdit.aspx.designer.cs">
       <DependentUpon>PageClientLocalEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Client\PageClientLocalNew.aspx.cs">
+      <DependentUpon>PageClientLocalNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\PageClientLocalNew.aspx.designer.cs">
+      <DependentUpon>PageClientLocalNew.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Client\PageClientLocals.aspx.cs">
       <DependentUpon>PageClientLocals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -431,6 +439,7 @@
     </Compile>
     <Compile Include="Client\PageAnimalNew.aspx.cs">
       <DependentUpon>PageAnimalNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Client\PageAnimalNew.aspx.designer.cs">
       <DependentUpon>PageAnimalNew.aspx</DependentUpon>

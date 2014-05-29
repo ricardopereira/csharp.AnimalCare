@@ -34,7 +34,7 @@
                             <p class="text-muted">Opções da grelha</p>
                             <div class="btn-toolbar" role="toolbar">
                                 <div class="btn-group">
-                                    <a class="btn btn-success" href="PageClientLocalEdit.aspx" role="button">Novo local</a>
+                                    <a class="btn btn-success" href="PageClientLocalNew.aspx" role="button">Novo local</a>
                                 </div>
                                 <!-- Selecção -->
                                 <div class="btn-group dropdown">

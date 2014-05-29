@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client/MasterPageClient.Master" AutoEventWireup="true" CodeBehind="PageClientLocalEdit.aspx.cs" Inherits="AnimalCare.Client.PageClientLocalEdit" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Client/MasterPageClient.Master" AutoEventWireup="true" CodeBehind="PageClientLocalNew.aspx.cs" Inherits="AnimalCare.Client.PageClientLocalNew" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -13,12 +13,18 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <p class="lead"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-sm" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="lead"><%: User.Identity.Name %> <a class="btn btn-default btn-sm" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
              </div>
         </div>
         <div class="row">
-            <br /><br />
+            <!-- Info -->
+            <div class="col-md-9">
+                <h2>Novo local</h2>
+                <span class="label label-success">Modo inserção</span>
+                <br />
+            </div>
+        </div>
             <!-- Campos -->
             <div class="col-md-2"></div>
             <div class="col-md-8">

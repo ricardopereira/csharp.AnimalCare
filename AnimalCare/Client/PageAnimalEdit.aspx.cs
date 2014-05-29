@@ -35,36 +35,30 @@ namespace AnimalCare.Client
                     {
                         SetProfileImage();
                         PopulateDDLLocals();
+                        
+                        SqlDataReader animalData = Ctrl.getAnimalByID(animalID).ExecuteReader();
 
-                        String str = "SELECT * FROM Animals WHERE [AnimalID] = @id";
-                        SqlCommand cmd = new SqlCommand(str, Ctrl.Database.Connection);
-                        cmd.Parameters.AddWithValue("@id", animalID);
-
-                        SqlDataReader data = cmd.ExecuteReader();
-
-                        if (!data.HasRows)
+                        if (!animalData.HasRows)
                         {
-                            data.Close();
+                            animalData.Close();
                             Ctrl.Database.Connection.Close();
                             return;
                         }
 
-                        data.Read();
+                        animalData.Read();
 
-                        if (!data.IsDBNull(1))
+                        if (!animalData.IsDBNull(1))
+                            ddlLocals.SelectedValue = Convert.ToString(animalData.GetInt32(1));
+                        if (!animalData.IsDBNull(2))
                         {
-                            ddlLocals.SelectedValue = Convert.ToString(data.GetInt32(1));
+                            animalName.Text = animalData.GetString(2);
+                            boxName.Text = animalData.GetString(2);
                         }
-                        if (!data.IsDBNull(2))
+                        if (!animalData.IsDBNull(3))
+                            boxIdentity.Text = animalData.GetString(3);
+                        if (!animalData.IsDBNull(4))
                         {
-                            animalName.Text = data.GetString(2);
-                            boxName.Text = data.GetString(2);
-                        }
-                        if (!data.IsDBNull(3))
-                            boxIdentity.Text = data.GetString(3);
-                        if (!data.IsDBNull(4))
-                        {
-                            numberOfAnimals = data.GetInt32(4);
+                            numberOfAnimals = animalData.GetInt32(4);
                             if (numberOfAnimals > 1)
                             {
                                 chkGroup.Checked = true;
@@ -73,30 +67,25 @@ namespace AnimalCare.Client
                             else
                                 chkGroup.Checked = false;
                         }
-                        if (!data.IsDBNull(5))
+                        if (!animalData.IsDBNull(5))
+                            raceID = animalData.GetInt32(5);
+                        if (!animalData.IsDBNull(6))
+                            ddlCondition.SelectedValue = Convert.ToString(animalData.GetInt32(6));
+                        if (!animalData.IsDBNull(7))
+                            ddlHabitat.SelectedValue = Convert.ToString(animalData.GetInt32(7));
+                        if (!animalData.IsDBNull(8))
+                            CalendarBirth.SelectedDate = animalData.GetDateTime(8);
+                        if (!animalData.IsDBNull(9))
                         {
-                            raceID = data.GetInt32(5);
-                        }
-                        if (!data.IsDBNull(6))
-                            ddlCondition.SelectedValue = Convert.ToString(data.GetInt32(6));
-                        if (!data.IsDBNull(7))
-                            ddlHabitat.SelectedValue = Convert.ToString(data.GetInt32(7));
-                        if (!data.IsDBNull(8))
-                            CalendarBirth.SelectedDate = data.GetDateTime(8);
-                        if (!data.IsDBNull(9))
-                        {
-                            CalendarDeath.SelectedDate = Convert.ToDateTime(data.GetString(9));
+                            CalendarDeath.SelectedDate = Convert.ToDateTime(animalData.GetString(9));
                             chkDeceased.Checked = true;
                         }
-                        if (!data.IsDBNull(10))
-                            ddlSex.SelectedValue = Convert.ToString(data.GetInt16(10));
-                        data.Close();
+                        if (!animalData.IsDBNull(10))
+                            ddlSex.SelectedValue = Convert.ToString(animalData.GetInt16(10));
+                        animalData.Close();
 
                          //Get Specie by Race
-                        String strSpecie = "SELECT AnimalSpecieID FROM AnimalRaces WHERE [AnimalRaceID] = @sid";
-                        SqlCommand cmdSpecie = new SqlCommand(strSpecie, Ctrl.Database.Connection);
-                        cmdSpecie.Parameters.AddWithValue("@sid", raceID);
-                        SqlDataReader dataSpecie = cmdSpecie.ExecuteReader();
+                        SqlDataReader dataSpecie = Ctrl.getSpecieByRace(raceID).ExecuteReader();
                         dataSpecie.Read();
                         specieID = dataSpecie.GetInt32(0);
                         ddlSpecies.SelectedValue = Convert.ToString(specieID);
@@ -113,10 +102,8 @@ namespace AnimalCare.Client
 
         private void PopulateDDLRaces(int specieID)
         {
-            String strRaces = "SELECT AnimalRaceId, Name FROM AnimalRaces WHERE [AnimalSpecieID] = @sid";
-            SqlCommand cmdRaces = new SqlCommand(strRaces, Ctrl.Database.Connection);
-            cmdRaces.Parameters.AddWithValue("@sid", specieID);
-            SqlDataReader dataRaces = cmdRaces.ExecuteReader();
+
+            SqlDataReader dataRaces = Ctrl.getRaceInfo(specieID).ExecuteReader();
 
             ddlRaces.Items.Clear();
 

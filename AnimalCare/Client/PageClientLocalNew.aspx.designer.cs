@@ -10,7 +10,7 @@
 namespace AnimalCare.Client {
     
     
-    public partial class PageClientLocalEdit {
+    public partial class PageClientLocalNew {
         
         /// <summary>
         /// lblName control.

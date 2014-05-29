@@ -32,61 +32,50 @@ namespace AnimalCare.Client
                     {
                         SetProfileImage();
 
-                        String str = "SELECT a.Name, a.IdentityNumber, a.Quantity, ar.Name, ans.Name, ac.Description, a.Sex, a.DateBorn, oc.Name";
-                        str += " FROM Animals a";
-                        str += " INNER JOIN AnimalRaces ar ON ar.AnimalRaceID = a.AnimalRaceID";
-                        str += " INNER JOIN AnimalSpecies ans ON ans.AnimalSpecieID = ar.AnimalSpecieID";
-                        str += " INNER JOIN AnimalConditions ac ON a.AnimalConditionID = ac.AnimalConditionID";
-                        str += " INNER JOIN OwnerLocals oc ON oc.OwnerLocalID = a.OwnerLocalID";
-                        str += " WHERE [AnimalID] = @id";
+                        SqlDataReader animalData = Ctrl.getAnimalInfo(animalID).ExecuteReader();
 
-                        SqlCommand cmd = new SqlCommand(str, Ctrl.Database.Connection);
-                        cmd.Parameters.AddWithValue("@id", animalID);
-
-                        SqlDataReader data = cmd.ExecuteReader();
-
-                        if (!data.HasRows)
+                        if (!animalData.HasRows)
                         {
-                            data.Close();
+                            animalData.Close();
                             Ctrl.Database.Connection.Close();
                             return;
                         }
 
-                        data.Read();
+                        animalData.Read();
                         editLink.HRef = String.Format("/Client/PageAnimalEdit.aspx?AnimalID={0}", animalID);
 
-                        if (!data.IsDBNull(0))
+                        if (!animalData.IsDBNull(0))
                         {
-                            lblMainName.Text = data.GetString(0);
-                            lblName.Text = data.GetString(0);
+                            lblMainName.Text = animalData.GetString(0);
+                            lblName.Text = animalData.GetString(0);
                         }
-                        if (!data.IsDBNull(1))
-                            lblIdentityNumber.Text = data.GetString(1);
-                        if (!data.IsDBNull(2))
+                        if (!animalData.IsDBNull(1))
+                            lblIdentityNumber.Text = animalData.GetString(1);
+                        if (!animalData.IsDBNull(2))
                         {
-                            int numberOfAnimals = data.GetInt32(2);
+                            int numberOfAnimals = animalData.GetInt32(2);
                             if (numberOfAnimals > 1)
                                 lblMainName.Text += " [GRUPO]";
                         }
-                        if (!data.IsDBNull(3))
-                            lblRace.Text = data.GetString(3);
-                        if (!data.IsDBNull(4))
-                            lblSpecie.Text = data.GetString(4);
-                        if (!data.IsDBNull(5))
-                            lblCondition.Text = data.GetString(5);
-                        if (!data.IsDBNull(6))
+                        if (!animalData.IsDBNull(3))
+                            lblRace.Text = animalData.GetString(3);
+                        if (!animalData.IsDBNull(4))
+                            lblSpecie.Text = animalData.GetString(4);
+                        if (!animalData.IsDBNull(5))
+                            lblCondition.Text = animalData.GetString(5);
+                        if (!animalData.IsDBNull(6))
                         {
-                            int sex = data.GetInt16(6);
+                            int sex = animalData.GetInt16(6);
                             if (sex == 1)
                                 lblSex.Text = "Masculino";
                             else
                                 if (sex == 2)
                                     lblSex.Text = "Feminino";
                         }
-                        if (!data.IsDBNull(7))
-                            lblBornDate.Text = Convert.ToString(data.GetDateTime(7));
-                        if (!data.IsDBNull(8))
-                            lblPlace.Text = data.GetString(8);
+                        if (!animalData.IsDBNull(7))
+                            lblBornDate.Text = Convert.ToString(animalData.GetDateTime(7));
+                        if (!animalData.IsDBNull(8))
+                            lblPlace.Text = animalData.GetString(8);
                     }
                 }
                 else
