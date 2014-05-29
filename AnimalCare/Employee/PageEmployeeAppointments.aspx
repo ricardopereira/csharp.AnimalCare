@@ -41,6 +41,7 @@
                 <p><strong>Raça:</strong> <asp:Label ID="lblRace" runat="server" Text="sem dado"></asp:Label></p>
                 <p><strong>Pedido:</strong> <asp:Label CssClass="label label-default" ID="lblAppointmentType" runat="server" Text="sem dado"></asp:Label></p>
                 <p><strong>Data pedida:</strong> <asp:Label ID="lblDate" runat="server" Text="sem dado"></asp:Label></p>
+                <p><strong>Detalhe:</strong> <asp:Label ID="lblDetail" runat="server" Text="sem dado"></asp:Label></p>
                 <h3><asp:Label ID="lblUrgent" CssClass="label label-danger" runat="server" Text="Urgente"></asp:Label></h3>
                 <h3><asp:Label ID="lblCanceled" CssClass="label label-warning" runat="server" Text="Cancelado" Visible="false"></asp:Label></h3>
             </div>
@@ -51,22 +52,22 @@
                         <h3 class="panel-title">Revisão</h3>
                     </div>
                     <div class="panel-body">
-                        <!-- MOTIVO -->
-                        <p>
-                        <asp:Label ID="lblReason" runat="server" Text="Motivo: "></asp:Label>
-                        <asp:TextBox ID="boxReason" runat="server" class="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorReason" runat="server" ControlToValidate="boxReason"
-                            CssClass="field-validation-error text-danger" ErrorMessage="Especifique o motivo." />
-                        </p>
-
+                        
                         <!-- ESTADOS -->
-                        <asp:RadioButtonList ID="rdbState" runat="server">
+                        <asp:RadioButtonList ID="rdbState" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rdbState_SelectedIndexChanged">
                             <asp:ListItem Value="1">Aceitar</asp:ListItem>
                             <asp:ListItem Value="2">Rejeitar</asp:ListItem>
                         </asp:RadioButtonList>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorState" runat="server" ControlToValidate="rdbState"
                             CssClass="field-validation-error text-danger" ErrorMessage="Especifique o estado." />
 
+                        <!-- MOTIVO de rejeicao -->
+                        <p>
+                        <asp:Label ID="lblReason" runat="server" Text="Motivo: "></asp:Label>
+                        <asp:TextBox ID="boxReason" runat="server" class="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorReason" runat="server" ControlToValidate="boxReason"
+                            CssClass="field-validation-error text-danger" ErrorMessage="Especifique o motivo." />
+                        </p>
                     </div>
                 </div>
             </div>

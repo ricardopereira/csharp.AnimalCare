@@ -40,22 +40,22 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.DropDownList listMinutes;
         
         /// <summary>
-        /// lblReason control.
+        /// lblDetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReason;
+        protected global::System.Web.UI.WebControls.Label lblDetail;
         
         /// <summary>
-        /// boxReason control.
+        /// boxDetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox boxReason;
+        protected global::System.Web.UI.WebControls.TextBox boxDetail;
         
         /// <summary>
         /// RequiredFieldValidatorReason control.

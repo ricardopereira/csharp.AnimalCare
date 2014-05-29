@@ -487,7 +487,9 @@ namespace AnimalCare.Client
             else
             {
                 animalsCountData.Read();
-                return animalsCountData.GetInt32(0);
+                int count = animalsCountData.GetInt32(0);
+                animalsCountData.Close();
+                return count;
             }
         }
 
@@ -527,13 +529,13 @@ namespace AnimalCare.Client
         }
 
         public void insertAppointment(int animalID, 
-            int appointmentTypeID, DateTime dateAppointment, String reason, Boolean urgent=false, int state=0)
+            int appointmentTypeID, DateTime dateAppointment, String detail, Boolean urgent=false, int state=0)
         {
             if (dateAppointment == null || dateAppointment.ToBinary() == 0)
                 return;
 
             String str = "INSERT INTO Appointments VALUES " +
-                "(@ownerID,@animalID,NULL,@appointmentTypeID,@dateAppointment,CURRENT_TIMESTAMP,@reason,@urgent,@state)";
+                "(@ownerID,@animalID,NULL,@appointmentTypeID,@dateAppointment,CURRENT_TIMESTAMP,NULL,@detail,@urgent,@state)";
 
             // SQL Query
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
@@ -541,10 +543,9 @@ namespace AnimalCare.Client
             // Buffer
             cmd.Parameters.AddWithValue("@ownerID", Bf.OwnerID);
             cmd.Parameters.AddWithValue("@animalID", animalID);
-            //cmd.Parameters.AddWithValue("@animalGroupID", null);
             cmd.Parameters.AddWithValue("@appointmentTypeID", appointmentTypeID);
             cmd.Parameters.AddWithValue("@dateAppointment", dateAppointment);
-            cmd.Parameters.AddWithValue("@reason", reason);
+            cmd.Parameters.AddWithValue("@detail", detail);
             cmd.Parameters.AddWithValue("@urgent", urgent);
             cmd.Parameters.AddWithValue("@state", state);
 
