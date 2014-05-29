@@ -67,6 +67,15 @@ namespace AnimalCare.Employee {
         protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
+        /// lblDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDetail;
+        
+        /// <summary>
         /// lblUrgent control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,24 @@ namespace AnimalCare.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCanceled;
+        
+        /// <summary>
+        /// rdbState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdbState;
+        
+        /// <summary>
+        /// RequiredFieldValidatorState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorState;
         
         /// <summary>
         /// lblReason control.
@@ -110,24 +137,6 @@ namespace AnimalCare.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorReason;
-        
-        /// <summary>
-        /// rdbState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdbState;
-        
-        /// <summary>
-        /// RequiredFieldValidatorState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorState;
         
         /// <summary>
         /// btnSave control.

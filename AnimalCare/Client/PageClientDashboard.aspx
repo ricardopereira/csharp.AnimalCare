@@ -49,6 +49,7 @@
                                 <tr>
                                     <th></th>
                                     <th>Data</th>
+                                    <th>Animal</th>
                                     <th>Descrição</th>
                                     <th>Estado</th>
                                 </tr>
@@ -60,7 +61,7 @@
                                         <td>
                                             <!-- Opcoes de linha -->
                                             <a href="#" class="popover-appointments btn btn-primary btn-xs" data-toggle="popover"
-                                                data-content='Animal: <%# Eval("Animal") %>, Motivo: <%# Eval("Reason") %>, Tipo: <%# Eval("AppointmentType") %>' role="button"
+                                                data-content='Tipo: <%# Eval("AppointmentType") %>, Motivo: <%# Eval("Reason") %>' role="button"
                                                 data-original-title='Detalhes'><span class="glyphicon glyphicon-info-sign"></span></a>
 
                                             <asp:Button ID="btnCancelAppointment" runat="server" CssClass="btn btn-danger btn-xs" 
@@ -68,7 +69,8 @@
                                                 Visible='<%# Convert.ToInt32(Eval("State")) == (int)AnimalCare.AppointmentState.astWaiting %>'></asp:Button>
                                         </td>
                                         <td><%# Eval("DateAppointment") %></td>
-                                        <td><%# Eval("Reason") %></td>
+                                        <td><%# Eval("Animal") %></td>
+                                        <td><%# Eval("Detail") %></td>
                                         <td><%# Eval("StateStr") %></td>
                                     </tr>
                                     </ItemTemplate>

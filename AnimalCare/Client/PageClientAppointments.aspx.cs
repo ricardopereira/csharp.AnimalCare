@@ -47,7 +47,7 @@ namespace AnimalCare.Client
                 if (chkAnimais.Items[i].Selected)
                 {
                     Ctrl.insertAppointment(Convert.ToInt32(chkAnimais.Items[i].Value), 
-                        Convert.ToInt32(listAppointmentTypes.SelectedValue), dateAux, boxReason.Text, chkUrgent.Checked);
+                        Convert.ToInt32(listAppointmentTypes.SelectedValue), dateAux, boxDetail.Text, chkUrgent.Checked);
                 }
             }
 

@@ -40,10 +40,10 @@
                             </div>
                             <div class="col-md-8">
                                 <p>
-                                <asp:Label ID="lblReason" runat="server" Text="Motivo: "></asp:Label>
-                                <asp:TextBox ID="boxReason" runat="server" class="form-control"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorReason" runat="server" ControlToValidate="boxReason"
-                                    CssClass="field-validation-error text-danger" ErrorMessage="Especifique o motivo." />
+                                <asp:Label ID="lblDetail" runat="server" Text="Motivo: "></asp:Label>
+                                <asp:TextBox ID="boxDetail" runat="server" class="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorReason" runat="server" ControlToValidate="boxDetail"
+                                    CssClass="field-validation-error text-danger" ErrorMessage="Especifique algum detalhe da marcação." />
                                 </p>
 
                                 <asp:Label ID="lblAppointmentTypes" runat="server" Text="Tipo de marcação: "></asp:Label>

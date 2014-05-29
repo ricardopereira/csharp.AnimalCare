@@ -66,7 +66,7 @@
                                         <td><asp:Label Text='<%# Eval("DateAppointment") %>' runat="server" Font-Strikeout='<%# Convert.ToInt32(Eval("State")) == (int)AnimalCare.AppointmentState.astCanceled %>'></asp:Label></td>
                                         <td><%# Eval("Owner") %></td>
                                         <td><%# Eval("Animal") %></td>
-                                        <td><%# Eval("Reason") %></td>
+                                        <td><%# Eval("Detail") %></td>
                                         <td><%# Eval("StateStr") %></td>
                                     </tr>
                                     </ItemTemplate>
