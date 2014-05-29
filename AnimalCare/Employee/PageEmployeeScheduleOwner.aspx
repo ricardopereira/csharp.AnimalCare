@@ -34,7 +34,19 @@
                     </div>
 
                     <div class="panel-body">
-                        <p>asdaSDLKJ</p>
+
+                        <p class="text-muted">Filtro:</p>
+
+                        <div class="input-group">
+                            <asp:TextBox ID="boxFilter" class="form-control" runat="server" type="text"></asp:TextBox>
+
+                            <!-- PESQUISAR -->
+                            <span class="input-group-btn">
+                                <asp:Button ID="btnSearch" CssClass="btn btn-success" Text="Pesquisar" runat="server" type="button" OnClick="btnSearch_Click"></asp:Button>
+                            </span>
+                        </div>
+                        <br />
+
                         <!-- DADOS -->
                         <div class="table-responsive">
                             <div class="panel panel-primary">

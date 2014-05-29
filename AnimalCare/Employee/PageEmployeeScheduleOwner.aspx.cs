@@ -42,5 +42,14 @@ namespace AnimalCare.Employee
         {
             Response.Redirect("PageEmployeeScheduleAnimal.aspx");
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            SqlDataReader dr = Ctrl.getAllOwners(boxFilter.Text.Trim()).ExecuteReader();
+            // Efectuar o data binding
+            tblOwners.DataSource = dr;
+            tblOwners.DataBind();
+            dr.Close();
+        }
     }
 }
