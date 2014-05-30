@@ -21,7 +21,7 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
 
-            if (!IsPostBack && User.Identity.IsAuthenticated)
+            if (!IsPostBack)
             {
                 refreshController();
 

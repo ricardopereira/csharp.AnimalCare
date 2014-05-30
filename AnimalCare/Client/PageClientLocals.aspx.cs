@@ -20,8 +20,6 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
 
-            if (User.Identity.IsAuthenticated)
-            {
                 if (!string.IsNullOrEmpty(Request.QueryString["Error"]))
                     pnlError.Visible = true;                
 
@@ -34,7 +32,6 @@ namespace AnimalCare.Client
                 tblLocals.DataBind();
 
                 dr.Close();
-            }
         }
 
         protected void linkDelete_ServerClick(object sender, EventArgs e)

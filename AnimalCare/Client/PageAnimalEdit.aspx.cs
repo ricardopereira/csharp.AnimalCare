@@ -27,8 +27,6 @@ namespace AnimalCare.Client
 
             AnimalIDParam();
 
-            if (User.Identity.IsAuthenticated)
-            {
                 if (animalID > 0)
                 {
                     if (Ctrl.isOwnerOfAnimal(animalID))
@@ -114,9 +112,6 @@ namespace AnimalCare.Client
                         Response.Redirect("PageAnimalDashboard.aspx");
                 } else
                     Response.Redirect("PageAnimalDashboard.aspx");
-            }
-            else
-                Response.Redirect("/");
         }
 
         private void PopulateDDLRaces(int specieID)

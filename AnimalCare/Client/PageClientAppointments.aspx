@@ -23,6 +23,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <br />
+                    <asp:Panel ID="pnlError" runat="server" Visible="false">
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4>Erro na Inserção da Marcação</h4>
+                                <p>A data tem de estar preenchida.</p>
+                            </div>
+                    </asp:Panel>
                 <!--Filtro -->
                 <div class="panel panel-default">
                     <div class="panel-heading">

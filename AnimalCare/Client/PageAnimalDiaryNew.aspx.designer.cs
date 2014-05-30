@@ -10,7 +10,7 @@
 namespace AnimalCare.Client {
     
     
-    public partial class PageAnimalDiaryItem {
+    public partial class PageAnimalDiaryNew {
         
         /// <summary>
         /// lblAnimalName control.
@@ -40,6 +40,15 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblAnimalRace;
         
         /// <summary>
+        /// pnlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlError;
+        
+        /// <summary>
         /// lblDiaryType control.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,40 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblDiaryType;
         
         /// <summary>
-        /// lblDateDiaryStart control.
+        /// ddlDiaryType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateDiaryStart;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiaryType;
+        
+        /// <summary>
+        /// TiposDiarioDS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource TiposDiarioDS;
+        
+        /// <summary>
+        /// lblDateDiary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDateDiary;
+        
+        /// <summary>
+        /// calendarDateDiaryStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar calendarDateDiaryStart;
         
         /// <summary>
         /// lblDateDiaryEnd control.
@@ -67,22 +103,40 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblDateDiaryEnd;
         
         /// <summary>
-        /// lblCreated control.
+        /// calendarDateDiaryEnd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCreated;
+        protected global::System.Web.UI.WebControls.Calendar calendarDateDiaryEnd;
         
         /// <summary>
-        /// lblValue control.
+        /// lblDiaryValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValue;
+        protected global::System.Web.UI.WebControls.Label lblDiaryValue;
+        
+        /// <summary>
+        /// boxDiaryValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox boxDiaryValue;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// lblDiaryObs control.
@@ -94,30 +148,48 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblDiaryObs;
         
         /// <summary>
-        /// itemImage control.
+        /// boxDiaryObs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage itemImage;
+        protected global::System.Web.UI.WebControls.TextBox boxDiaryObs;
         
         /// <summary>
-        /// btnDash control.
+        /// lblUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDash;
+        protected global::System.Web.UI.WebControls.Label lblUpload;
         
         /// <summary>
-        /// btnBack control.
+        /// FileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

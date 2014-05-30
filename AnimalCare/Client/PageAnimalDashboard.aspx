@@ -75,6 +75,7 @@
                                             <!-- Opcoes de linha -->
                                             <a class="btn btn-primary btn-xs" href="PageAnimal.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
                                             <a class="btn btn-warning btn-xs" href="PageAnimalEdit.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a class="btn btn-info btn-xs" href="PageAnimalDiary.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-file"></span></a>
                                         </td>
                                         <td>
                                             <%# Eval("AnimalID")%>

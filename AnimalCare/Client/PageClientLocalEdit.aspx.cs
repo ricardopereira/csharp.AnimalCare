@@ -23,7 +23,7 @@ namespace AnimalCare.Client
 
             OwnerLocalIDParam();
 
-            if (User.Identity.IsAuthenticated)
+            if (!IsPostBack)
             {
                 if (ownerLocalID > 0)
                 {

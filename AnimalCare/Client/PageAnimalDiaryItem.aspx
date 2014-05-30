@@ -8,73 +8,62 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Animais<small> registo do diário</small></h1>
+                <h1 class="page-header">Animais<small> anotação do diário</small></h1>
             </div>
         </div>
         <div class="row well span2">
             <div class="col-lg-12">
                 <!-- Cliente -->
                 <h4>Proprietário</h4>
-                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx?" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
                 <!-- Animal -->
                 <h4>Animal seleccionado</h4>
-                <p class="text-muted">Quinzé <a class="btn btn-default btn-xs" href="PageAnimal.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
-                <p>Espécie: Cão</p>
-                <p>Raça: Dogue Alemão</p>
+                <p class="text-muted"><asp:Label runat="server" ID="lblAnimalName"></asp:Label> <a class="btn btn-default btn-xs" href="PageAnimal.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p>Espécie: <asp:Label runat="server" ID="lblAnimalSpecie"></asp:Label></p>
+                <p>Raça: <asp:Label runat="server" ID="lblAnimalRace"></asp:Label></p>
             </div>
         </div>
         <div class="row">
             <br /><br />
             <!-- Campos -->
             <div class="col-md-2"></div>
-            <div class="col-md-8">
-
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Dados</h3>
                     </div>
                     <div class="panel-body">
-                        <p>
-                        <asp:Label ID="lblDiaryType" runat="server" Text="Tipo: "></asp:Label>
-                        <asp:DropDownList ID="listDiaryType" runat="server" Width="200px" DataSourceID="TiposDiarioDS" DataTextField="Description" DataValueField="AnimalDiaryTypeID"></asp:DropDownList>
-                            <asp:SqlDataSource ID="TiposDiarioDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalDiaryTypes]"></asp:SqlDataSource>
-                        </p>
-
-                        <p>
-                        <asp:Label ID="lblDateDiaryTo" runat="server" Text="Data de: "></asp:Label>
-                        <asp:TextBox ID="boxDateDiaryTo" runat="server"></asp:TextBox>
-                        </p>
-
-                        <p>
-                        <asp:Label ID="lblDateDiaryFrom" runat="server" Text="Data até: "></asp:Label>
-                        <asp:TextBox ID="boxDateDiaryFrom" runat="server"></asp:TextBox>
-                        </p>
-
-                        <p>
-                        <asp:Label ID="lblDiaryValue" runat="server" Text="Valor: "></asp:Label>
-                        <asp:TextBox ID="boxDiaryValue" runat="server"></asp:TextBox>
-                        </p>
-
-                        <p>
-                        <asp:Label ID="lblDiaryObs" runat="server" Text="Observações: "></asp:Label>
-                        <asp:TextBox ID="boxDiaryObs" runat="server"></asp:TextBox>
-                        </p>
-
-                        <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Carregar imagem</button>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Tipo:</p>
+                                <p>Data Inicio:</p>
+                                <p>Data Fim:</p>
+                                <p>Inserido em:</p>
+                                <p>Valor:</p>
+                                <p>Observações:</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p><asp:Label ID="lblDiaryType" runat="server" Text=""></asp:Label></p>
+                                <p><asp:Label ID="lblDateDiaryStart" runat="server"></asp:Label></p>
+                                <p><asp:Label ID="lblDateDiaryEnd" runat="server"></asp:Label></p>
+                                <p><asp:Label ID="lblCreated" runat="server"></asp:Label></p>
+                                <p><asp:Label ID="lblValue" runat="server" Text="Valor: "></asp:Label></p>
+                                <p><asp:Label ID="lblDiaryObs" runat="server"></asp:Label></p>
+                            </div>
+                            <div class="col-md-4">
+                                <img id="itemImage" runat="server" data-src="holder.js/200x200" class="img-thumbnail" alt="animal image" style="width: 200px; height: 200px;">
+                            </div>
                     </div>
                 </div>
-
-                <!-- Painel com Botões -->
+             </div>
+             <!-- Painel com Botões -->
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Gravar" OnClick="btnSave_Click"></asp:Button>
-                        <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" OnClick="btnCancel_Click"></asp:Button>
+                        <asp:Button ID="btnDash" CssClass="btn btn-primary" runat="server" Text="Voltar ao Dashboard" OnClick="btnDash_Click"></asp:Button>
+                        <asp:Button ID="btnBack"   CssClass="btn btn-default" runat="server" Text="Voltar Atrás" OnClick="btnBack_Click"></asp:Button>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
     </div>
 
 </asp:Content>

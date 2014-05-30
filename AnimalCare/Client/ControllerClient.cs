@@ -251,6 +251,32 @@ namespace AnimalCare.Client
             return animalID;
         }
 
+        public int insertDiary(int animalID, int diaryTypeID, DateTime start, DateTime end, DateTime created,Decimal value, string obs)
+        {
+            String str = "INSERT INTO AnimalDiary VALUES (@AnimalID,@AnimalDiaryTypeID,@DateDiaryStart,@DateDiaryEnd,@DateCreated,@Value,@Observation)";
+
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@AnimalID", animalID);
+            cmd.Parameters.AddWithValue("@AnimalDiaryTypeID", diaryTypeID);
+            cmd.Parameters.AddWithValue("@DateDiaryStart", start);
+            cmd.Parameters.AddWithValue("@DateDiaryEnd", end);
+            cmd.Parameters.AddWithValue("@DateCreated", created);
+            cmd.Parameters.AddWithValue("@Value", value);
+            cmd.Parameters.AddWithValue("@Observation", obs);
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Parameters.Clear();
+            cmd.CommandText = "SELECT @@IDENTITY";
+            int recordID = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Dispose();
+            cmd = null;
+            return recordID;
+        }
+
+        
+
         public void insertOwnerAnimalsRel(int animalID)
         {
             String str = "INSERT INTO OwnerAnimalsRelation VALUES(@OwnerID,@AnimalID,@Active)";
@@ -395,6 +421,16 @@ namespace AnimalCare.Client
             return cmd;
         }
 
+        public SqlCommand getDiaryInfo(int diaryID)
+        {
+            String str = "SELECT ad.*,adt.Description FROM AnimalDiary ad";
+            str += " INNER JOIN AnimalDiaryTypes adt ON ad.AnimalDiaryTypeID = adt.AnimalDiaryTypeID";
+            str += " WHERE [AnimalDiaryID] = @did";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@did", diaryID);
+            return cmd;
+        }
+
         public bool isOwnerOfAnimal(int animalID)
         {
             int dbOwnerID;
@@ -449,6 +485,8 @@ namespace AnimalCare.Client
                     return true;
             }
         }
+
+
 
         public void deleteOwnerLocal(int ownerLocalID)
         {
@@ -623,6 +661,17 @@ namespace AnimalCare.Client
             if (animalID > 0)
                 cmd.Parameters.AddWithValue("@animalID", animalID);
 
+            return cmd;
+        }
+
+        public SqlCommand getAnimalDiary(int animalID)
+        {
+            String str = "SELECT ad.AnimalDiaryID, ad.DateCreated, adt.Description, ad.Value, ad.Observation FROM AnimalDiary ad";
+            str += " INNER JOIN AnimalDiaryTypes adt ON adt.AnimalDiaryTypeID = ad.AnimalDiaryTypeID";
+            str += " WHERE AnimalID = @animalID";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
             return cmd;
         }
     }

@@ -19,7 +19,7 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
             
-            if(User.Identity.IsAuthenticated && !IsPostBack)
+            if(!IsPostBack)
                 HasLocals();
         }
 

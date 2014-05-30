@@ -15,13 +15,13 @@
             <div class="col-lg-12">
                 <!-- Cliente -->
                 <h4>Proprietário</h4>
-                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx?" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
                 <!-- Animal -->
                 <h4>Animal seleccionado</h4>
-                <p class="text-muted">Quinzé <a class="btn btn-default btn-xs" href="PageAnimal.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
-                <p>Espécie: Cão</p>
-                <p>Raça: Dogue Alemão</p>
+                <p class="text-muted"><asp:Label runat="server" ID="lblAnimalName"></asp:Label></p>
+                <p>Espécie: <asp:Label runat="server" ID="lblAnimalSpecie"></asp:Label></p>
+                <p>Raça: <asp:Label runat="server" ID="lblAnimalRace"></asp:Label></p>
             </div>
         </div>
 
@@ -59,54 +59,8 @@
                             <div class="btn-toolbar" role="toolbar">
                                 <div class="btn-group">
                                     <!-- Novo registo -->
-                                    <a class="btn btn-success" href="#" data-toggle="modal" data-target="#DiaryModal" role="button">Novo registo</a>
+                                    <a class="btn btn-success" id="reg" runat="server">Novo registo</a>
                                 </div>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="DiaryModal" tabindex="-1" role="dialog" aria-labelledby="DiaryModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="DiaryModalLabel">Registo do diário</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>
-                                                <asp:Label ID="lblDiaryType" runat="server" Text="Tipo: "></asp:Label>
-                                                <asp:DropDownList ID="listDiaryType" runat="server" Width="200px" DataSourceID="TiposDiarioDS" DataTextField="Description" DataValueField="AnimalDiaryTypeID"></asp:DropDownList>
-                                                    <asp:SqlDataSource ID="TiposDiarioDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalDiaryTypes]"></asp:SqlDataSource>
-                                                </p>
-
-                                                <p>
-                                                <asp:Label ID="lblDateDiaryTo" runat="server" Text="Data de: "></asp:Label>
-                                                <asp:TextBox ID="boxDateDiaryTo" runat="server"></asp:TextBox>
-                                                </p>
-
-                                                <p>
-                                                <asp:Label ID="lblDateDiaryFrom" runat="server" Text="Data até: "></asp:Label>
-                                                <asp:TextBox ID="boxDateDiaryFrom" runat="server"></asp:TextBox>
-                                                </p>
-
-                                                <p>
-                                                <asp:Label ID="lblDiaryValue" runat="server" Text="Valor: "></asp:Label>
-                                                <asp:TextBox ID="boxDiaryValue" runat="server"></asp:TextBox>
-                                                </p>
-
-                                                <p>
-                                                <asp:Label ID="lblDiaryObs" runat="server" Text="Observações: "></asp:Label>
-                                                <asp:TextBox ID="boxDiaryObs" runat="server"></asp:TextBox>
-                                                </p>
-
-                                                <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Carregar imagem</button>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Gravar" OnClick="btnSave_Click"></asp:Button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <!-- /btn-group -->
                                 <div class="btn-group dropdown">
                                     <button type="button" class="btn btn-default">Ordenação</button>
@@ -135,17 +89,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                               <asp:Repeater ID="tblDiary" runat="server">
+                                    <ItemTemplate>
+                                    <tr>
                                     <td>
                                         <!-- Opcoes de linha -->
-                                        <a class="btn btn-primary btn-xs" href="PageAnimalDiaryItem.aspx" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                        <a class="btn btn-primary btn-xs" href="PageAnimalDiaryItem.aspx?DiaryItem=<%# Eval("AnimalDiaryID") %>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
                                     </td>
-                                    <td>1</td>
-                                    <td>12/04/2014</td>
-                                    <td>Temperatura</td>
-                                    <td>31,34</td>
-                                    <td>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                                </tr>
+                                        <td><%# Eval("AnimalDiaryID") %></td>
+                                        <td><%# Eval("DateCreated") %></td>
+                                        <td><%# Eval("Description") %></td>
+                                        <td><%# Eval("Value") %></td>
+                                        <td><%# Eval("Observation") %></td>
+                                    </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </tbody>
                         </table>
                     </div>

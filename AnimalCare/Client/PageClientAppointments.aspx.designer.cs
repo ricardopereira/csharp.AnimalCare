@@ -13,6 +13,15 @@ namespace AnimalCare.Client {
     public partial class PageClientAppointments {
         
         /// <summary>
+        /// pnlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlError;
+        
+        /// <summary>
         /// calDateAppointment control.
         /// </summary>
         /// <remarks>

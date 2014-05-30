@@ -36,19 +36,6 @@
                                 <div class="btn-group">
                                     <a class="btn btn-success" href="PageClientLocalNew.aspx" role="button">Novo local</a>
                                 </div>
-                                <!-- Selecção -->
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-default">Selecção</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Selecção</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Seleccionar tudo</a></li>
-                                        <li><a href="#">Inverter selecção</a></li>
-                                        <li><a href="#">Retirar selecção</a></li>
-                                    </ul>
-                                </div>
                                 <!-- Ordenação -->
                                 <div class="btn-group dropdown">
                                     <button type="button" class="btn btn-default">Ordenação</button>

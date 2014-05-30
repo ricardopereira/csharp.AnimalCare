@@ -18,7 +18,7 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
 
-            if (!IsPostBack && User.Identity.IsAuthenticated)
+            if (!IsPostBack)
             {
                 AnimaisDS.SelectCommand = Ctrl.getOwnerAnimalsSQL();
 
@@ -35,23 +35,37 @@ namespace AnimalCare.Client
             }
         }
 
+        protected bool DateValidation(DateTime date)
+        {
+            DateTime fakeDate = new DateTime(0001, 01, 01);
+            if (date.Equals(fakeDate))
+                return false;
+            else
+                return true;
+        }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
             DateTime dateAux = calDateAppointment.SelectedDate;
 
-            dateAux = dateAux.AddHours(Convert.ToInt16(listHour.SelectedItem.Text));
-            dateAux = dateAux.AddMinutes(Convert.ToInt16(listMinutes.SelectedItem.Text));
-
-            for (int i = 0; i < chkAnimais.Items.Count; i++)
+            if (DateValidation(dateAux))
             {
-                if (chkAnimais.Items[i].Selected)
-                {
-                    Ctrl.insertAppointment(Convert.ToInt32(chkAnimais.Items[i].Value), 
-                        Convert.ToInt32(listAppointmentTypes.SelectedValue), dateAux, boxDetail.Text, chkUrgent.Checked);
-                }
-            }
+                dateAux = dateAux.AddHours(Convert.ToInt16(listHour.SelectedItem.Text));
+                dateAux = dateAux.AddMinutes(Convert.ToInt16(listMinutes.SelectedItem.Text));
 
-            Response.Redirect("PageClientDashboard.aspx");
+                for (int i = 0; i < chkAnimais.Items.Count; i++)
+                {
+                    if (chkAnimais.Items[i].Selected)
+                    {
+                        Ctrl.insertAppointment(Convert.ToInt32(chkAnimais.Items[i].Value),
+                          Convert.ToInt32(listAppointmentTypes.SelectedValue), dateAux, boxDetail.Text, chkUrgent.Checked);
+                    }
+                }
+
+                Response.Redirect("PageClientDashboard.aspx");
+            }
+            else
+                pnlError.Visible = true;
         }
 
         protected void chkUrgent_CheckedChanged(object sender, EventArgs e)

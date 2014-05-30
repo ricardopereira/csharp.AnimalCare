@@ -13,6 +13,33 @@ namespace AnimalCare.Client {
     public partial class PageAnimalDiary {
         
         /// <summary>
+        /// lblAnimalName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnimalName;
+        
+        /// <summary>
+        /// lblAnimalSpecie control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnimalSpecie;
+        
+        /// <summary>
+        /// lblAnimalRace control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnimalRace;
+        
+        /// <summary>
         /// lblDateFrom control.
         /// </summary>
         /// <remarks>
@@ -58,111 +85,21 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.SqlDataSource TiposDS;
         
         /// <summary>
-        /// lblDiaryType control.
+        /// reg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiaryType;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor reg;
         
         /// <summary>
-        /// listDiaryType control.
+        /// tblDiary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList listDiaryType;
-        
-        /// <summary>
-        /// TiposDiarioDS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource TiposDiarioDS;
-        
-        /// <summary>
-        /// lblDateDiaryTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateDiaryTo;
-        
-        /// <summary>
-        /// boxDateDiaryTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox boxDateDiaryTo;
-        
-        /// <summary>
-        /// lblDateDiaryFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateDiaryFrom;
-        
-        /// <summary>
-        /// boxDateDiaryFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox boxDateDiaryFrom;
-        
-        /// <summary>
-        /// lblDiaryValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiaryValue;
-        
-        /// <summary>
-        /// boxDiaryValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox boxDiaryValue;
-        
-        /// <summary>
-        /// lblDiaryObs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiaryObs;
-        
-        /// <summary>
-        /// boxDiaryObs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox boxDiaryObs;
-        
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Repeater tblDiary;
     }
 }
