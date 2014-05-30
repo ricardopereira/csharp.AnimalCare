@@ -238,5 +238,51 @@ namespace AnimalCare.Employee
 
             cmd.ExecuteNonQuery();
         }
+
+        public void updateScheduleEvent(int scheduleID, String description, bool notified, bool present, int serviceKindID, int professionalID, DateTime dateEvent)
+        {
+            if (scheduleID <= 0) return;
+
+            String str = "UPDATE Schedule SET " +
+                "  Description = @description," +
+                "  DateEvent = @dateEvent," +
+                "  Notified = @notified," +
+                "  Present = @present," +
+                "  ServiceKindID = @serviceKindID," +
+                "  ProfessionalID = @professionalID" +
+                " WHERE ScheduleID = @id ";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", scheduleID);
+            cmd.Parameters.AddWithValue("@description", description);
+            cmd.Parameters.AddWithValue("@dateEvent", dateEvent);
+            cmd.Parameters.AddWithValue("@notified", notified);
+            cmd.Parameters.AddWithValue("@present", present);
+            cmd.Parameters.AddWithValue("@serviceKindID", serviceKindID);
+            cmd.Parameters.AddWithValue("@professionalID", professionalID);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void deleteScheduleEvent(int scheduleID)
+        {
+            if (scheduleID <= 0) return;
+
+            String str = "DELETE FROM Schedule " +
+                " WHERE ScheduleID = @id ";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", scheduleID);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public SqlCommand getSchedule(int scheduleID)
+        {
+            String str = getAllScheduleSQL() + " WHERE sh.ScheduleID = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", scheduleID);
+            return cmd;
+        }
     }
 }

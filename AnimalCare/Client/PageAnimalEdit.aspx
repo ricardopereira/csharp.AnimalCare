@@ -136,7 +136,7 @@
                             <strong>Data Falecimento:</strong><br />
                             <asp:Label ID="lblDecease" runat="server" Text="Faleceu: "></asp:Label>                        
                             <asp:CheckBox ID="chkDeceased" runat="server" OnCheckedChanged="chkDeceased_CheckedChanged" AutoPostBack="true" />
-                                <asp:Calendar ID="CalendarDeath" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="16px" NextPrevFormat="FullMonth" Width="237px" Visible="False">
+                            <asp:Calendar ID="CalendarDeath" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="16px" NextPrevFormat="FullMonth" Width="237px" Visible="False">
                                 <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                                 <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
                                 <OtherMonthDayStyle ForeColor="#999999" />

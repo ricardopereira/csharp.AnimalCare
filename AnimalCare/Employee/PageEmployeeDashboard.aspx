@@ -41,6 +41,7 @@
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading"><strong>Pedido de marcações</strong></div>
+
                         <div class="panel-body">
                             Todas as marcações de clientes em espera de uma resposta:
                         </div>
@@ -90,6 +91,15 @@
                     <div class="panel panel-warning">
                         <!-- Default panel contents -->
                         <div class="panel-heading"><strong>Agenda</strong></div>
+
+                        <div class="panel-body">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a class="btn btn-success" href="PageEmployeeScheduleNew.aspx" role="button">Novo evento</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="panel-body">
                             Eventos associados a cada profissional de saúde:
                         </div>
@@ -99,10 +109,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Data</th>
+                                    <th>Profissional</th>
                                     <th>Proprietário</th>
                                     <th>Animal</th>
                                     <th>Descrição</th>
-                                    <th>Profissional</th>
                                     <th>Serviço</th>
                                 </tr>
                             </thead>
@@ -111,13 +121,13 @@
                                     <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <a class="btn btn-primary btn-xs" href="PageEmployeeScheduleEdit.aspx?ScheduleID=<%# Eval("ScheduleID")%>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                            <a class="btn btn-warning btn-xs" href="PageEmployeeScheduleEdit.aspx?ScheduleID=<%# Eval("ScheduleID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
                                         </td>
                                         <td><%# Eval("DateEvent") %></td>
+                                        <td><%# Eval("Professional") %></td>
                                         <td><%# Eval("Owner") %></td>
                                         <td><%# Eval("Animal") %></td>
                                         <td><%# Eval("Description") %></td>
-                                        <td><%# Eval("Professional") %></td>
                                         <td><%# Eval("ServiceKind") %></td>
                                     </tr>
                                     </ItemTemplate>

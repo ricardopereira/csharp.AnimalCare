@@ -277,8 +277,8 @@ namespace AnimalCare
                 "  WHEN State = 3 THEN 'Cancelado'" +
                 " END as StateStr" +
                 " FROM Appointments ap" +
-                "  INNER JOIN OwnerAnimalsRelation rel ON rel.OwnerID = " + getUniqueID() + " AND rel.Active = 1" +
-                "  LEFT OUTER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
+                "  LEFT OUTER JOIN Animals a ON a.AnimalID = ap.AnimalID" +
+                "  LEFT OUTER JOIN Owners o ON o.OwnerID = ap.OwnerID" +
                 "  LEFT OUTER JOIN AppointmentTypes apt ON apt.AppointmentTypeID = ap.AppointmentTypeID" +
                 " WHERE DateAppointment > @dateFrom AND DateAppointment < @dateTo" +
                 "  AND ap.OwnerID = @id";
@@ -454,22 +454,26 @@ namespace AnimalCare
             14-Animal
             15-Professional
             16-ServiceKind
+            17-Specie
+            18-Race
              */
 
-            String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind" +
+            String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind, r.Name Race, s.Name Specie" +
                 " FROM Schedule sh" +
                 "  LEFT OUTER JOIN Animals a ON a.AnimalID = sh.AnimalID" +
+                "  LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
+                "  LEFT OUTER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
                 "  LEFT OUTER JOIN Owners o ON o.OwnerID = sh.OwnerID" +
                 "  LEFT OUTER JOIN Professionals p ON p.ProfessionalID = sh.ProfessionalID" +
                 "  LEFT OUTER JOIN ServiceKinds sk ON sk.ServiceKindID = sh.ServiceKindID";
             return sql;
         }
 
-        public SqlCommand getAllSchedule(DateTime dateFrom, DateTime dateTo, bool present = false, bool notified = false, int professionalID = 0)
+        public SqlCommand getAllSchedule(DateTime dateFrom, DateTime dateTo, bool present = false, int professionalID = 0)
         {
             String str = getAllScheduleSQL() +
                 " WHERE DateEvent > @dateFrom AND DateEvent < @dateTo" +
-                "   AND Present = @present AND Notified = @notified";
+                "   AND Present = @present "; //AND Notified = @notified
 
             if (professionalID > 0)
                 str += " AND ProfessionalID = @professionalID";
@@ -479,7 +483,7 @@ namespace AnimalCare
             cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
             cmd.Parameters.AddWithValue("@dateTo", dateTo);
             cmd.Parameters.AddWithValue("@present", present);
-            cmd.Parameters.AddWithValue("@notified", notified);
+            //cmd.Parameters.AddWithValue("@notified", notified);
 
             if (professionalID > 0)
                 cmd.Parameters.AddWithValue("@professionalID", professionalID);
