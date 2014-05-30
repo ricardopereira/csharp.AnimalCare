@@ -49,6 +49,15 @@ namespace AnimalCare.Doctor {
         protected global::System.Web.UI.WebControls.Label lblRace;
         
         /// <summary>
+        /// lblDone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDone;
+        
+        /// <summary>
         /// calDateService control.
         /// </summary>
         /// <remarks>
@@ -191,15 +200,6 @@ namespace AnimalCare.Doctor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox boxObs;
-        
-        /// <summary>
-        /// RequiredFieldValidatorDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorDescription;
         
         /// <summary>
         /// btnSave control.

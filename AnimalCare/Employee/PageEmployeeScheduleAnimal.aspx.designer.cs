@@ -13,6 +13,24 @@ namespace AnimalCare.Employee {
     public partial class PageEmployeeScheduleAnimal {
         
         /// <summary>
+        /// pnlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlError;
+        
+        /// <summary>
+        /// lblOwnerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOwnerName;
+        
+        /// <summary>
         /// lblOwner control.
         /// </summary>
         /// <remarks>

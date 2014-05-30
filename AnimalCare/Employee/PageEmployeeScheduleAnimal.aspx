@@ -24,6 +24,13 @@
 
         <div class="row">
             <div class="col-lg-12">
+                <!-- Mensagem Erro -->
+                <asp:Panel ID="pnlError" runat="server" Visible="false">
+                    <div class="alert alert-danger fade in">
+                        <h4>Proprietário sem animais!</h4>
+                        <p>O proprietário "<asp:Label ID="lblOwnerName" runat="server" Text=""></asp:Label>" não contém animais.</p>
+                    </div>
+                </asp:Panel>
                 <br />
 
                 <!--Filtro -->

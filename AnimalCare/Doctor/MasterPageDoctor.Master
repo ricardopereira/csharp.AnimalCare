@@ -28,6 +28,7 @@
                       <ul class="dropdown-menu">
                           <li><a href="PageDoctor.aspx">Perfil</a></li>
                           <li><a href="PageDoctorDashboard.aspx">Dashboard</a></li>
+                          <li><a href="PageDoctorServices.aspx">Serviços</a></li>
                       </ul>
                   </li>
                   <li><a id="logoutLink" href="../Account/Logout.aspx">Terminar Sessão</a></li>

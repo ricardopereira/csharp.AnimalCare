@@ -11,6 +11,7 @@ namespace AnimalCare.Doctor
     public partial class PageDoctorServiceEdit : DoctorPage
     {
         private int serviceID;
+        private bool serviceDone;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -60,6 +61,20 @@ namespace AnimalCare.Doctor
             if (!data.HasRows) return;
 
             data.Read();
+
+            if (!data.IsDBNull(20))
+            {
+                serviceDone = Convert.ToBoolean(data.GetInt32(20));
+                lblDone.Visible = serviceDone;
+
+                boxDescription.Enabled = !serviceDone;
+                listClinic.Enabled = !serviceDone;
+                listServiceKind.Enabled = !serviceDone;
+                calDateService.Enabled = !serviceDone;
+                listHourService.Enabled = !serviceDone;
+                listMinutesService.Enabled = !serviceDone;
+                btnFinish.Visible = !serviceDone;
+            }
 
             if (!data.IsDBNull(4))
             {
