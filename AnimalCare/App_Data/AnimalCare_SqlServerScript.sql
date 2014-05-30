@@ -138,18 +138,6 @@ CREATE TABLE [dbo].[OwnerLocals] (
 
 
 -- -----------------------------------------------------
--- Table [dbo].[AnimalImages]
--- -----------------------------------------------------
-CREATE TABLE [dbo].[AnimalImages] (
-  [AnimalImageID] INT NOT NULL IDENTITY,
-  [AnimalID] INT NOT NULL,
-  [Description] VARCHAR(100) NULL,
-  [DateCreated] DATETIME NOT NULL,
-  [Path] VARCHAR(200) NOT NULL,
-  PRIMARY KEY ([AnimalImageID]))
-
-
--- -----------------------------------------------------
 -- Table [dbo].[Animals]
 -- -----------------------------------------------------
 CREATE TABLE [dbo].[Animals] (
@@ -164,7 +152,6 @@ CREATE TABLE [dbo].[Animals] (
   [DateBorn] DATETIME NULL,
   [DateDeath] DATETIME NULL,
   [Sex] SMALLINT NULL,
-  [ProfileImageID] INT NULL,
   PRIMARY KEY ([AnimalID]),
   CONSTRAINT [fk_Animals_AnimalRaces]
     FOREIGN KEY ([AnimalRaceID])
@@ -178,9 +165,6 @@ CREATE TABLE [dbo].[Animals] (
   CONSTRAINT [fk_Animals_OwnerLocals]
     FOREIGN KEY ([OwnerLocalID])
     REFERENCES [dbo].[OwnerLocals] ([OwnerLocalID]),
-  CONSTRAINT [fk_Animals_AnimalImages]
-    FOREIGN KEY ([ProfileImageID])
-    REFERENCES [dbo].[AnimalImages] ([AnimalImageID]))
 
 
 -- -----------------------------------------------------
