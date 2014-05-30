@@ -69,6 +69,11 @@
                             <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
                             <TodayDayStyle BackColor="#CCCCCC" />
                         </asp:Calendar>
+                        <br/>
+                        <p>
+                            Hora:<asp:DropDownList ID="listHour" runat="server"></asp:DropDownList>
+                            :<asp:DropDownList ID="listMinutes" runat="server"></asp:DropDownList>(HH:MM)
+                        </p>
                     </div>
                 </div>
             </div>
@@ -121,7 +126,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <asp:Button ID="btnCreate" CssClass="btn btn-primary" runat="server" Text="Criar evento" OnClick="btnCreate_Click"></asp:Button>
-                                <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" PostBackUrl="PageEmployeeDashboard.aspx"></asp:Button>
+                                <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" PostBackUrl="PageEmployeeDashboard.aspx" CausesValidation="false"></asp:Button>
                             </div>
                         </div>
                     </div>

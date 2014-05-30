@@ -87,7 +87,7 @@
             <div class="col-md-12">
                 <!-- Tabela com os eventos -->
                 <div class="table-responsive">
-                    <div class="panel panel-default">
+                    <div class="panel panel-warning">
                         <!-- Default panel contents -->
                         <div class="panel-heading">Agenda</div>
                         <div class="panel-body">
@@ -99,9 +99,9 @@
                                 <tr>
                                     <th></th>
                                     <th>Data</th>
+                                    <th>Animal</th>
                                     <th>Descrição</th>
                                     <th>Serviço</th>
-                                    <th>Animal</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,12 +110,12 @@
                                     <tr>
                                         <td>
                                             <!-- Opcoes de linha -->
-                                            <a class="btn btn-warning btn-xs" href="#" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                            
                                         </td>
-                                        <td><%# Eval("DateAppointment")%></td>
+                                        <td><span class="label label-default"><%# Eval("DateEvent")%></span></td>
+                                        <td><%# Eval("Animal")%></td>
                                         <td><%# Eval("Description")%></td>
                                         <td><%# Eval("ServiceKind")%></td>
-                                        <td><%# Eval("Animal")%></td>
                                     </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>

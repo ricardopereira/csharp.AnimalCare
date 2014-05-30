@@ -27,6 +27,19 @@ namespace AnimalCare.Employee
             {
                 loadParameters();
 
+                // Horas
+                listHour.Items.Clear();
+                for (int i = 0; i < 24; i++)
+                    listHour.Items.Add(Convert.ToString(i));
+
+                // Minutos
+                listMinutes.Items.Clear();
+                for (int i = 0; i < 60; i++)
+                    if (i % 5 == 0)
+                        listMinutes.Items.Add(Convert.ToString(i));
+
+                calDateEvent.SelectedDate = DateTime.Today;
+
                 ownerID = Ctrl.getOwnerByAnimalID(animalID);
 
                 if (appointmentID > 0)
@@ -177,10 +190,15 @@ namespace AnimalCare.Employee
             int _ownerID = Convert.ToInt32(lblOwnerID.Text.Trim());
             int _animalID = Convert.ToInt32(lblAnimalID.Text.Trim());
 
-            Ctrl.insertScheduleEvent(_ownerID, _animalID, boxDescription.Text.Trim(), Convert.ToInt32(listServiceKind.SelectedValue), Convert.ToInt32(listProfessional.SelectedValue), calDateEvent.SelectedDate);
+            DateTime dateAux = calDateEvent.SelectedDate;
+
+            dateAux = dateAux.AddHours(Convert.ToInt16(listHour.SelectedItem.Text));
+            dateAux = dateAux.AddMinutes(Convert.ToInt16(listMinutes.SelectedItem.Text));
+
+            Ctrl.insertScheduleEvent(_ownerID, _animalID, boxDescription.Text.Trim(), Convert.ToInt32(listServiceKind.SelectedValue), Convert.ToInt32(listProfessional.SelectedValue), dateAux);
 
             if (!lblAppointmentID.Text.Equals(""))
-                Ctrl.saveAppointment(Convert.ToInt32(lblAppointmentID.Text.Trim()), (int)AppointmentState.astAccepted, "Marcação aceite.");
+                Ctrl.saveAppointment(Convert.ToInt32(lblAppointmentID.Text.Trim()), (int)AppointmentState.astAccepted, "Agendado para " + Convert.ToString(calDateEvent.SelectedDate));
 
             Response.Redirect("~/Employee/PageEmployeeDashboard.aspx");
         }
