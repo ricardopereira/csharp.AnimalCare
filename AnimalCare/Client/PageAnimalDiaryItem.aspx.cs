@@ -26,11 +26,14 @@ namespace AnimalCare.Client
 
             if (itemID > 0)
             {
-                LoadItemInfo();
-                if (Ctrl.isOwnerOfAnimal(animalID))
+                if(!IsPostBack)
                 {
-                    getAnimalInfo();
-                    setDiaryImage();
+                    LoadItemInfo();
+                    if (Ctrl.isOwnerOfAnimal(animalID))
+                    {
+                        getAnimalInfo();
+                        setDiaryImage();
+                    }
                 }
                 else
                     Response.Redirect("PageAnimalDashboard.aspx");

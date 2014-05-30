@@ -23,6 +23,7 @@ namespace AnimalCare.Client
             base.OnLoad(e);
 
             AnimalIDParam();
+            lblDeath.Visible = false;
 
                 if (animalID > 0)
                 {

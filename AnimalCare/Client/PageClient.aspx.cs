@@ -20,8 +20,7 @@ namespace AnimalCare
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
-            setProfileImage();
+             setProfileImage();
         }
 
         protected void setProfileImage()

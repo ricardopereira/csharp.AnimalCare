@@ -24,37 +24,37 @@ namespace AnimalCare.Client
 
             AnimalIDParam();
 
-            if (!IsPostBack)
-            {
+
                 if (animalID < 1)
                     Response.Redirect("PageAnimalDashboard.aspx");
                 else
                     if (!Ctrl.isOwnerOfAnimal(animalID))
                         Response.Redirect("PageAnimalDashboard.aspx");
-
-                SqlDataReader animalData = Ctrl.getAnimalInfo(animalID).ExecuteReader();
-
-                if (!animalData.HasRows)
+                if (!IsPostBack)
                 {
+                    SqlDataReader animalData = Ctrl.getAnimalInfo(animalID).ExecuteReader();
+
+                    if (!animalData.HasRows)
+                    {
+                        animalData.Close();
+                        Ctrl.Database.Connection.Close();
+                        return;
+                    }
+
+                    animalData.Read();
+                        
+                    if (!animalData.IsDBNull(0))
+                        lblAnimalName.Text = animalData.GetString(0);
+                    if (!animalData.IsDBNull(3))
+                        lblAnimalRace.Text = animalData.GetString(3);
+                    if (!animalData.IsDBNull(4))
+                        lblAnimalSpecie.Text = animalData.GetString(4);
+
+                    calendarDateDiaryStart.SelectedDate = DateTime.Now;
+                    calendarDateDiaryEnd.SelectedDate = DateTime.Now;
+
                     animalData.Close();
-                    Ctrl.Database.Connection.Close();
-                    return;
                 }
-
-                animalData.Read();
-
-                if (!animalData.IsDBNull(0))
-                    lblAnimalName.Text = animalData.GetString(0);
-                if (!animalData.IsDBNull(3))
-                    lblAnimalRace.Text = animalData.GetString(3);
-                if (!animalData.IsDBNull(4))
-                    lblAnimalSpecie.Text = animalData.GetString(4);
-
-                calendarDateDiaryStart.SelectedDate = DateTime.Now;
-                calendarDateDiaryEnd.SelectedDate = DateTime.Now;
-
-                animalData.Close();
-            }
         }
 
         protected bool DateValidation(DateTime start, DateTime end)

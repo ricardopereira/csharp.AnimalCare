@@ -23,51 +23,47 @@ namespace AnimalCare.Client
 
             OwnerLocalIDParam();
 
-            if (!IsPostBack)
+            if (ownerLocalID > 0)
             {
-                if (ownerLocalID > 0)
+                if (Ctrl.isOwnerOfLocal(ownerLocalID))
                 {
-                    if(Ctrl.isOwnerOfLocal(ownerLocalID))
+                    if (!IsPostBack)
                     {
-                        if (!IsPostBack)
+
+                        SqlDataReader localsData = Ctrl.getLocalByID(ownerLocalID).ExecuteReader();
+                        if (!localsData.HasRows)
                         {
-
-                            SqlDataReader localsData = Ctrl.getLocalByID(ownerLocalID).ExecuteReader();
-                            if (!localsData.HasRows)
-                            {
-                                localsData.Close();
-                                Ctrl.Database.Connection.Close();
-                                return;
-                            }
-
-                            localsData.Read();
-
-                            // Set Buffer
-                            if (!localsData.IsDBNull(2))
-                                boxName.Text = localsData.GetString(2);
-                            if (!localsData.IsDBNull(3))
-                                boxAddress.Text = localsData.GetString(3);
-                            if (!localsData.IsDBNull(4))
-                                boxZipCode.Text = localsData.GetString(4);
-                            if (!localsData.IsDBNull(5))
-                                boxGPS.Text = localsData.GetString(5);
-                            if (!localsData.IsDBNull(6))
-                                listCountry.SelectedValue = Convert.ToString(localsData.GetInt32(6));
-                            if (!localsData.IsDBNull(7))
-                                listCity.SelectedValue = Convert.ToString(localsData.GetInt32(7));
-                            if (!localsData.IsDBNull(8))
-                                chkIsMain.Checked = localsData.GetBoolean(8);
-
                             localsData.Close();
+                            Ctrl.Database.Connection.Close();
+                            return;
                         }
-                    } else
-                        Response.Redirect("PageClientLocals.aspx");
+
+                        localsData.Read();
+
+                        // Set Buffer
+                        if (!localsData.IsDBNull(2))
+                            boxName.Text = localsData.GetString(2);
+                        if (!localsData.IsDBNull(3))
+                            boxAddress.Text = localsData.GetString(3);
+                        if (!localsData.IsDBNull(4))
+                            boxZipCode.Text = localsData.GetString(4);
+                        if (!localsData.IsDBNull(5))
+                            boxGPS.Text = localsData.GetString(5);
+                        if (!localsData.IsDBNull(6))
+                            listCountry.SelectedValue = Convert.ToString(localsData.GetInt32(6));
+                        if (!localsData.IsDBNull(7))
+                            listCity.SelectedValue = Convert.ToString(localsData.GetInt32(7));
+                        if (!localsData.IsDBNull(8))
+                            chkIsMain.Checked = localsData.GetBoolean(8);
+
+                        localsData.Close();
+                    }
                 }
                 else
                     Response.Redirect("PageClientLocals.aspx");
             }
             else
-                Response.Redirect("/");
+                Response.Redirect("PageClientLocals.aspx");
         }
 
         public void OwnerLocalIDParam()

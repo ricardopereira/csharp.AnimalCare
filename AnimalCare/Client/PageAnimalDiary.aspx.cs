@@ -22,12 +22,12 @@ namespace AnimalCare.Client
             base.OnLoad(e);
             AnimalIDParam();
             pnlError.Visible = false;
-            if (!IsPostBack)
-            {
                 if (animalID > 0)
                 {
                     if (Ctrl.isOwnerOfAnimal(animalID))
                     {
+                        if (!IsPostBack)
+                        {
                         reg.Attributes["href"] = "PageAnimalDiaryNew.aspx?AnimalID=" + animalID;
                         calendarDateStart.SelectedDate = DateTime.Today;
                         calendarDateEnd.SelectedDate = DateTime.Today;
@@ -55,6 +55,7 @@ namespace AnimalCare.Client
                         lblAnimalSpecie.Text = animalData.GetString(4);
 
                         animalData.Close();
+                        }
 
                     }
                     else
@@ -62,7 +63,6 @@ namespace AnimalCare.Client
                 }
                 else
                     Response.Redirect("PageAnimalDashboard.aspx");
-            }
         }
 
         protected void btnFind_Click(object sender, EventArgs e)

@@ -59,6 +59,7 @@
                                                 <asp:TextBox ID="boxDiaryValue" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxDiaryValue"
                                                 CssClass="label label-danger" ErrorMessage="Especifique o valor"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator2" ValidationExpression="\d+(\,\d+)?$" runat="server" ControlToValidate="boxDiaryValue" ErrorMessage="Valor numérico. Em caso decimal, usar virgula." Display="Dynamic"></asp:RegularExpressionValidator>
                                                 </p>
 
                                                 <p>

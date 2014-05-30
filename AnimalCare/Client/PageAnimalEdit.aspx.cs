@@ -200,11 +200,9 @@ namespace AnimalCare.Client
                         }
                     }
                 }
-                else
-                {
+
                     Ctrl.updateAnimalInfo(localID, animalID, name, identityNumber, quantity, animalRace, animalCondition, animalHabitat, birth, death, sex);
                     Response.Redirect("PageAnimal.aspx?AnimalID=" + animalID);
-                }
         }
 
         protected void chkGroup_CheckedChanged(object sender, EventArgs e)

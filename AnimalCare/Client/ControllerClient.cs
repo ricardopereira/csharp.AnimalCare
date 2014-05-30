@@ -319,6 +319,14 @@ namespace AnimalCare.Client
                  cmd.Parameters.AddWithValue("@death", death);
  
              cmd.ExecuteNonQuery();
+             
+             if(death.Equals(new DateTime(0001,01,01)))
+             {
+                String strDeath = "UPDATE Animals SET DateDeath = NULL";
+                SqlCommand cmdDeath = new SqlCommand(strDeath, Database.Connection);
+                cmdDeath.ExecuteNonQuery();
+             }
+
          }
 
         public void updateLocalInfo(int ownerLocalID, string name, string address, string zipCode, string gps, int country, int city, bool main)
