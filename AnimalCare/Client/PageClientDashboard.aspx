@@ -13,7 +13,7 @@
 
                 <% if (Ctrl.hasAcceptedAppointments()) {
                 %>
-                <div class="alert alert-warning">
+                <div class="alert alert-success">
                     <strong>Aviso!</strong> Existem marcações aceites.
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 </div>

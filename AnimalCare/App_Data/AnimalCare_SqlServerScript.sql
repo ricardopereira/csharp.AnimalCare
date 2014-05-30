@@ -45,25 +45,6 @@ CREATE TABLE [dbo].[Owners] (
 
 
 -- -----------------------------------------------------
--- Table [dbo].[UserGroups]
--- -----------------------------------------------------
-CREATE TABLE [dbo].[UserGroups] (
-  [UserGroupID] INT NOT NULL IDENTITY,
-  [Name] VARCHAR(45) NOT NULL,
-  [IsAdminGroup] BIT NULL,
-  PRIMARY KEY ([UserGroupID]))
-
-
--- -----------------------------------------------------
--- Table [dbo].[AnimalGroups]
--- -----------------------------------------------------
-CREATE TABLE [dbo].[AnimalGroups] (
-  [AnimalGroupID] INT NOT NULL IDENTITY,
-  [Name] VARCHAR(45) NOT NULL,
-  PRIMARY KEY ([AnimalGroupID]))
-
-
--- -----------------------------------------------------
 -- Table [dbo].[AnimalSpecies]
 -- -----------------------------------------------------
 CREATE TABLE [dbo].[AnimalSpecies] (
@@ -226,7 +207,6 @@ CREATE TABLE [dbo].[Services] (
   [Observation] VARCHAR(150) NULL,
   [ServiceKindID] INT NOT NULL,
   [AnimalID] INT NULL,
-  [AnimalGroupID] INT NULL,
   [ProfessionalID] INT NOT NULL,
   [ClinicID] INT NULL,
   PRIMARY KEY ([ServiceID]),
@@ -242,9 +222,6 @@ CREATE TABLE [dbo].[Services] (
   CONSTRAINT [fk_Services_Professionals]
     FOREIGN KEY ([ProfessionalID])
     REFERENCES [dbo].[Professionals] ([ProfessionalID]),
-  CONSTRAINT [fk_Services_AnimalGroups]
-    FOREIGN KEY ([AnimalGroupID])
-    REFERENCES [dbo].[AnimalGroups] ([AnimalGroupID]),
   CONSTRAINT [fk_Services_Clinics]
     FOREIGN KEY ([ClinicID])
     REFERENCES [dbo].[Clinics] ([ClinicID]))
@@ -264,7 +241,6 @@ CREATE TABLE [dbo].[Schedule] (
   [ServiceKindID] INT NOT NULL,
   [OwnerID] INT NOT NULL,
   [AnimalID] INT NULL,
-  [AnimalGroupID] INT NULL,
   [ProfessionalID] INT NOT NULL,
   [Priority] SMALLINT NULL,
   [State] SMALLINT NULL,
@@ -281,9 +257,6 @@ CREATE TABLE [dbo].[Schedule] (
   CONSTRAINT [fk_Schedule_Professionals]
     FOREIGN KEY ([ProfessionalID])
     REFERENCES [dbo].[Professionals] ([ProfessionalID]),
-  CONSTRAINT [fk_Schedule_AnimalGroups]
-    FOREIGN KEY ([AnimalGroupID])
-    REFERENCES [dbo].[AnimalGroups] ([AnimalGroupID]),
   CONSTRAINT [fk_Schedule_Users]
     FOREIGN KEY ([CreatedBy])
     REFERENCES [dbo].[Users] ([UserId]))
@@ -305,7 +278,6 @@ CREATE TABLE [dbo].[Appointments] (
   [AppointmentID] INT NOT NULL IDENTITY,
   [OwnerID] INT NOT NULL,
   [AnimalID] INT NULL,
-  [AnimalGroupID] INT NULL,
   [AppointmentTypeID] INT NOT NULL,
   [DateAppointment] DATETIME NOT NULL,
   [DateCreated] DATETIME NOT NULL,
@@ -322,10 +294,7 @@ CREATE TABLE [dbo].[Appointments] (
     REFERENCES [dbo].[AppointmentTypes] ([AppointmentTypeID]),
   CONSTRAINT [fk_Appointments_Animals]
     FOREIGN KEY ([AnimalID])
-    REFERENCES [dbo].[Animals] ([AnimalID]),
-  CONSTRAINT [fk_Appointments_AnimalGroups]
-    FOREIGN KEY ([AnimalGroupID])
-    REFERENCES [dbo].[AnimalGroups] ([AnimalGroupID]))
+    REFERENCES [dbo].[Animals] ([AnimalID]))
 
 
 -- -----------------------------------------------------
@@ -349,7 +318,7 @@ CREATE TABLE [dbo].[AnimalDiary] (
   [DateCreated] DATETIME NOT NULL,
   [Value] DECIMAL(18,9) NOT NULL,
   [Observation] VARCHAR(45) NULL,
-  [AnimalImageID] INT NULL,
+  [ServiceID] INT NULL,
   PRIMARY KEY ([AnimalDiaryID]),
   CONSTRAINT [fk_AnimalDiary_AnimalDiaryTypes]
     FOREIGN KEY ([AnimalDiaryTypeID])
@@ -357,9 +326,9 @@ CREATE TABLE [dbo].[AnimalDiary] (
   CONSTRAINT [fk_AnimalDiary_Animals]
     FOREIGN KEY ([AnimalID])
     REFERENCES [dbo].[Animals] ([AnimalID]),
-  CONSTRAINT [fk_AnimalDiary_AnimalImages]
-    FOREIGN KEY ([AnimalImageID])
-    REFERENCES [dbo].[AnimalImages] ([AnimalImageID]))
+  CONSTRAINT [fk_AnimalDiary_Services]
+    FOREIGN KEY ([ServiceID])
+    REFERENCES [dbo].[Services] ([ServiceID]))
 
 
 -- -----------------------------------------------------
@@ -401,48 +370,6 @@ CREATE TABLE [dbo].[ClinicProfessionalsRelation] (
     REFERENCES [dbo].[Professionals] ([ProfessionalID]))
 
 
--- -----------------------------------------------------
--- Table [dbo].[ServiceJournal[
--- -----------------------------------------------------
-CREATE TABLE [dbo].[ServiceJournal] (
-  [ServiceJournalID] INT NOT NULL IDENTITY,
-  [ServiceID] INT NOT NULL,
-  [DateJournal] DATETIME NULL,
-  [Text] VARCHAR(200) NOT NULL,
-  PRIMARY KEY ([ServiceJournalID]),
-  CONSTRAINT [fk_ServiceJournal_Services]
-    FOREIGN KEY ([ServiceID])
-    REFERENCES [dbo].[Services] ([ServiceID]))
-
-
--- -----------------------------------------------------
--- Table [dbo].[UserGroupsRelation]
--- -----------------------------------------------------
-CREATE TABLE [dbo].[UserGroupsRelation] (
-  [UserGroupID] INT NOT NULL,
-  [UserID] INT NOT NULL,
-  PRIMARY KEY ([UserGroupID], [UserID]),
-  CONSTRAINT [fk_UserGroupsRelation_Users]
-    FOREIGN KEY ([UserID])
-    REFERENCES [dbo].[Users] ([UserID]),
-  CONSTRAINT [fk_UserGroupsRelation_UserGroups]
-    FOREIGN KEY ([UserGroupID])
-    REFERENCES [dbo].[UserGroups] ([UserGroupID]))
-
-
--- -----------------------------------------------------
--- Table [dbo].[AnimalGroupsRelation]
--- -----------------------------------------------------
-CREATE TABLE [dbo].[AnimalGroupsRelation] (
-  [AnimalGroupID] INT NOT NULL,
-  [AnimalID] INT NOT NULL,
-  PRIMARY KEY ([AnimalGroupID], [AnimalID]),
-  CONSTRAINT [fk_Animals_has_AnimalGroups_Animals1]
-    FOREIGN KEY ([AnimalID])
-    REFERENCES [dbo].[Animals] ([AnimalID]),
-  CONSTRAINT [fk_Animals_has_AnimalGroups_AnimalGroups1]
-    FOREIGN KEY ([AnimalGroupID])
-    REFERENCES [dbo].[AnimalGroups] ([AnimalGroupID]))
 
 -- -----------------------------------------------------
 -- Table [dbo].[OwnerAnimalsRelation]
@@ -458,10 +385,3 @@ CREATE TABLE [dbo].[OwnerAnimalsRelation] (
   CONSTRAINT [fk_Owners_has_Animals_Animals1]
     FOREIGN KEY ([AnimalID])
     REFERENCES [dbo].[Animals] ([AnimalID]))
-
--- -----------------------------------------------------
--- Alter [dbo].[AnimalImages]
--- -----------------------------------------------------
-ALTER TABLE [dbo].[AnimalImages] ADD
-  CONSTRAINT [fk_AnimalImages_Animals] FOREIGN KEY ([AnimalID])
-    REFERENCES [dbo].[Animals] ([AnimalID])
