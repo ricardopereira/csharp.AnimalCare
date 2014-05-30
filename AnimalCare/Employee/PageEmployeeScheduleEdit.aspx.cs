@@ -21,10 +21,10 @@ namespace AnimalCare.Employee
         {
             base.OnLoad(e);
 
+            loadParameters();
+
             if (!IsPostBack && User.Identity.IsAuthenticated)
             {
-                loadParameters();
-
                 // Horas
                 listHour.Items.Clear();
                 for (int i = 0; i < 24; i++)

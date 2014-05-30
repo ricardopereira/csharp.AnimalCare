@@ -193,5 +193,118 @@ namespace AnimalCare.Doctor
         {
             return getAllServices(getMinDate(), getMaxDate(), Bf.ProfessionalID, 5);
         }
+
+        public SqlCommand getSchedule(int scheduleID)
+        {
+            String str = getAllScheduleSQL() + " WHERE sh.ScheduleID = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", scheduleID);
+            return cmd;
+        }
+
+        public SqlCommand getService(int serviceID)
+        {
+            String str = getAllServiceSQL() + " WHERE sr.ServiceID = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", serviceID);
+            return cmd;
+        }
+
+        public void insertServiceEvent(int ownerID, int animalID, String description, String observation,
+            int serviceKindID, int professionalID, int clinicID, DateTime dateService)
+        {
+            /*
+            0-[ServiceID] INT NOT NULL IDENTITY,
+            1-[OwnerID] INT NOT NULL,
+            2-[Name] VARCHAR(40) NOT NULL,
+            3-[Description] VARCHAR(100) NULL,
+            4-[DateService] DATETIME NULL,
+            5-[DateConclusion] DATETIME NULL,
+            6-[DateCreated] DATETIME NOT NULL,
+            7-[Observation] VARCHAR(150) NULL,
+            8-[ServiceKindID] INT NOT NULL,
+            9-[AnimalID] INT NULL,
+            10-[AnimalGroupID] INT NULL,
+            11-[ProfessionalID] INT NOT NULL,
+            12-[ClinicID] INT NULL,
+             */
+
+            String str = "INSERT INTO Services " +
+                " VALUES (@ownerID,@name,@description,@dateService,NULL,CURRENT_TIMESTAMP," +
+                        " @observation,@serviceKindID,@animalID,NULL,@professionalID,@clinicID)";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@ownerID", ownerID);
+            cmd.Parameters.AddWithValue("@name", "Serviço criado");
+            cmd.Parameters.AddWithValue("@description", description);
+            cmd.Parameters.AddWithValue("@dateService", dateService);
+            cmd.Parameters.AddWithValue("@observation", observation);
+            cmd.Parameters.AddWithValue("@serviceKindID", serviceKindID);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
+            cmd.Parameters.AddWithValue("@professionalID", professionalID);
+            cmd.Parameters.AddWithValue("@clinicID", clinicID);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void updateServiceEvent(int serviceID, String description, int serviceKindID, 
+            DateTime dateService, DateTime dateConclusion, String obs, int clinicID)
+        {
+            /*
+            0-[ServiceID] INT NOT NULL IDENTITY,
+            1-[OwnerID] INT NOT NULL,
+            2-[Name] VARCHAR(40) NOT NULL,
+            3-[Description] VARCHAR(100) NULL,
+            4-[DateService] DATETIME NULL,
+            5-[DateConclusion] DATETIME NULL,
+            6-[DateCreated] DATETIME NOT NULL,
+            7-[Observation] VARCHAR(150) NULL,
+            8-[ServiceKindID] INT NOT NULL,
+            9-[AnimalID] INT NULL,
+            10-[AnimalGroupID] INT NULL,
+            11-[ProfessionalID] INT NOT NULL,
+            12-[ClinicID] INT NULL,
+             */
+
+            if (serviceID <= 0) return;
+
+            String str = "UPDATE Services SET " +
+                "  Description = @description," +
+                "  DateService = @dateService," +
+                "  DateConclusion = @dateConclusion," +
+                "  Observation = @observation," +
+                "  ServiceKindID = @serviceKindID," +
+                "  ClinicID = @clinicID" +
+                " WHERE ServiceID = @id ";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", serviceID);
+            cmd.Parameters.AddWithValue("@description", description);
+            cmd.Parameters.AddWithValue("@dateService", dateService);
+            cmd.Parameters.AddWithValue("@observation", obs);
+            cmd.Parameters.AddWithValue("@serviceKindID", serviceKindID);
+            cmd.Parameters.AddWithValue("@clinicID", clinicID);
+            if (!dateConclusion.Equals(DateTime.MinValue))
+                cmd.Parameters.AddWithValue("@dateConclusion", dateConclusion);
+            else
+                cmd.Parameters.AddWithValue("@dateConclusion", DBNull.Value);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void updateSchedule_Done(int scheduleID)
+        {
+            if (scheduleID <= 0) return;
+
+            String str = "UPDATE Schedule SET " +
+                "  state = @state" +
+                " WHERE ScheduleID = @id";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", scheduleID);
+            cmd.Parameters.AddWithValue("@state", (int)ScheduleState.shtDone);
+
+            cmd.ExecuteNonQuery();
+        }
     }
 }

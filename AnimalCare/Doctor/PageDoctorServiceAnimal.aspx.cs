@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AnimalCare.Employee
+namespace AnimalCare.Doctor
 {
-    public partial class PageEmployeeScheduleAnimal : EmployeePage
+    public partial class PageDoctorServiceAnimal : DoctorPage
     {
         private int ownerID;
 
@@ -43,7 +43,7 @@ namespace AnimalCare.Employee
                 }
                 else
                 {
-                    Response.Redirect("PageEmployeeScheduleOwner.aspx");
+                    Response.Redirect("PageDoctorServiceOwner.aspx");
                 }
             }
         }
