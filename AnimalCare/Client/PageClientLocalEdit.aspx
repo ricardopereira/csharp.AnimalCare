@@ -56,13 +56,13 @@
 
                         <p>
                         <asp:Label ID="lblCity" runat="server" Text="Cidade: "></asp:Label>
-                        <asp:DropDownList ID="listCity" runat="server" Width="200px" DataSourceID="CitiesDS" DataTextField="Name" DataValueField="CityID"></asp:DropDownList>
+                        <asp:DropDownList CssClass="form-control" ID="listCity" runat="server" Width="200px" DataSourceID="CitiesDS" DataTextField="Name" DataValueField="CityID"></asp:DropDownList>
                             <asp:SqlDataSource ID="CitiesDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [Cities]"></asp:SqlDataSource>
                         </p>
 
                         <p>
                         <asp:Label ID="lblCountry" runat="server" Text="País: "></asp:Label>
-                        <asp:DropDownList ID="listCountry" runat="server" Width="200px" DataSourceID="CountriesDS" DataTextField="Name" DataValueField="CountryID"></asp:DropDownList>
+                        <asp:DropDownList CssClass="form-control" ID="listCountry" runat="server" Width="200px" DataSourceID="CountriesDS" DataTextField="Name" DataValueField="CountryID"></asp:DropDownList>
                             <asp:SqlDataSource ID="CountriesDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [CountryID], [Name] FROM [Countries]"></asp:SqlDataSource>
                         </p>
 

@@ -33,9 +33,7 @@
                           <li class="divider"></li>
                           <li class="dropdown-header">Área Animal</li>
                           <li><a href="PageAnimalDashboard.aspx">Animais</a></li>
-                          <li><a href="PageAnimalGroups.aspx">Grupos</a></li>
                           <li><a href="PageAnimalHistory.aspx">Historial clínico</a></li>
-                          <li><a href="PageAnimalDiary.aspx">Diário</a></li>
                       </ul>
                   </li>
                   <li><a id="logoutLink" href="../Account/Logout.aspx">Terminar Sessão</a></li>

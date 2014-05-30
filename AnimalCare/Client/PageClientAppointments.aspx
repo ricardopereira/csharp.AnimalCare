@@ -54,7 +54,7 @@
                                 </p>
 
                                 <asp:Label ID="lblAppointmentTypes" runat="server" Text="Tipo de marcação: "></asp:Label>
-                                <asp:DropDownList ID="listAppointmentTypes" runat="server" DataSourceID="AppointmentTypesDS" DataTextField="Description" DataValueField="AppointmentTypeID">
+                                <asp:DropDownList ID="listAppointmentTypes" CssClass="form-control" runat="server" DataSourceID="AppointmentTypesDS" DataTextField="Description" DataValueField="AppointmentTypeID">
                                 </asp:DropDownList>
                                 <asp:SqlDataSource ID="AppointmentTypesDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AppointmentTypes]"></asp:SqlDataSource>
 

@@ -53,25 +53,25 @@
                     <div class="panel-body">
                         <p>
                         <asp:Label ID="lblName" runat="server" Text="Nome: "></asp:Label>
-                        <asp:TextBox ID="boxName" runat="server" MaxLength="100"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" ID="boxName" runat="server" MaxLength="100"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxName"
                         CssClass="label label-danger" ErrorMessage="Especifique o nome do animal." />
                         </p>
 
                         <p>                        
                             <asp:Label ID="Label1" runat="server" Text="Local: "></asp:Label>
-                            <asp:DropDownList ID="ddlLocals" runat="server">
+                            <asp:DropDownList CssClass="form-control" ID="ddlLocals" runat="server">
                         </asp:DropDownList>
                         </p>
 
                         <p>
                         <asp:Label ID="lblIdentity" runat="server" Text="Núm. Identidade: "></asp:Label>
-                        <asp:TextBox ID="boxIdentity" runat="server" MaxLength="50"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" ID="boxIdentity" runat="server" MaxLength="50"></asp:TextBox>
                         </p>
 
                         <p>                        
                         <asp:Label ID="lblSex" runat="server" Text="Sexo: "></asp:Label>
-                        <asp:DropDownList ID="ddlSex" runat="server">
+                        <asp:DropDownList CssClass="form-control" ID="ddlSex" runat="server">
                             <asp:ListItem Value="1">Masculino</asp:ListItem>
                             <asp:ListItem Value="2">Feminino</asp:ListItem>
                         </asp:DropDownList>
@@ -80,26 +80,26 @@
                         <p>                        
                         <asp:Label ID="lblGroup" runat="server" Text="Grupo: "></asp:Label>
                         <asp:CheckBox ID="chkGroup" runat="server" OnCheckedChanged="chkGroup_CheckedChanged" AutoPostBack="true"></asp:CheckBox>
-                        <asp:Label ID="lblNGroup" Text="Número de Animais:" runat="server" Visible="False"></asp:Label>
-                        <asp:TextBox ID="boxNumberAnimals" runat="server" Visible="False" Width="36px"></asp:TextBox>
+                        </p><p><asp:Label ID="lblNGroup" Text="Número de Animais:" runat="server" Visible="False"></asp:Label>
+                        <asp:TextBox ID="boxNumberAnimals" CssClass="form-control" runat="server" Visible="False" Width="36px"></asp:TextBox>
                         <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" ValidationExpression="\d+" runat="server" ControlToValidate="boxNumberAnimals" ErrorMessage="Valor numérico inteiro" Display="Dynamic"></asp:RegularExpressionValidator>
                         </p>
 
                         <p>
                             <asp:Label ID="lblSpecies" runat="server" Text="Espécie: "></asp:Label>                        
-                            <asp:DropDownList ID="ddlSpecies" runat="server" DataSourceID="Species" DataTextField="Name" DataValueField="AnimalSpecieID" AutoPostBack="True" OnSelectedIndexChanged="ddlSpecies_SelectedIndexChanged">
+                            <asp:DropDownList CssClass="form-control" ID="ddlSpecies" runat="server" DataSourceID="Species" DataTextField="Name" DataValueField="AnimalSpecieID" AutoPostBack="True" OnSelectedIndexChanged="ddlSpecies_SelectedIndexChanged">
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="Species" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [AnimalSpecieID], [Name] FROM [AnimalSpecies]"></asp:SqlDataSource>
                         </p>
 
                         <p>
                             <asp:Label ID="lblRaces" runat="server" Text="Raça: "></asp:Label>                        
-                            <asp:DropDownList ID="ddlRaces" runat="server"></asp:DropDownList>
+                            <asp:DropDownList CssClass="form-control" ID="ddlRaces" runat="server"></asp:DropDownList>
                         </p>
 
                         <p>
                             <asp:Label ID="lblHabitat" runat="server" Text="Habitat: "></asp:Label>                        
-                            <asp:DropDownList ID="ddlHabitat" runat="server" DataSourceID="Habitat" DataTextField="Description" DataValueField="AnimalHabitatID">
+                            <asp:DropDownList CssClass="form-control" ID="ddlHabitat" runat="server" DataSourceID="Habitat" DataTextField="Description" DataValueField="AnimalHabitatID">
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="Habitat" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalHabitats]"></asp:SqlDataSource>
                         </p>
@@ -107,7 +107,7 @@
                         <p>
                             <asp:Label ID="lblCondition" runat="server" Text="Condição: "></asp:Label>                        
 
-                            <asp:DropDownList ID="ddlCondition" runat="server" DataSourceID="Condition" DataTextField="Description" DataValueField="AnimalConditionID">
+                            <asp:DropDownList CssClass="form-control" ID="ddlCondition" runat="server" DataSourceID="Condition" DataTextField="Description" DataValueField="AnimalConditionID">
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="Condition" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalConditions]"></asp:SqlDataSource>
 
