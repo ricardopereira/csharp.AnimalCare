@@ -35,7 +35,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <p>Tipo:</p>
                                 <p>Data Inicio:</p>
                                 <p>Data Fim:</p>
@@ -43,7 +43,7 @@
                                 <p>Valor:</p>
                                 <p>Observações:</p>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <p><asp:Label ID="lblDiaryType" runat="server" Text=""></asp:Label></p>
                                 <p><asp:Label ID="lblDateDiaryStart" runat="server"></asp:Label></p>
                                 <p><asp:Label ID="lblDateDiaryEnd" runat="server"></asp:Label></p>
@@ -53,6 +53,7 @@
                             </div>
                             <div class="col-md-4">
                                 <img id="itemImage" runat="server" data-src="holder.js/200x200" class="img-thumbnail" alt="animal image" style="width: 200px; height: 200px;">
+                                <p><a runat="server" id="linkImage" visible="false">Imagem em tamanho original</a></p>
                             </div>
                     </div>
                 </div>

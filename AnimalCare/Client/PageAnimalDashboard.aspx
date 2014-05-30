@@ -41,7 +41,7 @@
 
                                     <!-- PESQUISAR -->
                                     <span class="input-group-btn">
-                                        <asp:Button ID="btnSearch" CssClass="btn btn-success" Text="Pesquisar" runat="server" type="button" OnClick="btnSearch_Click"></asp:Button>
+                                        <asp:Button ID="btnSearch" CssClass="btn btn-primary" Text="Pesquisar" runat="server" type="button" OnClick="btnSearch_Click"></asp:Button>
                                     </span>
 
                                     <!-- ORDENAR -->

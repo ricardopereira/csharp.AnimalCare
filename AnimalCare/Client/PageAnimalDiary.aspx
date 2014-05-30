@@ -27,6 +27,14 @@
 
         <div class="row">
             <div class="col-lg-12">
+                        <!-- Mensagem Erro -->
+                        <asp:Panel ID="pnlError" runat="server" Visible="false">
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4>Erro nas datas</h4>
+                                <p>A data inicial não pode ser superior à inferior.</p>
+                            </div>
+                        </asp:Panel>
                 <!-- Diário -->
                 <br />
                 <!--Filtro -->
@@ -35,16 +43,29 @@
                         <h3 class="panel-title">Filtro</h3>
                     </div>
                     <div class="panel-body">
-                        <p>
-                        <asp:Label ID="lblDateFrom" runat="server" Text="Data: "></asp:Label>
-                        <asp:TextBox ID="boxDateFrom" runat="server"></asp:TextBox>
-                        </p>
-
-                        <p>
-                        <asp:Label ID="lblType" runat="server" Text="Tipo: "></asp:Label>
-                        <asp:DropDownList ID="listType" runat="server" Width="200px" DataSourceID="TiposDS" DataTextField="Description" DataValueField="AnimalDiaryTypeID"></asp:DropDownList>
-                            <asp:SqlDataSource ID="TiposDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalDiaryTypes]"></asp:SqlDataSource>
-                        </p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <asp:Label ID="lblDateStart" runat="server" Text="Data Inicial: "></asp:Label><br /><br />
+                                    <asp:Calendar ID="calendarDateStart" runat="server"></asp:Calendar>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:Label ID="lblDateEnd" runat="server" Text="Data Final: "></asp:Label><br /><br />
+                                    <asp:Calendar ID="calendarDateEnd" runat="server"></asp:Calendar>
+                                </div>
+                            </div>
+                        <br />
+                        <div class ="row">
+                            <div class="col-md-4">
+                                <asp:Label ID="lblType" runat="server" Text="Tipo: "></asp:Label><br />
+                                <asp:CheckBox ID="chkType" runat="server" />  
+                                <asp:DropDownList ID="ddlListType" CssClass="form-control" runat="server" Width="200px" DataSourceID="TiposDS" DataTextField="Description" DataValueField="AnimalDiaryTypeID"></asp:DropDownList>
+                                    <asp:SqlDataSource ID="TiposDS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalDiaryTypes]"></asp:SqlDataSource>
+                            </div>
+                            <div class="col-md-6">
+                                <br /><br />
+                                <asp:Button ID="btnFind" runat="server" CssClass="btn btn-primary" Text="Pesquisar" OnClick="btnFind_Click" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -82,7 +103,8 @@
                                 <tr>
                                     <th></th>
                                     <th>#</th>
-                                    <th>Data</th>
+                                    <th>Data Inicio</th>
+                                    <th>Data Fim</th>
                                     <th>Tipo</th>
                                     <th>Valor</th>
                                     <th>Obs</th>
@@ -97,7 +119,8 @@
                                         <a class="btn btn-primary btn-xs" href="PageAnimalDiaryItem.aspx?DiaryItem=<%# Eval("AnimalDiaryID") %>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
                                     </td>
                                         <td><%# Eval("AnimalDiaryID") %></td>
-                                        <td><%# Eval("DateCreated") %></td>
+                                        <td><%# Eval("DateDiaryStart") %></td>
+                                        <td><%# Eval("DateDiaryEnd") %></td>
                                         <td><%# Eval("Description") %></td>
                                         <td><%# Eval("Value") %></td>
                                         <td><%# Eval("Observation") %></td>

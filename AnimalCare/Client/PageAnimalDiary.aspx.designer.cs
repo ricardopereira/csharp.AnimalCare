@@ -40,22 +40,49 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblAnimalRace;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// pnlError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateFrom;
+        protected global::System.Web.UI.WebControls.Panel pnlError;
         
         /// <summary>
-        /// boxDateFrom control.
+        /// lblDateStart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox boxDateFrom;
+        protected global::System.Web.UI.WebControls.Label lblDateStart;
+        
+        /// <summary>
+        /// calendarDateStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar calendarDateStart;
+        
+        /// <summary>
+        /// lblDateEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDateEnd;
+        
+        /// <summary>
+        /// calendarDateEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar calendarDateEnd;
         
         /// <summary>
         /// lblType control.
@@ -67,13 +94,22 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblType;
         
         /// <summary>
-        /// listType control.
+        /// chkType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList listType;
+        protected global::System.Web.UI.WebControls.CheckBox chkType;
+        
+        /// <summary>
+        /// ddlListType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlListType;
         
         /// <summary>
         /// TiposDS control.
@@ -83,6 +119,15 @@ namespace AnimalCare.Client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource TiposDS;
+        
+        /// <summary>
+        /// btnFind control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFind;
         
         /// <summary>
         /// reg control.

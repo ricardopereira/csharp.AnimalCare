@@ -21,46 +21,72 @@ namespace AnimalCare.Client
         {
             base.OnLoad(e);
             AnimalIDParam();
-
-            if (animalID > 0)
+            pnlError.Visible = false;
+            if (!IsPostBack)
             {
-                if (Ctrl.isOwnerOfAnimal(animalID))
+                if (animalID > 0)
                 {
-                    reg.Attributes["href"] = "PageAnimalDiaryNew.aspx?AnimalID=" + animalID;
-
-                    SqlDataReader dr;
-
-                    dr = Ctrl.getAnimalDiary(animalID).ExecuteReader();
-                    tblDiary.DataSource = dr;
-                    tblDiary.DataBind();
-                    dr.Close();
-
-                    SqlDataReader animalData = Ctrl.getAnimalInfo(animalID).ExecuteReader();
-
-                    if (!animalData.HasRows)
+                    if (Ctrl.isOwnerOfAnimal(animalID))
                     {
+                        reg.Attributes["href"] = "PageAnimalDiaryNew.aspx?AnimalID=" + animalID;
+                        calendarDateStart.SelectedDate = DateTime.Today;
+                        calendarDateEnd.SelectedDate = DateTime.Today;
+
+                        SqlDataReader dr;
+
+                        dr = Ctrl.getAnimalDiary(animalID).ExecuteReader();
+                        tblDiary.DataSource = dr;
+                        tblDiary.DataBind();
+                        dr.Close();
+
+                        SqlDataReader animalData = Ctrl.getAnimalInfo(animalID).ExecuteReader();
+
+                        if (!animalData.HasRows)
+                        {
+                            animalData.Close();
+                            Ctrl.Database.Connection.Close();
+                            return;
+                        }
+
+                        animalData.Read();
+
+                        lblAnimalName.Text = animalData.GetString(0);
+                        lblAnimalRace.Text = animalData.GetString(3);
+                        lblAnimalSpecie.Text = animalData.GetString(4);
+
                         animalData.Close();
-                        Ctrl.Database.Connection.Close();
-                        return;
+
                     }
-
-                    animalData.Read();
-
-                    lblAnimalName.Text = animalData.GetString(0);
-                    lblAnimalRace.Text = animalData.GetString(3);
-                    lblAnimalSpecie.Text = animalData.GetString(4);
-
-                    animalData.Close();
-                    
+                    else
+                        Response.Redirect("PageClientDashboard.aspx");
                 }
                 else
-                    Response.Redirect("PageClientDashboard.aspx");
+                    Response.Redirect("PageAnimalDashboard.aspx");
             }
-            else
-                Response.Redirect("PageAnimalDashboard.aspx");
         }
 
-        public void AnimalIDParam()
+        protected void btnFind_Click(object sender, EventArgs e)
+        {
+            DateTime start = calendarDateStart.SelectedDate;
+            DateTime end = calendarDateEnd.SelectedDate;
+            if (start > end)
+                pnlError.Visible = true;
+            else
+            {
+                SqlDataReader dr;
+                if(chkType.Checked)
+                    dr = Ctrl.getAnimalDiarySearch(animalID,start, end, Convert.ToInt32(ddlListType.SelectedValue)).ExecuteReader();
+                else
+                    dr = Ctrl.getAnimalDiarySearch(animalID,start,end,0).ExecuteReader();
+
+                tblDiary.DataSource = dr;
+                tblDiary.DataBind();
+                dr.Close();
+            }
+
+        }
+
+        private void AnimalIDParam()
         {
             if (!string.IsNullOrEmpty(Request.QueryString["AnimalID"]))
                 int.TryParse(Request.QueryString["AnimalID"], out animalID);

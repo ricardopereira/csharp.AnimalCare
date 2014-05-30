@@ -103,6 +103,15 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.HtmlControls.HtmlImage itemImage;
         
         /// <summary>
+        /// linkImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkImage;
+        
+        /// <summary>
         /// btnDash control.
         /// </summary>
         /// <remarks>

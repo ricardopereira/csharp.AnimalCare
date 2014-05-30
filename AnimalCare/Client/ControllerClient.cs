@@ -666,13 +666,34 @@ namespace AnimalCare.Client
 
         public SqlCommand getAnimalDiary(int animalID)
         {
-            String str = "SELECT ad.AnimalDiaryID, ad.DateCreated, adt.Description, ad.Value, ad.Observation FROM AnimalDiary ad";
+            String str = "SELECT ad.AnimalDiaryID, ad.DateDiaryStart, ad.DateDiaryEnd, adt.Description, ad.Value, ad.Observation FROM AnimalDiary ad";
             str += " INNER JOIN AnimalDiaryTypes adt ON adt.AnimalDiaryTypeID = ad.AnimalDiaryTypeID";
             str += " WHERE AnimalID = @animalID";
+            str += " ORDER BY ad.DateCreated DESC";
+
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@animalID", animalID);
             return cmd;
+        }
+
+        public SqlCommand getAnimalDiarySearch(int animalID, DateTime start, DateTime end, int typeValue)
+        {
+            String str = "SELECT ad.AnimalDiaryID, ad.DateDiaryStart, ad.DateDiaryEnd, adt.Description, ad.Value, ad.Observation FROM AnimalDiary ad";
+            str += " INNER JOIN AnimalDiaryTypes adt ON adt.AnimalDiaryTypeID = ad.AnimalDiaryTypeID";
+            str += " WHERE AnimalID = @animalID AND ad.DateDiaryStart >= @start AND ad.DateDiaryEnd <= @end";
+            if (typeValue > 0)
+                str += " AND ad.AnimalDiaryTypeID = @typeValue";
+            str += " ORDER BY ad.DateCreated DESC";
+
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
+            cmd.Parameters.AddWithValue("@start", start);
+            cmd.Parameters.AddWithValue("@end", end);
+            if(typeValue > 0)
+                cmd.Parameters.AddWithValue("@typeValue", typeValue);
+            return cmd;   
         }
     }
 }
