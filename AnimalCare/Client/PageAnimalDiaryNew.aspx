@@ -10,7 +10,8 @@
                 <h1 class="page-header">Anotações<small> novas</small> 
                 </h1>
             </div>
-                            <span class="label label-success">Modo inserção</span>
+            <span class="label label-success">Modo inserção</span>
+            <br />
         </div>
         <div class="row well span2">
             <div class="col-lg-12">
