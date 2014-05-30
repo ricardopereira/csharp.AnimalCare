@@ -277,8 +277,8 @@ namespace AnimalCare
                 "  WHEN State = 3 THEN 'Cancelado'" +
                 " END as StateStr" +
                 " FROM Appointments ap" +
-                "  INNER JOIN OwnerAnimalsRelation rel ON rel.OwnerID = " + getUniqueID() + " AND rel.Active = 1" +
-                "  LEFT OUTER JOIN Animals a ON a.AnimalID = rel.AnimalID" +
+                "  LEFT OUTER JOIN Animals a ON a.AnimalID = ap.AnimalID" +
+                "  LEFT OUTER JOIN Owners o ON o.OwnerID = ap.OwnerID" +
                 "  LEFT OUTER JOIN AppointmentTypes apt ON apt.AppointmentTypeID = ap.AppointmentTypeID" +
                 " WHERE DateAppointment > @dateFrom AND DateAppointment < @dateTo" +
                 "  AND ap.OwnerID = @id";
