@@ -152,6 +152,11 @@ namespace AnimalCare.Employee
             cmd.ExecuteNonQuery();
         }
 
+        public SqlCommand getSchedule()
+        {
+            return getAllSchedule(getMinDate(), getMaxDate());
+        }
+
         public SqlCommand getAppointments()
         {
             AppointmentState[] states = new AppointmentState[3];
@@ -196,33 +201,42 @@ namespace AnimalCare.Employee
             cmd.ExecuteNonQuery();
         }
 
-        public void createEvent(int appointmentID)
+        public void insertScheduleEvent(int ownerID, int animalID, String description, int serviceKindID, int professionalID, DateTime dateEvent)
         {
-              /*[ScheduleID] INT NOT NULL IDENTITY,
-              [Description] VARCHAR(50) NULL,
-              [DateEvent] DATETIME NOT NULL,
-              [Notified] BIT NULL,
-              [Present] BIT NULL,
-              [DateCreated] BIT NOT NULL,
-              [CreatedBy] UNIQUEIDENTIFIER NOT NULL,
-              [ServiceKindID] INT NOT NULL,
-              [OwnerID] INT NOT NULL,
-              [AnimalID] INT NULL,
-              [AnimalGroupID] INT NULL,
-              [ProfessionalID] INT NOT NULL,
-              [Priority] SMALLINT NULL,*/
+            /*
+            0-[ScheduleID] INT NOT NULL IDENTITY,
+            1-[Description] VARCHAR(50) NULL,
+            2-[DateEvent] DATETIME NOT NULL,
+            3-[Notified] BIT NULL,
+            4-[Present] BIT NULL,
+            5-[DateCreated] BIT NOT NULL,
+            6-[CreatedBy] UNIQUEIDENTIFIER NOT NULL,
+            7-[ServiceKindID] INT NOT NULL,
+            8-[OwnerID] INT NOT NULL,
+            9-[AnimalID] INT NULL,
+            10-[AnimalGroupID] INT NULL,
+            11-[ProfessionalID] INT NOT NULL,
+            12-[Priority] SMALLINT NULL
+             */
 
-            return;
+            String str = "INSERT INTO Schedule (Description,DateEvent,Notified,Present,DateCreated,CreatedBy,ServiceKindID,OwnerID,AnimalID,ProfessionalID)";
 
-            String str = "INSERT INTO Schedule(UserID)";
-            str += "VALUES(@UserID)";
+            str += " VALUES (@description,@dateEvent,@notified,@present,CURRENT_TIMESTAMP,@createdBy,@serviceKindID,@ownerID,@animalID,@professionalID)";
+
+            Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            //cmd.Parameters.AddWithValue("@UserID", );
+            cmd.Parameters.AddWithValue("@description", description);
+            cmd.Parameters.AddWithValue("@dateEvent", dateEvent);
+            cmd.Parameters.AddWithValue("@notified", false);
+            cmd.Parameters.AddWithValue("@present", false);
+            cmd.Parameters.AddWithValue("@createdBy", userGuid);
+            cmd.Parameters.AddWithValue("@serviceKindID", serviceKindID);
+            cmd.Parameters.AddWithValue("@ownerID", ownerID);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
+            cmd.Parameters.AddWithValue("@professionalID", professionalID);
 
             cmd.ExecuteNonQuery();
-
-            saveAppointment(appointmentID, (int)AppointmentState.astAccepted, "Verifique a agenda");
         }
     }
 }

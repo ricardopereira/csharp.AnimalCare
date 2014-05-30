@@ -57,15 +57,18 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxName"
                         CssClass="field-validation-error text-danger" ErrorMessage="Especifique o nome do animal." />
                         </p>
+
                         <p>                        
                             <asp:Label ID="Label1" runat="server" Text="Local: "></asp:Label>
                             <asp:DropDownList ID="ddlLocals" runat="server">
                         </asp:DropDownList>
                         </p>
+
                         <p>
                         <asp:Label ID="lblIdentity" runat="server" Text="Núm. Identidade: "></asp:Label>
                         <asp:TextBox ID="boxIdentity" runat="server" MaxLength="50"></asp:TextBox>
                         </p>
+
                         <p>                        
                         <asp:Label ID="lblSex" runat="server" Text="Sexo: "></asp:Label>
                         <asp:DropDownList ID="ddlSex" runat="server">
@@ -73,28 +76,33 @@
                             <asp:ListItem Value="2">Feminino</asp:ListItem>
                         </asp:DropDownList>
                         </p>
+
                         <p>                        
                         <asp:Label ID="lblGroup" runat="server" Text="Grupo: "></asp:Label>
                         <asp:CheckBox ID="chkGroup" runat="server" OnCheckedChanged="chkGroup_CheckedChanged" AutoPostBack="true"></asp:CheckBox>
                         <asp:Label ID="lblNGroup" Text="Número de Animais:" runat="server" Visible="False"></asp:Label>
                         <asp:TextBox ID="boxNumberAnimals" runat="server" Visible="False" Width="36px"></asp:TextBox>
                         </p>
+
                         <p>
                             <asp:Label ID="lblSpecies" runat="server" Text="Espécie: "></asp:Label>                        
                             <asp:DropDownList ID="ddlSpecies" runat="server" DataSourceID="Species" DataTextField="Name" DataValueField="AnimalSpecieID" AutoPostBack="True" OnSelectedIndexChanged="ddlSpecies_SelectedIndexChanged">
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="Species" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [AnimalSpecieID], [Name] FROM [AnimalSpecies]"></asp:SqlDataSource>
                         </p>
+
                         <p>
                             <asp:Label ID="lblRaces" runat="server" Text="Raça: "></asp:Label>                        
                             <asp:DropDownList ID="ddlRaces" runat="server"></asp:DropDownList>
                         </p>
+
                         <p>
                             <asp:Label ID="lblHabitat" runat="server" Text="Habitat: "></asp:Label>                        
                             <asp:DropDownList ID="ddlHabitat" runat="server" DataSourceID="Habitat" DataTextField="Description" DataValueField="AnimalHabitatID">
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="Habitat" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalHabitats]"></asp:SqlDataSource>
                         </p>
+
                         <p>
                             <asp:Label ID="lblCondition" runat="server" Text="Condição: "></asp:Label>                        
 
@@ -103,6 +111,7 @@
                             <asp:SqlDataSource ID="Condition" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [AnimalConditions]"></asp:SqlDataSource>
 
                         </p>
+
                     </div>
                 </div>
                 <!-- Painel com Calendário Datas -->

@@ -27,9 +27,12 @@
         <div class="row">
             <!-- PERFIL -->
             <div class="col-lg-12">
-                <p class="lead"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-sm" href="PageEmployee.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <h4>Funcionário</h4>
+                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageEmployee.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <br />
             </div>
         </div>
+
         <div class="row">
             <!-- MARCACOES -->
             <div class="col-lg-12">
@@ -37,7 +40,7 @@
                 <div class="table-responsive">
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Pedido de marcações</div>
+                        <div class="panel-heading"><strong>Pedido de marcações</strong></div>
                         <div class="panel-body">
                             Todas as marcações de clientes em espera de uma resposta:
                         </div>
@@ -68,6 +71,54 @@
                                         <td><%# Eval("Animal") %></td>
                                         <td><%# Eval("Detail") %></td>
                                         <td><%# Eval("StateStr") %></td>
+                                    </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- ROW -->
+
+        <div class="row">
+            <!-- MARCACOES -->
+            <div class="col-lg-12">
+                <!-- Tabela com as marcacoes -->
+                <div class="table-responsive">
+                    <div class="panel panel-warning">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><strong>Agenda</strong></div>
+                        <div class="panel-body">
+                            Eventos associados a cada profissional de saúde:
+                        </div>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Data</th>
+                                    <th>Proprietário</th>
+                                    <th>Animal</th>
+                                    <th>Descrição</th>
+                                    <th>Profissional</th>
+                                    <th>Serviço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:Repeater ID="tblSchedule" runat="server">
+                                    <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <a class="btn btn-primary btn-xs" href="PageEmployeeScheduleEdit.aspx?ScheduleID=<%# Eval("ScheduleID")%>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                        </td>
+                                        <td><%# Eval("DateEvent") %></td>
+                                        <td><%# Eval("Owner") %></td>
+                                        <td><%# Eval("Animal") %></td>
+                                        <td><%# Eval("Description") %></td>
+                                        <td><%# Eval("Professional") %></td>
+                                        <td><%# Eval("ServiceKind") %></td>
                                     </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>

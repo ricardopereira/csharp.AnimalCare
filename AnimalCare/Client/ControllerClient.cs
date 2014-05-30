@@ -608,6 +608,7 @@ namespace AnimalCare.Client
                 " INNER JOIN ServiceKinds k ON k.ServiceKindID = s.ServiceKindID" +
                 " INNER JOIN Animals a ON a.AnimalID = s.AnimalID" +
                 " WHERE DateEvent >= @dateFrom AND DateEvent <= @dateTo" +
+                "  AND Present = 0" +
                 "  AND OwnerID = @id";
 
             if (animalID > 0)
