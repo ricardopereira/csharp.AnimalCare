@@ -30,10 +30,14 @@ namespace AnimalCare.Employee
                 if (ownerID > 0)
                 {
                     lblOwner.Text = Ctrl.getOwnerName(ownerID);
+                    lblOwnerName.Text = lblOwner.Text;
 
                     SqlDataReader dr;
                     // Marcacoes
                     dr = Ctrl.getAllAnimals(ownerID).ExecuteReader();
+
+                    if (!dr.HasRows)
+                        pnlError.Visible = true;
 
                     // Efectuar o data binding
                     tblAnimals.DataSource = dr;

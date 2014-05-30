@@ -13,13 +13,13 @@ namespace AnimalCare.Doctor {
     public partial class PageDoctorDashboard {
         
         /// <summary>
-        /// tblLastServicos control.
+        /// tblLastServices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater tblLastServicos;
+        protected global::System.Web.UI.WebControls.Repeater tblLastServices;
         
         /// <summary>
         /// btnDay control.
@@ -47,6 +47,15 @@ namespace AnimalCare.Doctor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnMonth;
+        
+        /// <summary>
+        /// btnAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAll;
         
         /// <summary>
         /// lblSelected control.

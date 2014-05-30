@@ -16,8 +16,7 @@
         <div class="row">
             <!-- PERFIL -->
             <div class="col-lg-12">
-                <h4>Profissional de Saúde</h4>
-                <p class="text-muted"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-xs" href="PageDoctor.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
+                <p class="lead"><%: Ctrl.Bf.Name %> <a class="btn btn-default btn-sm" href="PageDoctor.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
                 <br />
             </div>
         </div>
@@ -55,11 +54,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <asp:Repeater ID="tblLastServicos" runat="server">
+                                <asp:Repeater ID="tblLastServices" runat="server">
                                     <ItemTemplate>
                                     <tr>
                                         <td>
                                             <a class="btn btn-warning btn-xs" href="PageDoctorServiceEdit.aspx?ServiceID=<%# Eval("ServiceID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                            
+                                            <asp:Label CssClass="label label-success" runat="server" Text="concluído" Visible='<%# Convert.ToBoolean(Eval("Done")) %>'></asp:Label>
                                         </td>
                                         <td><%# Eval("DateService") %></td>
                                         <td><%# Eval("Owner") %></td>
@@ -93,11 +94,12 @@
                                     <asp:Button ID="btnWeek" runat="server" CssClass="btn" Text="Semana" OnClick="btnWeek_Click" />
                                     <asp:Button ID="btnMonth" runat="server" CssClass="btn" Text="Mês" OnClick="btnMonth_Click" />
                                 </div>
+                                <asp:Button ID="btnAll" runat="server" CssClass="btn" Text="Todos" OnClick="btnAll_Click" />
                             </div>
                         </div>
 
                         <div class="panel-body">
-                            Eventos agendados: <asp:Label ID="lblSelected" runat="server" Text=""></asp:Label>
+                            Eventos agendados: <asp:Label ID="lblSelected" runat="server" CssClass="label label-info" Text=""></asp:Label>
                         </div>
 
                         <table class="table table-striped">

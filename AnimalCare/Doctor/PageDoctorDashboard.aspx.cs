@@ -27,10 +27,10 @@ namespace AnimalCare.Doctor
 
                 SqlDataReader dr;
 
-                // Marcacoes
+                // Serviços
                 dr = Ctrl.getLastServices().ExecuteReader();
-                tblLastServicos.DataSource = dr;
-                tblLastServicos.DataBind();
+                tblLastServices.DataSource = dr;
+                tblLastServices.DataBind();
                 dr.Close();
 
                 // Eventos
@@ -70,6 +70,16 @@ namespace AnimalCare.Doctor
             tblSchedule.DataBind();
             dr.Close();
             lblSelected.Text = "Mês";
+        }
+
+        protected void btnAll_Click(object sender, EventArgs e)
+        {
+            SqlDataReader dr;
+            dr = Ctrl.getSchedules().ExecuteReader();
+            tblSchedule.DataSource = dr;
+            tblSchedule.DataBind();
+            dr.Close();
+            lblSelected.Text = "Todos";
         }
     }
 }

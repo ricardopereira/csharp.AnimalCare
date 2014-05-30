@@ -39,7 +39,6 @@
                 </p>
                 <p><strong>Espécie:</strong> <asp:Label ID="lblSpecie" runat="server" Text="sem dado"></asp:Label></p>
                 <p><strong>Raça:</strong> <asp:Label ID="lblRace" runat="server" Text="sem dado"></asp:Label></p>
-
             </div>
 
             <div class="col-md-4">

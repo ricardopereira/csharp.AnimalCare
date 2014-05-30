@@ -532,9 +532,15 @@ namespace AnimalCare
             17-Specie
             18-Race
             19-Clinic
+            20-Done
              */
 
-            String sql = "SELECT sr.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind, r.Name Race, s.Name Specie, cl.Name Clinic" +
+            String sql = "SELECT sr.*, o.Name Owner, a.Name Animal, p.Name Professional, " +
+                "   sk.Description ServiceKind, r.Name Race, s.Name Specie, cl.Name Clinic," +
+                " CASE" +
+                "  WHEN DateConclusion IS NULL THEN 0" +
+                "  WHEN DateConclusion IS NOT NULL THEN 1" +
+                " END as Done" +
                 " FROM Services sr" +
                 "  LEFT OUTER JOIN Animals a ON a.AnimalID = sr.AnimalID" +
                 "  LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +

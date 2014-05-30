@@ -166,6 +166,11 @@ namespace AnimalCare.Doctor
             cmd.ExecuteNonQuery();
         }
 
+        public SqlCommand getSchedules()
+        {
+            return getAllSchedule(getMinDate(), getMaxDate());
+        }
+
         public SqlCommand getScheduleToday()
         {
             return getAllSchedule(DateTime.Today, DateTime.Today.AddDays(1));

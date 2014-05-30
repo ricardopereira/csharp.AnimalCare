@@ -40,6 +40,8 @@
                 <p><strong>Espécie:</strong> <asp:Label ID="lblSpecie" runat="server" Text="sem dado"></asp:Label></p>
                 <p><strong>Raça:</strong> <asp:Label ID="lblRace" runat="server" Text="sem dado"></asp:Label></p>
 
+                <br />
+                <h3><asp:Label ID="lblDone" CssClass="label label-success" runat="server" Text="Concluído" Visible="false"></asp:Label></h3>
             </div>
 
             <div class="col-md-4">
@@ -117,9 +119,7 @@
 
                         <p>
                         <asp:Label ID="lblObs" runat="server" Text="Observações: "></asp:Label>
-                        <asp:TextBox ID="boxObs" runat="server" class="form-control" MaxLength="150" Wrap="true"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorDescription" runat="server" ControlToValidate="boxDescription"
-                            CssClass="field-validation-error text-danger" ErrorMessage="Especifique a descrição do evento." />
+                        <asp:TextBox ID="boxObs" runat="server" class="form-control" MaxLength="150" Height="300" Wrap="true" TextMode="MultiLine"></asp:TextBox>
                         </p>
 
                     </div>
@@ -138,7 +138,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Gravar" OnClick="btnSave_Click"></asp:Button>
-                                <asp:Button ID="btnFinish" CssClass="btn btn-warning" runat="server" Text="Terminar serviço" OnClick="btnFinish_Click"></asp:Button>
+                                <asp:Button ID="btnFinish" CssClass="btn btn-warning" runat="server" Text="Gravar e concluír serviço" OnClick="btnFinish_Click"></asp:Button>
                                 <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" PostBackUrl="PageDoctorDashboard.aspx" CausesValidation="false"></asp:Button>
                             </div>
                         </div>
