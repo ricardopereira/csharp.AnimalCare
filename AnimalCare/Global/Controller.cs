@@ -490,5 +490,67 @@ namespace AnimalCare
 
             return cmd;
         }
+
+        public String getAllServiceSQL()
+        {
+            /*
+            0-[ServiceID] INT NOT NULL IDENTITY,
+            1-[OwnerID] INT NOT NULL,
+            2-[Name] VARCHAR(40) NOT NULL,
+            3-[Description] VARCHAR(100) NULL,
+            4-[DateService] DATETIME NULL,
+            5-[DateConclusion] DATETIME NULL,
+            6-[DateCreated] DATETIME NOT NULL,
+            7-[Observation] VARCHAR(150) NULL,
+            8-[ServiceKindID] INT NOT NULL,
+            9-[AnimalID] INT NULL,
+            10-[AnimalGroupID] INT NULL,
+            11-[ProfessionalID] INT NOT NULL,
+            12-[ClinicID] INT NULL,
+
+            13-Owner
+            14-Animal
+            15-Professional
+            16-ServiceKind
+            17-Specie
+            18-Race
+            19-Clinic
+             */
+
+            String sql = "SELECT sr.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind, r.Name Race, s.Name Specie, cl.Name Clinic" +
+                " FROM Services sr" +
+                "  LEFT OUTER JOIN Animals a ON a.AnimalID = sr.AnimalID" +
+                "  LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
+                "  LEFT OUTER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
+                "  LEFT OUTER JOIN Owners o ON o.OwnerID = sr.OwnerID" +
+                "  LEFT OUTER JOIN Professionals p ON p.ProfessionalID = sr.ProfessionalID" +
+                "  LEFT OUTER JOIN ServiceKinds sk ON sk.ServiceKindID = sr.ServiceKindID" +
+                "  LEFT OUTER JOIN Clinics cl ON cl.ClinicID = sr.ClinicID";
+            return sql;
+        }
+
+        public SqlCommand getAllServices(DateTime dateFrom, DateTime dateTo, int professionalID = 0, int limit = 0)
+        {
+            String str = getAllServiceSQL() +
+                " WHERE DateService > @dateFrom AND DateService < @dateTo";
+
+            if (professionalID > 0)
+                str += " AND sr.ProfessionalID = @professionalID";
+
+            str += " ORDER BY DateService DESC";
+
+            // Executar comando
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+            cmd.Parameters.AddWithValue("@dateTo", dateTo);
+
+            if (professionalID > 0)
+                cmd.Parameters.AddWithValue("@professionalID", professionalID);
+
+            if (limit > 0)
+                cmd.Parameters.AddWithValue("@limit", limit);
+
+            return cmd;
+        }
     }
 }

@@ -8,6 +8,20 @@ using System.Web.Security;
 
 namespace AnimalCare.Doctor
 {
+    public static class DateTimeExtensions
+    {
+        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        {
+            int diff = dt.DayOfWeek - startOfWeek;
+            if (diff < 0)
+            {
+                diff += 7;
+            }
+
+            return dt.AddDays(-1 * diff).Date;
+        }
+    }
+
     public class DoctorBuffer
     {
         private int professionalID;
@@ -150,6 +164,34 @@ namespace AnimalCare.Doctor
             cmd.Parameters.AddWithValue("@personalNumber", personalNumber);
 
             cmd.ExecuteNonQuery();
+        }
+
+        public SqlCommand getScheduleToday()
+        {
+            return getAllSchedule(DateTime.Today, DateTime.Today.AddDays(1));
+        }
+
+        public SqlCommand getScheduleWeek()
+        {
+            DateTime monday = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
+            DateTime sunday = monday.AddDays(6);
+
+            return getAllSchedule(monday, sunday);
+        }
+
+        public SqlCommand getScheduleMonth()
+        {
+            var today = DateTime.Today;
+            var first = new DateTime(today.Year, today.Month, 1);
+            var month = first.AddMonths(1);
+            var last = month.AddDays(-1).AddHours(22);
+
+            return getAllSchedule(first, last);
+        }
+
+        public SqlCommand getLastServices()
+        {
+            return getAllServices(getMinDate(), getMaxDate(), Bf.ProfessionalID, 5);
         }
     }
 }
