@@ -43,7 +43,7 @@
                         <asp:Label ID="lblName" runat="server" Text="Nome: "></asp:Label>
                         <asp:TextBox ID="boxName" runat="server" MaxLength="100"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxName"
-                        CssClass="field-validation-error text-danger" ErrorMessage="Especifique o nome do animal." />
+                        CssClass="label label-danger" ErrorMessage="Especifique o nome do animal." />
                         </p>
 
                         <p>
@@ -64,6 +64,7 @@
                         <asp:CheckBox ID="chkGroup" runat="server" OnCheckedChanged="chkGroup_CheckedChanged" AutoPostBack="true"></asp:CheckBox>
                         <asp:Label ID="lblNGroup" Text="Número de Animais:" runat="server" Visible="False"></asp:Label>
                         <asp:TextBox ID="boxNumberAnimals" runat="server" Visible="False" Width="36px"></asp:TextBox>
+                        <asp:RegularExpressionValidator CssClass="label label-danger" ID="RegularExpressionValidator1" ValidationExpression="\d+" runat="server" ControlToValidate="boxNumberAnimals" ErrorMessage="Valor numérico inteiro" Display="Dynamic"></asp:RegularExpressionValidator>
                         </p>
 
                         <p>

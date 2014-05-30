@@ -32,21 +32,21 @@
                         <asp:Label ID="lblName" runat="server" Text="Nome do Local: "></asp:Label>
                         <asp:TextBox ID="boxName" class="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxName"
-                        CssClass="field-validation-error text-danger" ErrorMessage="Especifique o nome do local." />
+                        CssClass="label label-danger" ErrorMessage="Especifique o nome do local." />
                         </p>
 
                         <p>
                         <asp:Label ID="lblAddress" runat="server" Text="Morada: "></asp:Label>
                         <asp:TextBox ID="boxAddress" class="form-control" runat="server" Width="90%"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="boxAddress"
-                        CssClass="field-validation-error text-danger" ErrorMessage="Especifique a morada do local." />
+                        CssClass="label label-danger" ErrorMessage="Especifique a morada do local." />
                         </p>
 
                         <p>
                         <asp:Label ID="lblZipCode" runat="server" Text="Código postal: "></asp:Label>
                         <asp:TextBox ID="boxZipCode" class="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="boxZipCode"
-                        CssClass="field-validation-error text-danger" ErrorMessage="Especifique o código postal do local." />
+                        CssClass="label label-danger" ErrorMessage="Especifique o código postal do local." />
                         </p>
 
                         <p>

@@ -57,7 +57,7 @@
                                                 <asp:Label ID="lblDiaryValue" runat="server" Text="Valor: "></asp:Label>
                                                 <asp:TextBox ID="boxDiaryValue" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="boxDiaryValue"
-                                                CssClass="field-validation-error text-danger" ErrorMessage="Especifique o valor"></asp:RequiredFieldValidator>
+                                                CssClass="label label-danger" ErrorMessage="Especifique o valor"></asp:RequiredFieldValidator>
                                                 </p>
 
                                                 <p>
