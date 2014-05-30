@@ -130,6 +130,24 @@ namespace AnimalCare.Employee {
         protected global::System.Web.UI.WebControls.Calendar calDateEvent;
         
         /// <summary>
+        /// listHour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList listHour;
+        
+        /// <summary>
+        /// listMinutes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList listMinutes;
+        
+        /// <summary>
         /// lblDescription control.
         /// </summary>
         /// <remarks>
