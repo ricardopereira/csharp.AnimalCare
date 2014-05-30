@@ -180,7 +180,7 @@ namespace AnimalCare.Employee
             Ctrl.insertScheduleEvent(_ownerID, _animalID, boxDescription.Text.Trim(), Convert.ToInt32(listServiceKind.SelectedValue), Convert.ToInt32(listProfessional.SelectedValue), calDateEvent.SelectedDate);
 
             if (!lblAppointmentID.Text.Equals(""))
-                Ctrl.saveAppointment(Convert.ToInt32(lblAppointmentID.Text.Trim()), (int)AppointmentState.astAccepted, "Marcação aceite.");
+                Ctrl.saveAppointment(Convert.ToInt32(lblAppointmentID.Text.Trim()), (int)AppointmentState.astAccepted, "Agendado para " + Convert.ToString(calDateEvent.SelectedDate));
 
             Response.Redirect("~/Employee/PageEmployeeDashboard.aspx");
         }
