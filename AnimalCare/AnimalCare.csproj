@@ -115,7 +115,6 @@
     <Content Include="Client\PageAnimalDiaryItem.aspx" />
     <Content Include="Client\PageAnimalDiaryNew.aspx" />
     <Content Include="Client\PageAnimalEdit.aspx" />
-    <Content Include="Client\PageAnimalGroups.aspx" />
     <Content Include="Client\PageAnimalHistory.aspx" />
     <Content Include="Client\PageAnimalHistoryItem.aspx" />
     <Content Include="Client\PageClient.aspx" />
@@ -130,6 +129,10 @@
     <Content Include="Doctor\PageDoctor.aspx" />
     <Content Include="Doctor\PageDoctorDashboard.aspx" />
     <Content Include="Doctor\PageDoctorEdit.aspx" />
+    <Content Include="Doctor\PageDoctorServiceAnimal.aspx" />
+    <Content Include="Doctor\PageDoctorServiceEdit.aspx" />
+    <Content Include="Doctor\PageDoctorServiceNew.aspx" />
+    <Content Include="Doctor\PageDoctorServiceOwner.aspx" />
     <Content Include="Doctor\PageDoctorServices.aspx" />
     <Content Include="Employee\PageEmployee.aspx" />
     <Content Include="Employee\PageEmployeeAppointments.aspx" />
@@ -290,13 +293,6 @@
     <Compile Include="Client\PageAnimalEdit.aspx.designer.cs">
       <DependentUpon>PageAnimalEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Client\PageAnimalGroups.aspx.cs">
-      <DependentUpon>PageAnimalGroups.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Client\PageAnimalGroups.aspx.designer.cs">
-      <DependentUpon>PageAnimalGroups.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Client\PageAnimalHistory.aspx.cs">
       <DependentUpon>PageAnimalHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -392,6 +388,34 @@
     </Compile>
     <Compile Include="Doctor\PageDoctorEdit.aspx.designer.cs">
       <DependentUpon>PageDoctorEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceAnimal.aspx.cs">
+      <DependentUpon>PageDoctorServiceAnimal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceAnimal.aspx.designer.cs">
+      <DependentUpon>PageDoctorServiceAnimal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceEdit.aspx.cs">
+      <DependentUpon>PageDoctorServiceEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceEdit.aspx.designer.cs">
+      <DependentUpon>PageDoctorServiceEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceNew.aspx.cs">
+      <DependentUpon>PageDoctorServiceNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceNew.aspx.designer.cs">
+      <DependentUpon>PageDoctorServiceNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceOwner.aspx.cs">
+      <DependentUpon>PageDoctorServiceOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorServiceOwner.aspx.designer.cs">
+      <DependentUpon>PageDoctorServiceOwner.aspx</DependentUpon>
     </Compile>
     <Compile Include="Doctor\PageDoctorServices.aspx.cs">
       <DependentUpon>PageDoctorServices.aspx</DependentUpon>

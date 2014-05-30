@@ -469,15 +469,20 @@ namespace AnimalCare
             17-ServiceKind
             18-Specie
             19-Race
+            20-Local
+            21-LocalGPS
+            22-LocalName
              */
 
-            String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind, r.Name Race, s.Name Specie" +
+            String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind,"+
+                "   r.Name Race, s.Name Specie, l.ZipCode Local, l.GPS LocalGPS, l.Name LocalName" +
                 " FROM Schedule sh" +
                 "  LEFT OUTER JOIN Animals a ON a.AnimalID = sh.AnimalID" +
                 "  LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
                 "  LEFT OUTER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
                 "  LEFT OUTER JOIN Owners o ON o.OwnerID = sh.OwnerID" +
                 "  LEFT OUTER JOIN Professionals p ON p.ProfessionalID = sh.ProfessionalID" +
+                "  LEFT OUTER JOIN OwnerLocals l ON l.OwnerLocalID = a.OwnerLocalID" +
                 "  LEFT OUTER JOIN ServiceKinds sk ON sk.ServiceKindID = sh.ServiceKindID";
             return sql;
         }
@@ -520,7 +525,6 @@ namespace AnimalCare
             10-[AnimalGroupID] INT NULL,
             11-[ProfessionalID] INT NOT NULL,
             12-[ClinicID] INT NULL,
-
             13-Owner
             14-Animal
             15-Professional

@@ -170,8 +170,8 @@ namespace AnimalCare.Client
             // Current User
             Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
 
-            String str = "INSERT INTO Owners(UserID)";
-            str += "VALUES(@UserID)";
+            String str = "INSERT INTO Owners (UserID)";
+            str += " VALUES (@UserID)";
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@UserID", userGuid);

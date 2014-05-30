@@ -48,7 +48,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Data</th>
+                                    <th>Proprietário</th>
                                     <th>Animal</th>
+                                    <th>Tipo</th>
+                                    <th>Clínica</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,8 +61,11 @@
                                         <td>
                                             <a class="btn btn-warning btn-xs" href="PageDoctorServiceEdit.aspx?ServiceID=<%# Eval("ServiceID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
                                         </td>
-                                        <td><%# Eval("DataService") %></td>
+                                        <td><%# Eval("DateService") %></td>
+                                        <td><%# Eval("Owner") %></td>
                                         <td><%# Eval("Animal") %></td>
+                                        <td><%# Eval("ServiceKind") %></td>
+                                        <td><%# Eval("Clinic") %></td>
                                     </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -111,14 +117,20 @@
                                     <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <a class="btn btn-success btn-xs" href="PageDoctorServiceNew.aspx?ScheduleID=<%# Eval("ScheduleID")%>" role="button">Criar serviço</span></a>
+                                            <a class="btn btn-success btn-xs" href="PageDoctorServiceNew.aspx?ScheduleID=<%# Eval("ScheduleID")%>&OwnerID=<%# Eval("OwnerID")%>&AnimalID=<%# Eval("AnimalID")%>" 
+                                                role="button">Criar serviço</span></a>
                                         </td>
                                         <td><%# Eval("DateEvent") %></td>
                                         <td><%# Eval("Owner") %></td>
                                         <td><%# Eval("Animal") %></td>
                                         <td><%# Eval("Description") %></td>
                                         <td><%# Eval("ServiceKind") %></td>
-                                        <td>GPS</td>
+                                        <td>
+                                            <%# Eval("Local") %>
+                                            <a href="#" class="popover-appointments btn btn-primary btn-xs" data-toggle="popover"
+                                                data-content='Código-postal: <%# Eval("Local") %> - GPS <%# Eval("LocalGPS") %>' role="button"
+                                                data-original-title='<%# Eval("LocalName") %>'><span class="glyphicon glyphicon-info-sign"></span></a>
+                                        </td>
                                     </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -129,5 +141,11 @@
 
             </div>
         </div><!-- ROW -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".popover-appointments").popover({ placement: 'left' });
+    });
+</script>
 
 </asp:Content>
