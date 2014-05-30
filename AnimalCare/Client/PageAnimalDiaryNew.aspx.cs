@@ -45,13 +45,13 @@ namespace AnimalCare.Client
 
                 if (!animalData.IsDBNull(0))
                     lblAnimalName.Text = animalData.GetString(0);
-                if (!animalData.IsDBNull(4))
+                if (!animalData.IsDBNull(3))
                     lblAnimalRace.Text = animalData.GetString(3);
                 if (!animalData.IsDBNull(4))
                     lblAnimalSpecie.Text = animalData.GetString(4);
 
-                calendarDateDiaryStart.SelectedDate = DateTime.Today;
-                calendarDateDiaryEnd.SelectedDate = DateTime.Today;
+                calendarDateDiaryStart.SelectedDate = DateTime.Now;
+                calendarDateDiaryEnd.SelectedDate = DateTime.Now;
 
                 animalData.Close();
             }
