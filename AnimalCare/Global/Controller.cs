@@ -27,6 +27,18 @@ namespace AnimalCare
         astDone
     };
 
+    public enum ScheduleState
+    {
+        [Description("Agendado")]
+        shtAgended,
+
+        [Description("Efectuado")]
+        shtDone,
+
+        [Description("Cancelado")]
+        shtCancelado
+    };
+
     public abstract class Controller
     {
         private DBConn db;
@@ -450,12 +462,13 @@ namespace AnimalCare
             10-[AnimalGroupID] INT NULL,
             11-[ProfessionalID] INT NOT NULL,
             12-[Priority] SMALLINT NULL
-            13-Owner
-            14-Animal
-            15-Professional
-            16-ServiceKind
-            17-Specie
-            18-Race
+            13-[State] SMALLINT NULL
+            14-Owner
+            15-Animal
+            16-Professional
+            17-ServiceKind
+            18-Specie
+            19-Race
              */
 
             String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind, r.Name Race, s.Name Specie" +
@@ -473,7 +486,7 @@ namespace AnimalCare
         {
             String str = getAllScheduleSQL() +
                 " WHERE DateEvent > @dateFrom AND DateEvent < @dateTo" +
-                "   AND Present = @present "; //AND Notified = @notified
+                "   AND Present = @present AND State = @state";
 
             if (professionalID > 0)
                 str += " AND ProfessionalID = @professionalID";
@@ -483,7 +496,7 @@ namespace AnimalCare
             cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
             cmd.Parameters.AddWithValue("@dateTo", dateTo);
             cmd.Parameters.AddWithValue("@present", present);
-            //cmd.Parameters.AddWithValue("@notified", notified);
+            cmd.Parameters.AddWithValue("@state", (int)ScheduleState.shtAgended);
 
             if (professionalID > 0)
                 cmd.Parameters.AddWithValue("@professionalID", professionalID);

@@ -29,78 +29,7 @@ namespace AnimalCare.Employee
                 {
                     if (!IsPostBack)
                     {
-                        AppointmentState currentState;
-
-                        String sql = Ctrl.getAllAppointmentsSQL() + 
-                            " WHERE [AppointmentID] = @id";
-
-                        SqlCommand cmd = new SqlCommand(sql, Ctrl.Database.Connection);
-                        cmd.Parameters.AddWithValue("@id", appointmentID);
-                        SqlDataReader data = cmd.ExecuteReader();
-
-                        if (!data.HasRows)
-                        {
-                            data.Close();
-                            Ctrl.Database.Connection.Close();
-                            return;
-                        }
-
-                        data.Read();
-
-                        if (!data.IsDBNull(5))
-                            lblDate.Text = Convert.ToString(data.GetDateTime(5)); //Date
-
-                        if (!data.IsDBNull(7))
-                            boxReason.Text = data.GetString(7); //Reason
-
-                        if (!data.IsDBNull(8))
-                            lblDetail.Text = data.GetString(8); //Detail
-
-                        if (!data.IsDBNull(9)) {
-                            if (!data.GetBoolean(9)) //Urgent
-                                lblUrgent.Visible = false;
-                        }
-                        else
-                            lblUrgent.Visible = false;
-
-                        if (!data.IsDBNull(10))
-                            currentState = (AppointmentState)data.GetInt16(10); //State
-                        else
-                            currentState = AppointmentState.astRejected;
-
-                        if (!data.IsDBNull(11))
-                            lblAnimal.Text = data.GetString(11); //Animal
-
-                        if (!data.IsDBNull(12))
-                            lblOwner.Text = data.GetString(12); //Owner
-
-                        if (!data.IsDBNull(13))
-                            lblAppointmentType.Text = data.GetString(13); //AppointmentType
-
-                        if (!data.IsDBNull(14))
-                            lblSpecie.Text = data.GetString(14); //Specie
-
-                        if (!data.IsDBNull(15))
-                            lblRace.Text = data.GetString(15); //Race
-
-                        data.Close();
-
-                        // Verificar os dados
-                        if (currentState == AppointmentState.astCanceled) {
-                            btnCreateAndSave.Visible = false;
-                            btnSave.Text = "Ignorar";
-                            btnSave.CausesValidation = false;
-                            lblCanceled.Visible = true;
-                            boxReason.ReadOnly = true;
-                            rdbState.Enabled = false;
-                        }
-                        else if (currentState == AppointmentState.astAccepted) {
-                            rdbState.SelectedIndex = 0;
-                        }
-
-                        // Verificar o estado
-                        if (rdbState.SelectedIndex >= 0)
-                            rdbState_SelectedIndexChanged(null, null);
+                        loadAppointment();
                     }
                 }
                 else
@@ -116,6 +45,85 @@ namespace AnimalCare.Employee
                 int.TryParse(Request.QueryString["AppointmentID"], out appointmentID);
             else
                 appointmentID = 0;
+        }
+
+        private void loadAppointment()
+        {
+            AppointmentState currentState;
+
+            String sql = Ctrl.getAllAppointmentsSQL() +
+                " WHERE [AppointmentID] = @id";
+
+            SqlCommand cmd = new SqlCommand(sql, Ctrl.Database.Connection);
+            cmd.Parameters.AddWithValue("@id", appointmentID);
+            SqlDataReader data = cmd.ExecuteReader();
+
+            if (!data.HasRows)
+            {
+                data.Close();
+                Ctrl.Database.Connection.Close();
+                return;
+            }
+
+            data.Read();
+
+            if (!data.IsDBNull(5))
+                lblDate.Text = Convert.ToString(data.GetDateTime(5)); //Date
+
+            if (!data.IsDBNull(7))
+                boxReason.Text = data.GetString(7); //Reason
+
+            if (!data.IsDBNull(8))
+                lblDetail.Text = data.GetString(8); //Detail
+
+            if (!data.IsDBNull(9))
+            {
+                if (!data.GetBoolean(9)) //Urgent
+                    lblUrgent.Visible = false;
+            }
+            else
+                lblUrgent.Visible = false;
+
+            if (!data.IsDBNull(10))
+                currentState = (AppointmentState)data.GetInt16(10); //State
+            else
+                currentState = AppointmentState.astRejected;
+
+            if (!data.IsDBNull(11))
+                lblAnimal.Text = data.GetString(11); //Animal
+
+            if (!data.IsDBNull(12))
+                lblOwner.Text = data.GetString(12); //Owner
+
+            if (!data.IsDBNull(13))
+                lblAppointmentType.Text = data.GetString(13); //AppointmentType
+
+            if (!data.IsDBNull(14))
+                lblSpecie.Text = data.GetString(14); //Specie
+
+            if (!data.IsDBNull(15))
+                lblRace.Text = data.GetString(15); //Race
+
+            data.Close();
+
+            // Verificar os dados
+            if (currentState == AppointmentState.astCanceled)
+            {
+                btnCreateAndSave.Visible = false;
+                btnSave.Text = "Ignorar";
+                btnSave.CausesValidation = false;
+                lblCanceled.Visible = true;
+                boxReason.ReadOnly = true;
+                rdbState.Enabled = false;
+            }
+            else if (currentState == AppointmentState.astAccepted)
+            {
+                rdbState.SelectedIndex = 0;
+            }
+
+            // Verificar o estado
+            if (rdbState.SelectedIndex >= 0)
+                rdbState_SelectedIndexChanged(null, null);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

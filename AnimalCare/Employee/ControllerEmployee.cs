@@ -217,11 +217,12 @@ namespace AnimalCare.Employee
             10-[AnimalGroupID] INT NULL,
             11-[ProfessionalID] INT NOT NULL,
             12-[Priority] SMALLINT NULL
+            13-[State] SMALLINT NULL
              */
 
-            String str = "INSERT INTO Schedule (Description,DateEvent,Notified,Present,DateCreated,CreatedBy,ServiceKindID,OwnerID,AnimalID,ProfessionalID)";
+            String str = "INSERT INTO Schedule (Description,DateEvent,Notified,Present,DateCreated,CreatedBy,ServiceKindID,OwnerID,AnimalID,ProfessionalID,State)";
 
-            str += " VALUES (@description,@dateEvent,@notified,@present,CURRENT_TIMESTAMP,@createdBy,@serviceKindID,@ownerID,@animalID,@professionalID)";
+            str += " VALUES (@description,@dateEvent,@notified,@present,CURRENT_TIMESTAMP,@createdBy,@serviceKindID,@ownerID,@animalID,@professionalID,0)";
 
             Guid userGuid = (Guid)Membership.GetUser().ProviderUserKey;
 
@@ -239,7 +240,7 @@ namespace AnimalCare.Employee
             cmd.ExecuteNonQuery();
         }
 
-        public void updateScheduleEvent(int scheduleID, String description, bool notified, bool present, int serviceKindID, int professionalID, DateTime dateEvent)
+        public void updateScheduleEvent(int scheduleID, String description, bool notified, bool present, int serviceKindID, int professionalID, DateTime dateEvent, int state = 0)
         {
             if (scheduleID <= 0) return;
 
@@ -249,7 +250,8 @@ namespace AnimalCare.Employee
                 "  Notified = @notified," +
                 "  Present = @present," +
                 "  ServiceKindID = @serviceKindID," +
-                "  ProfessionalID = @professionalID" +
+                "  ProfessionalID = @professionalID," +
+                "  state = @state" +
                 " WHERE ScheduleID = @id ";
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
@@ -260,6 +262,7 @@ namespace AnimalCare.Employee
             cmd.Parameters.AddWithValue("@present", present);
             cmd.Parameters.AddWithValue("@serviceKindID", serviceKindID);
             cmd.Parameters.AddWithValue("@professionalID", professionalID);
+            cmd.Parameters.AddWithValue("@state", state);
 
             cmd.ExecuteNonQuery();
         }

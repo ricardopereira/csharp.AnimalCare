@@ -267,6 +267,7 @@ CREATE TABLE [dbo].[Schedule] (
   [AnimalGroupID] INT NULL,
   [ProfessionalID] INT NOT NULL,
   [Priority] SMALLINT NULL,
+  [State] SMALLINT NULL,
   PRIMARY KEY ([ScheduleID]),
   CONSTRAINT [fk_Schedule_ServiceKinds]
     FOREIGN KEY ([ServiceKindID])
@@ -343,8 +344,8 @@ CREATE TABLE [dbo].[AnimalDiary] (
   [AnimalDiaryID] INT NOT NULL IDENTITY,
   [AnimalID] INT NOT NULL,
   [AnimalDiaryTypeID] INT NOT NULL,
-  [DateDiaryTo] DATETIME NOT NULL,
-  [DateDiaryFrom] DATETIME NULL,
+  [DateDiaryStart] DATETIME NOT NULL,
+  [DateDiaryEnd] DATETIME NULL,
   [DateCreated] DATETIME NOT NULL,
   [Value] DECIMAL(18,9) NOT NULL,
   [Observation] VARCHAR(45) NULL,
