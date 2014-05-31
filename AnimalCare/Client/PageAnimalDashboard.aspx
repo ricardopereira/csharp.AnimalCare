@@ -43,15 +43,6 @@
                                     <span class="input-group-btn">
                                         <asp:Button ID="btnSearch" CssClass="btn btn-primary" Text="Pesquisar" runat="server" type="button" OnClick="btnSearch_Click"></asp:Button>
                                     </span>
-
-                                    <!-- ORDENAR -->
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ordenação <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Ascedente</a></li>
-                                            <li><a href="#">Descendente</a></li>
-                                        </ul>
-                                    </span>
                                 </div>
 
                             </div>
@@ -71,21 +62,22 @@
                                 <asp:Repeater ID="tabelaAnimais" runat="server">
                                     <ItemTemplate>
                                     <tr>
-                                        <td>
+                                            <td style="width: 400px;">
                                             <!-- Opcoes de linha -->
-                                            <a class="btn btn-primary btn-xs" href="PageAnimal.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                            <a class="btn btn-warning btn-xs" href="PageAnimalEdit.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
-                                            <a class="btn btn-info btn-xs" href="PageAnimalDiary.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-file"></span></a>
-                                        </td>
-                                        <td>
-                                            <%# Eval("AnimalID")%>
-                                        </td>
-                                        <td>
-                                            <%# Eval("Name")%>
-                                        </td>
-                                        <td><%# Eval("Race")%></td>
-                                        <td><%# Eval("Specie")%></td>
-                                    </tr>
+                                                <a class="btn btn-primary btn-xs" href="PageAnimal.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-info-sign"> Info</span></a>
+                                                <a class="btn btn-warning btn-xs" href="PageAnimalEdit.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-edit"> Editar</span></a>
+                                                <a class="btn btn-info btn-xs" href="PageAnimalHistory.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-file"> Histórico</span></a>
+                                                <a class="btn btn-success btn-xs" href="PageAnimalDiary.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-paperclip"> Anotação</span></a>
+                                            </td>
+                                            <td>
+                                                <%# Eval("AnimalID")%>
+                                            </td>
+                                            <td>
+                                                <%# Eval("Name")%>
+                                            </td>
+                                                <td><%# Eval("Race")%></td>
+                                                <td><%# Eval("Specie")%></td>
+                                            </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </tbody>

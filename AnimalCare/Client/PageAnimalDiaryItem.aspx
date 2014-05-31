@@ -42,6 +42,7 @@
                                 <p>Inserido em:</p>
                                 <p>Valor:</p>
                                 <p>Observações:</p>
+                                <p>Comentário Médico:</p>
                             </div>
                             <div class="col-md-6">
                                 <p><asp:Label ID="lblDiaryType" runat="server" Text=""></asp:Label></p>
@@ -50,6 +51,7 @@
                                 <p><asp:Label ID="lblCreated" runat="server"></asp:Label></p>
                                 <p><asp:Label ID="lblValue" runat="server" Text="Valor: "></asp:Label></p>
                                 <p><asp:Label ID="lblDiaryObs" runat="server"></asp:Label></p>
+                                <p><asp:Label ID="lblDiaryComment" runat="server"></asp:Label></p>
                             </div>
                             <div class="col-md-4">
                                 <img id="itemImage" runat="server" data-src="holder.js/200x200" class="img-thumbnail" alt="animal image" style="width: 200px; height: 200px;">

@@ -236,7 +236,7 @@ namespace AnimalCare.Doctor
 
             String str = "INSERT INTO Services " +
                 " VALUES (@ownerID,@name,@description,@dateService,NULL,CURRENT_TIMESTAMP," +
-                        " @observation,@serviceKindID,@animalID,NULL,@professionalID,@clinicID)";
+                        " @observation,@serviceKindID,@animalID,@professionalID,@clinicID)";
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@ownerID", ownerID);

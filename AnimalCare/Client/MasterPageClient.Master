@@ -29,11 +29,10 @@
                           <li><a href="PageClientDashboard.aspx">Dashboard</a></li>
                           <li><a href="PageClient.aspx">Perfil</a></li>
                           <li><a href="PageClientLocals.aspx">Locais</a></li>
-                          <li><a href="PageClientAppointments.aspx">Marcações</a></li>
                           <li class="divider"></li>
                           <li class="dropdown-header">Área Animal</li>
                           <li><a href="PageAnimalDashboard.aspx">Animais</a></li>
-                          <li><a href="PageAnimalHistory.aspx">Historial clínico</a></li>
+                          <li><a href="PageClientAppointments.aspx">Marcações</a></li>
                       </ul>
                   </li>
                   <li><a id="logoutLink" href="../Account/Logout.aspx">Terminar Sessão</a></li>

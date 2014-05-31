@@ -94,6 +94,15 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblDiaryObs;
         
         /// <summary>
+        /// lblDiaryComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDiaryComment;
+        
+        /// <summary>
         /// itemImage control.
         /// </summary>
         /// <remarks>
