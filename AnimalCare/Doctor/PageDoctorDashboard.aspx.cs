@@ -21,6 +21,9 @@ namespace AnimalCare.Doctor
         {
             base.OnLoad(e);
 
+            if (Ctrl.Bf.ProfessionalID < 1)
+                Response.Redirect("PageDoctorEdit.aspx");
+
             if (!IsPostBack && User.Identity.IsAuthenticated)
             {
                 refreshController();

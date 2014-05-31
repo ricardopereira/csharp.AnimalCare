@@ -21,6 +21,9 @@ namespace AnimalCare.Employee
         {
             base.OnLoad(e);
 
+            if (Ctrl.Bf.ProfessionalID < 1)
+                Response.Redirect("PageEmployeeEdit.aspx");
+
             if (User.Identity.IsAuthenticated)
             {
                 loadAppointmentID();

@@ -23,6 +23,9 @@ namespace AnimalCare.Employee
         {
             base.OnLoad(e);
 
+            if (Ctrl.Bf.ProfessionalID < 1)
+                Response.Redirect("PageEmployeeEdit.aspx");
+
             loadParameters();
 
             if (!IsPostBack && User.Identity.IsAuthenticated)

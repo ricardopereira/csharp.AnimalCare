@@ -24,6 +24,9 @@ namespace AnimalCare.Doctor
         {
             base.OnLoad(e);
 
+            if (Ctrl.Bf.ProfessionalID < 1)
+                Response.Redirect("PageDoctorEdit.aspx");
+
             loadParameters();
 
             if (animalDiaryID > 0)
