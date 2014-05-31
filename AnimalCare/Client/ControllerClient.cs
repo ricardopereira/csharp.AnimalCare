@@ -529,20 +529,33 @@ namespace AnimalCare.Client
             }
         }
 
+        public bool isAnimalsInThisLocal(int ownerLocalID)
+        {
+            String str = "SELECT * FROM Animals WHERE OwnerLocalID = @ownerLocalID";
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@ownerLocalID", ownerLocalID);
+
+            SqlDataReader localData = cmd.ExecuteReader();
+            if (!localData.HasRows)
+            {
+                localData.Close();
+                return false;
+            }
+            else
+            {
+                localData.Close();
+                return true;
+            }
+        }
+
         public void deleteOwnerLocal(int ownerLocalID)
         {
-            if (ownerLocalID <= 0)
-                return;
-
-            // ToDo - Verificar relações
 
             String str = "DELETE FROM OwnerLocals WHERE [OwnerLocalID] = @id";
-            // SQL Query
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@id", ownerLocalID);
-
-            // Executa
-            int count = cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
         }
 
         public String getOwnerAnimalsSQL()

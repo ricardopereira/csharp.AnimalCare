@@ -16,50 +16,54 @@ namespace AnimalCare.Client
 
         }
 
+        protected void LoadInfo()
+        {
+            SqlDataReader dr = Ctrl.getOwnerLocals().ExecuteReader();
+
+            // Efectuar o data binding
+            tblLocals.DataSource = dr;
+            tblLocals.DataBind();
+
+            dr.Close();
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            pnlError.Visible = false;
+            pnlErrorDelete.Visible = false;
 
                 if (!string.IsNullOrEmpty(Request.QueryString["Error"]))
                     pnlError.Visible = true;                
 
                 refreshController();
 
-                SqlDataReader dr = Ctrl.getOwnerLocals().ExecuteReader();
-
-                // Efectuar o data binding
-                tblLocals.DataSource = dr;
-                tblLocals.DataBind();
-
-                dr.Close();
+                LoadInfo();
         }
 
         protected void linkDelete_ServerClick(object sender, EventArgs e)
         {
-            DBConn db = new DBConn();
-
             HtmlAnchor link = (HtmlAnchor)sender;
-
-            // Obtém o ID
             int ownerLocalID = Convert.ToInt32(link.Attributes["data-ownerlocalid"]);
 
-            if (ownerLocalID <= 0)
-                return;
+               if (ownerLocalID > 0)
+                {
+                    if (Ctrl.isOwnerOfLocal(ownerLocalID))
+                    {
+                        if (!Ctrl.isAnimalsInThisLocal(ownerLocalID))
+                        {
+                            Ctrl.deleteOwnerLocal(ownerLocalID);
+                            LoadInfo();
+                        }
+                        else
+                            pnlErrorDelete.Visible = true;
+                    }
+                    else
+                        Response.Redirect("/PageClientLocals.aspx");
+                }
+                else
+                    Response.Redirect("/PageClientLocals.aspx");
 
-            String str = "DELETE FROM OwnerLocals WHERE [OwnerLocalID] = @id";
-            // SQL Query
-            SqlCommand cmd = new SqlCommand(str, db.Connection);
-            cmd.Parameters.AddWithValue("@id", ownerLocalID);
-
-            db.Connection.Open();
-
-            // Executa
-            int count = cmd.ExecuteNonQuery();
-
-            db.Connection.Close();
-
-            // Refrescar página
-            Response.Redirect("PageClientLocals.aspx");
         }
     }
 }
