@@ -105,10 +105,20 @@
     <Content Include="Account\Manage.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegistrationFinalStep.aspx" />
+    <Content Include="Admin\PageAdminAppointmentTypes.aspx" />
     <Content Include="Admin\PageAdmin.aspx" />
+    <Content Include="Admin\PageAdminAnimalDiaryType.aspx" />
+    <Content Include="Admin\PageAdminBusinessSector.aspx" />
+    <Content Include="Admin\PageAdminCities.aspx" />
+    <Content Include="Admin\PageAdminClinics.aspx" />
+    <Content Include="Admin\PageAdminCountries.aspx" />
     <Content Include="Admin\PageAdminDashboard.aspx" />
-    <Content Include="Admin\PageAdminManager.aspx" />
+    <Content Include="Admin\PageAdminHabitats.aspx" />
+    <Content Include="Admin\PageAdminRaces.aspx" />
+    <Content Include="Admin\PageAdminServiceKinds.aspx" />
+    <Content Include="Admin\PageAdminSpecies.aspx" />
     <Content Include="Admin\PageAdminUsers.aspx" />
+    <Content Include="Admin\PageAdminAnimalConditions.aspx" />
     <Content Include="Client\PageAnimal.aspx" />
     <Content Include="Client\PageAnimalDashboard.aspx" />
     <Content Include="Client\PageAnimalDiary.aspx" />
@@ -183,6 +193,13 @@
     <Compile Include="Account\RegistrationFinalStep.aspx.designer.cs">
       <DependentUpon>RegistrationFinalStep.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PageAdminAppointmentTypes.aspx.cs">
+      <DependentUpon>PageAdminAppointmentTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminAppointmentTypes.aspx.designer.cs">
+      <DependentUpon>PageAdminAppointmentTypes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ControllerAdmin.cs" />
     <Compile Include="Admin\MasterPageAdmin.Master.cs">
       <DependentUpon>MasterPageAdmin.Master</DependentUpon>
@@ -198,6 +215,41 @@
     <Compile Include="Admin\PageAdmin.aspx.designer.cs">
       <DependentUpon>PageAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PageAdminAnimalDiaryType.aspx.cs">
+      <DependentUpon>PageAdminAnimalDiaryType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminAnimalDiaryType.aspx.designer.cs">
+      <DependentUpon>PageAdminAnimalDiaryType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminBusinessSector.aspx.cs">
+      <DependentUpon>PageAdminBusinessSector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminBusinessSector.aspx.designer.cs">
+      <DependentUpon>PageAdminBusinessSector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminCities.aspx.cs">
+      <DependentUpon>PageAdminCities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminCities.aspx.designer.cs">
+      <DependentUpon>PageAdminCities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminClinics.aspx.cs">
+      <DependentUpon>PageAdminClinics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminClinics.aspx.designer.cs">
+      <DependentUpon>PageAdminClinics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminCountries.aspx.cs">
+      <DependentUpon>PageAdminCountries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminCountries.aspx.designer.cs">
+      <DependentUpon>PageAdminCountries.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\PageAdminDashboard.aspx.cs">
       <DependentUpon>PageAdminDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -205,12 +257,33 @@
     <Compile Include="Admin\PageAdminDashboard.aspx.designer.cs">
       <DependentUpon>PageAdminDashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\PageAdminManager.aspx.cs">
-      <DependentUpon>PageAdminManager.aspx</DependentUpon>
+    <Compile Include="Admin\PageAdminHabitats.aspx.cs">
+      <DependentUpon>PageAdminHabitats.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\PageAdminManager.aspx.designer.cs">
-      <DependentUpon>PageAdminManager.aspx</DependentUpon>
+    <Compile Include="Admin\PageAdminHabitats.aspx.designer.cs">
+      <DependentUpon>PageAdminHabitats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminRaces.aspx.cs">
+      <DependentUpon>PageAdminRaces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminRaces.aspx.designer.cs">
+      <DependentUpon>PageAdminRaces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminServiceKinds.aspx.cs">
+      <DependentUpon>PageAdminServiceKinds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminServiceKinds.aspx.designer.cs">
+      <DependentUpon>PageAdminServiceKinds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminSpecies.aspx.cs">
+      <DependentUpon>PageAdminSpecies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminSpecies.aspx.designer.cs">
+      <DependentUpon>PageAdminSpecies.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\PageAdminUsers.aspx.cs">
       <DependentUpon>PageAdminUsers.aspx</DependentUpon>
@@ -218,6 +291,13 @@
     </Compile>
     <Compile Include="Admin\PageAdminUsers.aspx.designer.cs">
       <DependentUpon>PageAdminUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PageAdminAnimalConditions.aspx.cs">
+      <DependentUpon>PageAdminAnimalConditions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PageAdminAnimalConditions.aspx.designer.cs">
+      <DependentUpon>PageAdminAnimalConditions.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="Account\Login.aspx.cs">

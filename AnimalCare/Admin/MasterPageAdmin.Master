@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPageAdmin.master.cs" Inherits="AnimalCare.Admin.MasterPageAdmin" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,7 +26,25 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<b class="caret"></b></a>
                       <ul class="dropdown-menu">
                           <li><a href="PageAdminDashboard.aspx">Dashboard</a></li>
+                          <li class="divider"></li>
+                          <li class="dropdown-header">Geral</li>
                           <li><a href="PageAdminUsers.aspx">Utilizadores</a></li>
+                          <li><a href="PageAdminClinics.aspx">Clinicas</a></li>
+                          <li><a href="PageAdminCountries.aspx">Países</a></li>
+                          <li><a href="PageAdminCities.aspx">Cidades</a></li>
+
+                          <li class="divider"></li>
+                          <li class="dropdown-header">Animais</li>
+                          <li><a href="PageAdminRaces.aspx">Raças</a></li>
+                          <li><a href="PageAdminSpecies.aspx">Espécies</a></li>
+                          <li><a href="PageAdminHabitats.aspx">Habitats</a></li>
+                          <li><a href="PageAdminAnimalConditions.aspx">Comportamentos</a></li>
+                          <li><a href="PageAdminAnimalDiaryType.aspx">Tipo de Leituras</a></li>
+                          <li class="divider"></li>
+                          <li class="dropdown-header">Negócio</li>
+                          <li><a href="PageAdminServiceKinds.aspx">Tipo de Serviços</a></li>
+                          <li><a href="PageAdminAppointmentTypes.aspx">Tipo de Tratamentos</a></li>
+                          <li><a href="PageAdminBusinessSector.aspx">Sector de Negócio</a></li>
                       </ul>
                   </li>
                   <li><a id="logoutLink" href="../Account/Logout.aspx">Terminar Sessão</a></li>
