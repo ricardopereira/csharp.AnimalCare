@@ -705,7 +705,7 @@ namespace AnimalCare.Client
 
         public SqlCommand getScheduleEvents()
         {
-            return getScheduleEvents(getDefaultDateFrom(),getDefaultDateTo());
+            return getScheduleEvents(DateTime.Today.AddDays(-2), getMaxDate());
         }
 
         public SqlCommand getScheduleEvents(DateTime dateFrom, DateTime dateTo, int animalID = 0)
@@ -753,7 +753,11 @@ namespace AnimalCare.Client
 
         public SqlCommand getAnimalHistorySearch(int animalID, DateTime start, DateTime end, int typeValue)
         {
-            String str = "SELECT s.ServiceID, sk.Description, s.Description, s.DateService, s.DateConclusion, s.Observation";
+            // Melhorar a eficácia da pesquisa
+            start = start.Date;
+            end = end.Date.AddHours(23).AddMinutes(59);
+
+            String str = "SELECT s.ServiceID, sk.Description Kinds, s.Description, s.DateService, s.DateConclusion, s.Observation";
             str += " FROM Services s";
             str += " INNER JOIN ServiceKinds sk ON s.ServiceKindID = sk.ServiceKindID";
             str += " WHERE AnimalID = @animalID AND s.DateService >= @start AND s.DateService <= @end";

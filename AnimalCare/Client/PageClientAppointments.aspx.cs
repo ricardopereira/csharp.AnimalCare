@@ -38,7 +38,7 @@ namespace AnimalCare.Client
         protected bool DateValidation(DateTime date)
         {
             DateTime fakeDate = new DateTime(0001, 01, 01);
-            if (date.Equals(fakeDate))
+            if (date.Equals(fakeDate) || date.CompareTo(DateTime.Today) < 0)
                 return false;
             else
                 return true;
@@ -47,6 +47,7 @@ namespace AnimalCare.Client
         protected void btnSave_Click(object sender, EventArgs e)
         {
             DateTime dateAux = calDateAppointment.SelectedDate;
+            bool existeSeleccao = false;
 
             if (DateValidation(dateAux))
             {
@@ -57,15 +58,26 @@ namespace AnimalCare.Client
                 {
                     if (chkAnimais.Items[i].Selected)
                     {
+                        existeSeleccao = true;
                         Ctrl.insertAppointment(Convert.ToInt32(chkAnimais.Items[i].Value),
                           Convert.ToInt32(listAppointmentTypes.SelectedValue), dateAux, boxDetail.Text, chkUrgent.Checked);
                     }
                 }
 
+                if (!existeSeleccao)
+                {
+                    lblError.Text = "Seleccione pelo menos um animal.";
+                    pnlError.Visible = true;
+                    return;
+                }
+
                 Response.Redirect("PageClientDashboard.aspx");
             }
             else
+            {
+                lblError.Text = "A data tem de estar preenchida.";
                 pnlError.Visible = true;
+            }
         }
 
         protected void chkUrgent_CheckedChanged(object sender, EventArgs e)

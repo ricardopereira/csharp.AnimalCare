@@ -75,11 +75,13 @@ namespace AnimalCare.Client
         {
             DateTime start = calendarDateStart.SelectedDate;
             DateTime end = calendarDateEnd.SelectedDate;
+
             if (start > end)
                 pnlError.Visible = true;
             else
             {
                 SqlDataReader dr;
+
                 if (chkType.Checked)
                     dr = Ctrl.getAnimalHistorySearch(animalID, start, end, Convert.ToInt32(ddlListType.SelectedValue)).ExecuteReader();
                 else
@@ -87,6 +89,7 @@ namespace AnimalCare.Client
 
                 tblHistory.DataSource = dr;
                 tblHistory.DataBind();
+                
                 dr.Close();
             }
         }

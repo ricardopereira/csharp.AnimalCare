@@ -47,6 +47,7 @@
                                 <tr>
                                     <th></th>
                                     <th>Data</th>
+                                    <th>Descrição</th>
                                     <th>Proprietário</th>
                                     <th>Animal</th>
                                     <th>Tipo</th>
@@ -63,6 +64,7 @@
                                             <asp:Label CssClass="label label-success" runat="server" Text="concluído" Visible='<%# Convert.ToBoolean(Eval("Done")) %>'></asp:Label>
                                         </td>
                                         <td><%# Eval("DateService") %></td>
+                                        <td><%# Eval("Description") %></td>
                                         <td><%# Eval("Owner") %></td>
                                         <td><%# Eval("Animal") %></td>
                                         <td><%# Eval("ServiceKind") %></td>

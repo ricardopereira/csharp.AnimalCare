@@ -65,6 +65,7 @@
                                             <th></th>
                                             <th class="text-center">Concluído</th>
                                             <th>Data</th>
+                                            <th>Descrição</th>
                                             <th>Proprietário</th>
                                             <th>Animal</th>
                                             <th>Tipo</th>
@@ -84,6 +85,7 @@
                                                     </asp:Panel>
                                                 </td>
                                                 <td><%# Eval("DateService") %></td>
+                                                <td><%# Eval("Description") %></td>
                                                 <td><%# Eval("Owner") %></td>
                                                 <td><%# Eval("Animal") %></td>
                                                 <td><%# Eval("ServiceKind") %></td>

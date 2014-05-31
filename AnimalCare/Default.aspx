@@ -30,7 +30,7 @@
             <h1 class="cover-heading">Bem-vindo</h1>
             <p class="lead">AnimalCare é um serviço móvel de assistência veterinária - consultas, tratamentos de rotina, casos de urgência – permitindo assim reduzir as restrições de horário, ou de mobilidade, pois o transporte de animais é, em geral, uma tarefa difícil, por vezes angustiante para o próprio animal, e que exige a existência, ou a disponibilidade, de meios adequados.</p>
             <p class="lead">
-              <a href="Account/Register.aspx" class="btn btn-lg btn-default">Crie aqui o seu registo</a>
+              <a href="Account/Login.aspx" class="btn btn-lg btn-default">Entrar</a>
             </p>
           </div>
 

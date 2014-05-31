@@ -12,25 +12,30 @@
             </div>
         </div>
         <div class="row well span2">
-            <div class="col-lg-12">
+
+            <div class="col-md-4">
                 <!-- Animal -->
-                <h4>Animal seleccionado</h4>
-                <p class="text-muted"><asp:Label runat="server" ID="lblAnimalName"></asp:Label></p>
-                <p>Espécie: <asp:Label runat="server" ID="lblAnimalSpecie"></asp:Label></p>
-                <p>Raça: <asp:Label runat="server" ID="lblAnimalRace"></asp:Label></p>
-                <br />
+                <h4>Animal</h4>
+                <p class="text-muted"><strong>Nome: </strong><asp:Label runat="server" ID="lblAnimalName"></asp:Label></p>
+                <p><strong>Espécie: </strong><asp:Label runat="server" ID="lblAnimalSpecie"></asp:Label></p>
+                <p><strong>Raça: </strong><asp:Label runat="server" ID="lblAnimalRace"></asp:Label></p>
+            </div>
+
+            <div class="col-md-4">
                 <!-- Serviço -->
-                <h4>Serviço seleccionado</h4>
-                <p class="text-muted"><asp:Label runat="server" ID="lblServiceDescription"></asp:Label> <span class="label label-primary"><asp:Label runat="server" ID="lblServiceKind"></asp:Label></span></p>
-                <p class="text-warning"><asp:Label runat="server" ID="lblDateService"></asp:Label></p>
-                <p class="text-warning"><asp:Label runat="server" ID="lblDateConclusion"></asp:Label></p>
-                <h5><b>Observações</b></h5>
+                <h4>Serviço</h4>
+                <p class="text-muted"><strong>Descrição: </strong><asp:Label runat="server" ID="lblServiceDescription"></asp:Label> <span class="label label-primary"><asp:Label runat="server" ID="lblServiceKind"></asp:Label></span></p>
+                <p class="text-warning"><strong>Data: </strong><asp:Label runat="server" ID="lblDateService"></asp:Label></p>
+                <p class="text-warning"><strong>Concluído: </strong><asp:Label runat="server" ID="lblDateConclusion"></asp:Label></p>
+                <h5><b>Observações:</b></h5>
                 <p><asp:Label runat="server" ID="lblObservation"></asp:Label></p>
+            </div>
+
+            <div class="col-md-4">
                 <!-- Medico/Clinica -->
-                <br />
                 <h4>Responsável</h4>
-                <p class="text-muted"><asp:Label runat="server" ID="lblProfessional"></asp:Label></p>
-                <p class="text-muted"><asp:Label runat="server" ID="lblClinic"></asp:Label></p>
+                <p class="text-muted"><strong>Profissional de saúde: </strong><asp:Label runat="server" ID="lblProfessional"></asp:Label></p>
+                <p class="text-muted"><strong>Clínica: </strong><asp:Label runat="server" ID="lblClinic"></asp:Label></p>
             </div>
         </div>
 

@@ -91,9 +91,9 @@ namespace AnimalCare.Client
                 lblDateService.Text = Convert.ToString(serviceData.GetDateTime(2));
 
             if(!serviceData.IsDBNull(3))
-                lblDateConclusion.Text = "Data de conclusão: " + Convert.ToString(serviceData.GetDateTime(3));
+                lblDateConclusion.Text = Convert.ToString(serviceData.GetDateTime(3));
             else
-                lblDateConclusion.Text = "Data de conclusão: --";
+                lblDateConclusion.Text = "--";
 
             if (!serviceData.IsDBNull(4))
                 lblObservation.Text = serviceData.GetString(4);
