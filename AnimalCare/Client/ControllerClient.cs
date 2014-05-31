@@ -406,20 +406,6 @@ namespace AnimalCare.Client
             return cmd;
         }
 
-        public SqlCommand getAnimalInfo(int animalID)
-        {
-            String str = "SELECT a.Name, a.IdentityNumber, a.Quantity, ar.Name, ans.Name, ac.Description, a.Sex, a.DateBorn, oc.Name,a.DateDeath";
-            str += " FROM Animals a";
-            str += " INNER JOIN AnimalRaces ar ON ar.AnimalRaceID = a.AnimalRaceID";
-            str += " INNER JOIN AnimalSpecies ans ON ans.AnimalSpecieID = ar.AnimalSpecieID";
-            str += " INNER JOIN AnimalConditions ac ON a.AnimalConditionID = ac.AnimalConditionID";
-            str += " INNER JOIN OwnerLocals oc ON oc.OwnerLocalID = a.OwnerLocalID";
-            str += " WHERE [AnimalID] = @id";
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@id", animalID);
-            return cmd;
-        }
-
         public SqlCommand getServiceInfo(int serviceID)
         {
 

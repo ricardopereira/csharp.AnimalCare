@@ -86,6 +86,8 @@ namespace AnimalCare.Doctor
 
             int animalID = data.GetInt32(9);
 
+            linkAnimal.PostBackUrl = "PageDoctorAnimal.aspx?AnimalID=" + Convert.ToString(animalID);
+
             if (!data.IsDBNull(12))
                 lblOwner.Text = data.GetString(12);
             lblFeedback.Text = lblOwner.Text;

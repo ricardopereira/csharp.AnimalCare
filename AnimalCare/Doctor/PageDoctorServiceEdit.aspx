@@ -35,7 +35,7 @@
                 <h4>Animal</h4>
                 <p class="text-muted">
                     <asp:Label ID="lblAnimal" runat="server" Text=""></asp:Label>
-                    <a class="btn btn-default btn-xs" href="#" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a>
+                    <asp:LinkButton ID="linkAnimal" class="btn btn-default btn-xs" runat="server"><span class="glyphicon glyphicon-user"></span> Ver perfil</asp:LinkButton>
                 </p>
                 <p><strong>Espécie:</strong> <asp:Label ID="lblSpecie" runat="server" Text="sem dado"></asp:Label></p>
                 <p><strong>Raça:</strong> <asp:Label ID="lblRace" runat="server" Text="sem dado"></asp:Label></p>

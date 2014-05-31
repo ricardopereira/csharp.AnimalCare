@@ -20,9 +20,6 @@
             <div class="col-md-9">
                 <h2><%: Ctrl.Bf.Name %></h2>
                 <span class="label label-danger">Modo edição</span>
-                <br />
-                <br />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
             </div>
         </div>
         <div class="row">

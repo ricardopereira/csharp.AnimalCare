@@ -83,9 +83,9 @@ namespace AnimalCare.Employee
 
             if (!dr.IsDBNull(2))
                 lblAnimal.Text = dr.GetString(2);
-            if (!dr.IsDBNull(14))
+            if (!dr.IsDBNull(13))
                 lblRace.Text = dr.GetString(14);
-            if (!dr.IsDBNull(15))
+            if (!dr.IsDBNull(14))
                 lblSpecie.Text = dr.GetString(15);
 
             dr.Close();

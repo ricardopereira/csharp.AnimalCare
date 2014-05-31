@@ -173,6 +173,20 @@ namespace AnimalCare
             return result;
         }
 
+        public SqlCommand getAnimalInfo(int animalID)
+        {
+            String str = "SELECT a.Name, a.IdentityNumber, a.Quantity, ar.Name, ans.Name, ac.Description, a.Sex, a.DateBorn, oc.Name,a.DateDeath";
+            str += " FROM Animals a";
+            str += " LEFT OUTER JOIN AnimalRaces ar ON ar.AnimalRaceID = a.AnimalRaceID";
+            str += " LEFT OUTER JOIN AnimalSpecies ans ON ans.AnimalSpecieID = ar.AnimalSpecieID";
+            str += " LEFT OUTER JOIN AnimalConditions ac ON a.AnimalConditionID = ac.AnimalConditionID";
+            str += " LEFT OUTER JOIN OwnerLocals oc ON oc.OwnerLocalID = a.OwnerLocalID";
+            str += " WHERE [AnimalID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", animalID);
+            return cmd;
+        }
+
         public int getOwnerByAnimalID(int animalID)
         {
             int ownerID = 0;
@@ -241,22 +255,23 @@ namespace AnimalCare
             8-DateBorn
             9-DateDeath
             10-Sex
-            11-ProfileImageID
-            12-OwnerID
-            13-Owner
-            14-Race
-            15-Specie
-            16-Condition
-            17-Habitat
+            11-OwnerID
+            12-Owner
+            13-Race
+            14-Specie
+            15-Condition
+            16-Habitat
+            17-Local
             */
 
-            return "SELECT a.*, rel.OwnerID OwnerID, o.Name Owner, r.Name Race, s.Name Specie, c.Description Condition, h.Description Habitat " +
+            return "SELECT a.*, rel.OwnerID OwnerID, o.Name Owner, r.Name Race, s.Name Specie, c.Description Condition, h.Description Habitat, lo.Name Local " +
                 " FROM Animals a" +
                 " INNER JOIN OwnerAnimalsRelation rel ON rel.AnimalID = a.AnimalID AND rel.Active = 1" +
                 " LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
                 " LEFT OUTER JOIN AnimalSpecies s ON s.AnimalSpecieID = r.AnimalSpecieID" +
                 " LEFT OUTER JOIN AnimalConditions c ON c.AnimalConditionID = a.AnimalConditionID" +
                 " LEFT OUTER JOIN AnimalHabitats h ON h.AnimalHabitatID = a.AnimalHabitatID" +
+                " LEFT OUTER JOIN OwnerLocals lo ON lo.OwnerLocalID = a.OwnerLocalID" +
                 " LEFT OUTER JOIN Owners o ON o.OwnerID = rel.OwnerID";
         }
 
@@ -533,7 +548,7 @@ namespace AnimalCare
              */
 
             String sql = "SELECT sr.*, o.Name Owner, a.Name Animal, p.Name Professional, " +
-                "   sk.Description ServiceKind, r.Name Race, s.Name Specie, cl.Name Clinic," +
+                "   sk.Description ServiceKind, s.Name Specie, r.Name Race, cl.Name Clinic," +
                 " CASE" +
                 "  WHEN DateConclusion IS NULL THEN 0" +
                 "  WHEN DateConclusion IS NOT NULL THEN 1" +
