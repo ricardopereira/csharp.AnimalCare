@@ -22,6 +22,15 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Panel pnlError;
         
         /// <summary>
+        /// pnlErrorDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlErrorDelete;
+        
+        /// <summary>
         /// tblLocals control.
         /// </summary>
         /// <remarks>

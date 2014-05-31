@@ -27,6 +27,14 @@
                                 <p>sem que previamente tenha definido o(s) seu(s) locai(s).</p>
                             </div>
                         </asp:Panel>
+                        <asp:Panel ID="pnlErrorDelete" runat="server" Visible="false">
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4>Erro na Remoção de Local</h4>
+                                <p>Não foi possível remover o local porque existem animais associados.</p>
+                                <p>Mova os animais para outro local, e tente de novo.</p>
+                            </div>
+                        </asp:Panel>
                         <!-- Default panel contents -->
                         <div class="panel-heading">Locais</div>
                         <div class="panel-body">
