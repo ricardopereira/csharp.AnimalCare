@@ -25,12 +25,20 @@
         </div>
     </div>
     <div class="container">
-        <h1>Lorem Ipsum</h1>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Bem-vindo</h1>
+            <p class="lead">AnimalCare é um serviço móvel de assistência veterinária - consultas, tratamentos de rotina, casos de urgência – permitindo assim reduzir as restrições de horário, ou de mobilidade, pois o transporte de animais é, em geral, uma tarefa difícil, por vezes angustiante para o próprio animal, e que exige a existência, ou a disponibilidade, de meios adequados.</p>
+            <p class="lead">
+              <a href="Account/Register.aspx" class="btn btn-lg btn-default">Crie aqui o seu registo</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Desenvolvido por <a href="#">Ricardo Pereira</a> e por <a href="#">Mário Silva</a>.</p>
+            </div>
+          </div>
+
     </div>
 </asp:Content>
