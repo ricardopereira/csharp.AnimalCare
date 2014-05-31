@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Utilizadores<small> Inserção</small></h1>
+                <h1 class="page-header">Utilizadores<small> área</small></h1>
             </div>
         </div>
         <div class="row">
@@ -24,7 +24,7 @@
                 <!-- Painel com Botões -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Datas</h3>
+                        <h3 class="panel-title">Utilizadores</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -40,6 +40,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </asp:Content>
 
