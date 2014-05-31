@@ -311,7 +311,7 @@ namespace AnimalCare
                 "  AND ap.OwnerID = @id";
 
             if (states != null) {
-                str += " AND ";
+                str += " AND (";
                 // Lista de estados
                 for (int i = 0; i < states.Length; i++)
                 {
@@ -320,6 +320,7 @@ namespace AnimalCare
                     else
                         str += " OR State = " + (int)states[i];
                 }
+                str += ")";
             }
 
             if (animalID > 0)
@@ -488,7 +489,7 @@ namespace AnimalCare
              */
 
             String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind,"+
-                "   r.Name Race, s.Name Specie, l.ZipCode Local, l.GPS LocalGPS, l.Name LocalName" +
+                "   s.Name Specie, r.Name Race, l.ZipCode Local, l.GPS LocalGPS, l.Name LocalName" +
                 " FROM Schedule sh" +
                 "  LEFT OUTER JOIN Animals a ON a.AnimalID = sh.AnimalID" +
                 "  LEFT OUTER JOIN AnimalRaces r ON r.AnimalRaceID = a.AnimalRaceID" +
