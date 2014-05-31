@@ -12,6 +12,7 @@ namespace AnimalCare.Client
     public partial class PageAnimalDiaryNew : ClientPage
     {
         int animalID;
+        int serviceID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +24,7 @@ namespace AnimalCare.Client
             base.OnLoad(e);
 
             AnimalIDParam();
-
+            ServiceIDParam();
 
                 if (animalID < 1)
                     Response.Redirect("PageAnimalDashboard.aspx");
@@ -81,6 +82,14 @@ namespace AnimalCare.Client
                 animalID = 0;
         }
 
+        public void ServiceIDParam()
+        {
+            if (!string.IsNullOrEmpty(Request.QueryString["ServiceID"]))
+                int.TryParse(Request.QueryString["ServiceID"], out serviceID);
+            else
+                serviceID = 0;
+        }
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("PageAnimalDiary.aspx?AnimalID=" + animalID);
@@ -99,10 +108,20 @@ namespace AnimalCare.Client
 
             if (DateValidation(start, end))
             {
-                recordID = Ctrl.insertDiary(animalID, diaryTypeID, start, end, created, value, obs);
-                if (FileUpload.HasFile)
-                    uploadFile(recordID);
-                Response.Redirect("PageAnimalDiary.aspx?AnimalID=" + animalID);
+                if (serviceID > 0 && Ctrl.isOwnerOfService(serviceID))
+                {
+                    recordID = Ctrl.insertDiary(animalID, diaryTypeID, start, end, created, value, obs, serviceID);
+                    if (FileUpload.HasFile)
+                        uploadFile(recordID);
+                    Response.Redirect("PageAnimalHistoryItem.aspx?ServiceID=" + serviceID);
+                }
+                else
+                {
+                    recordID = Ctrl.insertDiary(animalID, diaryTypeID, start, end, created, value, obs, 0);
+                    if (FileUpload.HasFile)
+                        uploadFile(recordID);
+                    Response.Redirect("PageAnimalDiary.aspx?AnimalID=" + animalID);
+                }
             }
             else
                 pnlError.Visible = true;

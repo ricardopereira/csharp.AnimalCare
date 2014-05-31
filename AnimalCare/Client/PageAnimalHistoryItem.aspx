@@ -13,22 +13,24 @@
         </div>
         <div class="row well span2">
             <div class="col-lg-12">
-                <!-- Cliente -->
-                <h4>Proprietário</h4>
-                <p class="text-muted"><%: User.Identity.Name %> <a class="btn btn-default btn-xs" href="PageClient.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
-                <br />
                 <!-- Animal -->
                 <h4>Animal seleccionado</h4>
-                <p class="text-muted">Quinzé <a class="btn btn-default btn-xs" href="PageAnimal.aspx" role="button"><span class="glyphicon glyphicon-user"></span> Ver perfil</a></p>
-                <p>Espécie: Cão</p>
-                <p>Raça: Dogue Alemão</p>
+                <p class="text-muted"><asp:Label runat="server" ID="lblAnimalName"></asp:Label></p>
+                <p>Espécie: <asp:Label runat="server" ID="lblAnimalSpecie"></asp:Label></p>
+                <p>Raça: <asp:Label runat="server" ID="lblAnimalRace"></asp:Label></p>
                 <br />
                 <!-- Serviço -->
                 <h4>Serviço seleccionado</h4>
-                <p class="text-muted">Cirurgia ao olho <span class="label label-primary">Cirurgia</span></p>
-                <p class="text-danger">Data: 04-04-2014</p>
-                <h5><b>Observações</b> <small>(editado em 05-04-2014)</small></h5>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                <p class="text-muted"><asp:Label runat="server" ID="lblServiceDescription"></asp:Label> <span class="label label-primary"><asp:Label runat="server" ID="lblServiceKind"></asp:Label></span></p>
+                <p class="text-warning"><asp:Label runat="server" ID="lblDateService"></asp:Label></p>
+                <p class="text-warning"><asp:Label runat="server" ID="lblDateConclusion"></asp:Label></p>
+                <h5><b>Observações</b></h5>
+                <p><asp:Label runat="server" ID="lblObservation"></asp:Label></p>
+                <!-- Medico/Clinica -->
+                <br />
+                <h4>Responsável</h4>
+                <p class="text-muted"><asp:Label runat="server" ID="lblProfessional"></asp:Label></p>
+                <p class="text-muted"><asp:Label runat="server" ID="lblClinic"></asp:Label></p>
             </div>
         </div>
 
@@ -47,7 +49,7 @@
                             <p class="text-muted">Opções da grelha</p>
                             <div class="btn-toolbar" role="toolbar">
                                 <div class="btn-group">
-                                    <a class="btn btn-success" href="#" role="button">Nova informação</a>
+                                    <a runat="server" class="btn btn-success" id="linkDiary" href="#" role="button">Novo Registo</a>
                                 </div>
                             </div>
                         </div>
@@ -55,17 +57,28 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>#</th>
-                                    <th>Data</th>
-                                    <th>Informação</th>
+                                    <th>Inicio</th>
+                                    <th>Fim</th>
+                                    <th>Obs</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>05-04-2014</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                                </tr>
+                               <asp:Repeater ID="tblDiary" runat="server">
+                                    <ItemTemplate>
+                                    <tr>
+                                    <td>
+                                        <!-- Opcoes de linha -->
+                                        <a class="btn btn-primary btn-xs" href="PageAnimalDiaryItem.aspx?DiaryItem=<%# Eval("AnimalDiaryID") %>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                    </td>
+                                        <td><%# Eval("AnimalDiaryID") %></td>
+                                        <td><%# Eval("DateDiaryStart") %></td>
+                                        <td><%# Eval("DateDiaryEnd") %></td>
+                                        <td><%# Eval("Observation") %></td>
+                                    </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </tbody>
                         </table>
                     </div>

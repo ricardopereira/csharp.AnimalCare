@@ -82,19 +82,6 @@
                                     <!-- Novo registo -->
                                     <a class="btn btn-success" id="reg" runat="server">Novo registo</a>
                                 </div>
-                                <!-- /btn-group -->
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-default">Ordenação</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Ordenação</span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Ascendente</a></li>
-                                        <li><a href="#">Decrescente</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /btn-group -->
                             </div>
                         </div>
 

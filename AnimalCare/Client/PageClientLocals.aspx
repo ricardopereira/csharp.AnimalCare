@@ -36,18 +36,6 @@
                                 <div class="btn-group">
                                     <a class="btn btn-success" href="PageClientLocalNew.aspx" role="button">Novo local</a>
                                 </div>
-                                <!-- Ordenação -->
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-default">Ordenação</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Ordenação</span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Ascedente</a></li>
-                                        <li><a href="#">Decrescente</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
 

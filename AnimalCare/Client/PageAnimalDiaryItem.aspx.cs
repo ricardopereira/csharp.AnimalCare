@@ -55,7 +55,8 @@ namespace AnimalCare.Client
 
                 diaryData.Read();
                 animalID = diaryData.GetInt32(1);
-                lblDiaryType.Text = diaryData.GetString(8);
+                lblDiaryType.Text = diaryData.GetString(10);
+                lblDiaryComment.Text = diaryData.GetString(8);
                 lblCreated.Text = Convert.ToString(diaryData.GetDateTime(5));
                 if (!diaryData.IsDBNull(3))
                     lblDateDiaryStart.Text = Convert.ToString(diaryData.GetDateTime(3));
@@ -63,7 +64,7 @@ namespace AnimalCare.Client
                     lblDateDiaryEnd.Text = Convert.ToString( diaryData.GetDateTime(4));
                 lblValue.Text = Convert.ToString(diaryData.GetDecimal(6));
                 if (!diaryData.IsDBNull(7))
-                    lblValue.Text = diaryData.GetString(7);
+                    lblDiaryObs.Text = diaryData.GetString(7);
                 diaryData.Close();
         }
 

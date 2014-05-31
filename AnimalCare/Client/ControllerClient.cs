@@ -251,10 +251,13 @@ namespace AnimalCare.Client
             return animalID;
         }
 
-        public int insertDiary(int animalID, int diaryTypeID, DateTime start, DateTime end, DateTime created,Decimal value, string obs)
+        public int insertDiary(int animalID, int diaryTypeID, DateTime start, DateTime end, DateTime created,Decimal value, string obs, int serviceID)
         {
-            String str = "INSERT INTO AnimalDiary VALUES (@AnimalID,@AnimalDiaryTypeID,@DateDiaryStart,@DateDiaryEnd,@DateCreated,@Value,@Observation)";
-
+            String str;
+            if(serviceID > 0)
+                str = "INSERT INTO AnimalDiary (AnimalID, AnimalDiaryTypeID,DateDiaryStart,DateDiaryEnd,DateCreated,Value,Observation,ServiceID) VALUES (@AnimalID,@AnimalDiaryTypeID,@DateDiaryStart,@DateDiaryEnd,@DateCreated,@Value,@Observation,@ServiceID)";
+            else
+                str = "INSERT INTO AnimalDiary (AnimalID, AnimalDiaryTypeID,DateDiaryStart,DateDiaryEnd,DateCreated,Value,Observation) VALUES (@AnimalID,@AnimalDiaryTypeID,@DateDiaryStart,@DateDiaryEnd,@DateCreated,@Value,@Observation)";
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@AnimalID", animalID);
@@ -264,6 +267,9 @@ namespace AnimalCare.Client
             cmd.Parameters.AddWithValue("@DateCreated", created);
             cmd.Parameters.AddWithValue("@Value", value);
             cmd.Parameters.AddWithValue("@Observation", obs);
+            if(serviceID > 0)
+                cmd.Parameters.AddWithValue("@ServiceID",serviceID);
+
 
             cmd.ExecuteNonQuery();
 
@@ -414,6 +420,31 @@ namespace AnimalCare.Client
             return cmd;
         }
 
+        public SqlCommand getServiceInfo(int serviceID)
+        {
+
+            String str = "SELECT sk.Description, s.Description, s.DateService, s.DateConclusion, s.Observation, s.AnimalID, p.Name, c.Name";
+            str += " FROM Services s";
+            str += " INNER JOIN ServiceKinds sk ON s.ServiceKindID = sk.ServiceKindID";
+            str += " INNER JOIN Professionals p ON s.ProfessionalID = p.ProfessionalID";
+            str += " INNER JOIN Clinics c ON s.ClinicID = c.ClinicID";
+            str += " WHERE [serviceID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", serviceID);
+            return cmd;
+        }
+
+        public SqlCommand getAnimalHistory(int animalID)
+        {
+            String str = "SELECT s.ServiceID, sk.Description as Kinds, s.Description, s.DateService, s.DateConclusion, s.Observation";
+            str += " FROM Services s";
+            str += " INNER JOIN ServiceKinds sk ON s.ServiceKindID = sk.ServiceKindID";
+            str += " WHERE [AnimalID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", animalID);
+            return cmd;
+        }
+
         public SqlCommand getSpecieByRace(int raceID)
         {
             String str = "SELECT AnimalSpecieID FROM AnimalRaces WHERE [AnimalRaceID] = @sid";
@@ -431,7 +462,7 @@ namespace AnimalCare.Client
 
         public SqlCommand getDiaryInfo(int diaryID)
         {
-            String str = "SELECT ad.*,adt.Description FROM AnimalDiary ad";
+            String str = "SELECT ad.*, adt.Description FROM AnimalDiary ad";
             str += " INNER JOIN AnimalDiaryTypes adt ON ad.AnimalDiaryTypeID = adt.AnimalDiaryTypeID";
             str += " WHERE [AnimalDiaryID] = @did";
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
@@ -449,6 +480,34 @@ namespace AnimalCare.Client
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@id", animalID);
             
+            SqlDataReader animalData = cmd.ExecuteReader();
+            if (!animalData.HasRows)
+            {
+                animalData.Close();
+                return false;
+            }
+            else
+            {
+                animalData.Read();
+                dbOwnerID = animalData.GetInt32(0);
+                animalData.Close();
+                if (dbOwnerID != Bf.OwnerID)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool isOwnerOfService(int serviceID)
+        {
+
+            int dbOwnerID;
+
+            String str = "SELECT OwnerID FROM Services";
+            str += " WHERE [serviceID] = @id";
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@id", serviceID);
+
             SqlDataReader animalData = cmd.ExecuteReader();
             if (!animalData.HasRows)
             {
@@ -676,12 +735,26 @@ namespace AnimalCare.Client
         {
             String str = "SELECT ad.AnimalDiaryID, ad.DateDiaryStart, ad.DateDiaryEnd, adt.Description, ad.Value, ad.Observation FROM AnimalDiary ad";
             str += " INNER JOIN AnimalDiaryTypes adt ON adt.AnimalDiaryTypeID = ad.AnimalDiaryTypeID";
-            str += " WHERE AnimalID = @animalID";
+            str += " WHERE AnimalID = @animalID AND ServiceID IS NULL";
             str += " ORDER BY ad.DateCreated DESC";
 
 
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
             cmd.Parameters.AddWithValue("@animalID", animalID);
+            return cmd;
+        }
+
+        public SqlCommand getAnimalDiaryByService(int animalID,int serviceID)
+        {
+            String str = "SELECT ad.AnimalDiaryID, ad.DateDiaryStart, ad.DateDiaryEnd, ad.Observation, ad.Comment FROM AnimalDiary ad";
+            str += " WHERE AnimalID = @animalID AND ServiceID = @serviceID";
+            str += " ORDER BY ad.DateCreated DESC";
+
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
+            cmd.Parameters.AddWithValue("@serviceID", serviceID);
+
             return cmd;
         }
 
@@ -702,6 +775,26 @@ namespace AnimalCare.Client
             if(typeValue > 0)
                 cmd.Parameters.AddWithValue("@typeValue", typeValue);
             return cmd;   
+        }
+
+        public SqlCommand getAnimalHistorySearch(int animalID, DateTime start, DateTime end, int typeValue)
+        {
+            String str = "SELECT s.ServiceID, sk.Description, s.Description, s.DateService, s.DateConclusion, s.Observation";
+            str += " FROM Services s";
+            str += " INNER JOIN ServiceKinds sk ON s.ServiceKindID = sk.ServiceKindID";
+            str += " WHERE AnimalID = @animalID AND s.DateService >= @start AND s.DateService <= @end";
+            if (typeValue > 0)
+                str += " AND s.ServiceKindID = @typeValue";
+            str += " ORDER BY s.DateService DESC";
+
+
+            SqlCommand cmd = new SqlCommand(str, Database.Connection);
+            cmd.Parameters.AddWithValue("@animalID", animalID);
+            cmd.Parameters.AddWithValue("@start", start);
+            cmd.Parameters.AddWithValue("@end", end);
+            if (typeValue > 0)
+                cmd.Parameters.AddWithValue("@typeValue", typeValue);
+            return cmd;
         }
     }
 }
