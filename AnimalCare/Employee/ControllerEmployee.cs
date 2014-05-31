@@ -214,10 +214,9 @@ namespace AnimalCare.Employee
             7-[ServiceKindID] INT NOT NULL,
             8-[OwnerID] INT NOT NULL,
             9-[AnimalID] INT NULL,
-            10-[AnimalGroupID] INT NULL,
-            11-[ProfessionalID] INT NOT NULL,
-            12-[Priority] SMALLINT NULL
-            13-[State] SMALLINT NULL
+            10-[ProfessionalID] INT NOT NULL,
+            11-[Priority] SMALLINT NULL
+            12-[State] SMALLINT NULL
              */
 
             String str = "INSERT INTO Schedule (Description,DateEvent,Notified,Present,DateCreated,CreatedBy,ServiceKindID,OwnerID,AnimalID,ProfessionalID,State)";

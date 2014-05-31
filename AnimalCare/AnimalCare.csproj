@@ -128,6 +128,7 @@
     <Content Include="Content\style.css" />
     <Content Include="Doctor\PageDoctor.aspx" />
     <Content Include="Doctor\PageDoctorDashboard.aspx" />
+    <Content Include="Doctor\PageDoctorDiaryEdit.aspx" />
     <Content Include="Doctor\PageDoctorEdit.aspx" />
     <Content Include="Doctor\PageDoctorServiceAnimal.aspx" />
     <Content Include="Doctor\PageDoctorServiceEdit.aspx" />
@@ -381,6 +382,13 @@
     </Compile>
     <Compile Include="Doctor\PageDoctorDashboard.aspx.designer.cs">
       <DependentUpon>PageDoctorDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorDiaryEdit.aspx.cs">
+      <DependentUpon>PageDoctorDiaryEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\PageDoctorDiaryEdit.aspx.designer.cs">
+      <DependentUpon>PageDoctorDiaryEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Doctor\PageDoctorEdit.aspx.cs">
       <DependentUpon>PageDoctorEdit.aspx</DependentUpon>

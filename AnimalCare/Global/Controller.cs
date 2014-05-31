@@ -356,20 +356,19 @@ namespace AnimalCare
             0-[AppointmentID] INT NOT NULL IDENTITY,
             1-[OwnerID] INT NOT NULL,
             2-[AnimalID] INT NULL,
-            3-[AnimalGroupID] INT NULL,
-            4-[AppointmentTypeID] INT NOT NULL,
-            5-[DateAppointment] DATETIME NOT NULL,
-            6-[DateCreated] DATETIME NOT NULL,
-            7-[Reason] VARCHAR(45) NULL,
-            8-[Detail] VARCHAR(45) NULL,
-            9-[Urgent] BIT NULL,
-            10-[State] SMALLINT NULL,
-            11-Animal
-            12-Owner
-            13-AppointmentType
-            14-Specie
-            15-Race
-            16-StateStr
+            3-[AppointmentTypeID] INT NOT NULL,
+            4-[DateAppointment] DATETIME NOT NULL,
+            5-[DateCreated] DATETIME NOT NULL,
+            6-[Reason] VARCHAR(45) NULL,
+            7-[Detail] VARCHAR(45) NULL,
+            8-[Urgent] BIT NULL,
+            9-[State] SMALLINT NULL,
+            10-Animal
+            11-Owner
+            12-AppointmentType
+            13-Specie
+            14-Race
+            15-StateStr
              */
 
             String sql = "SELECT ap.*, a.Name as Animal, o.Name as Owner," +
@@ -459,19 +458,18 @@ namespace AnimalCare
             7-[ServiceKindID] INT NOT NULL,
             8-[OwnerID] INT NOT NULL,
             9-[AnimalID] INT NULL,
-            10-[AnimalGroupID] INT NULL,
-            11-[ProfessionalID] INT NOT NULL,
-            12-[Priority] SMALLINT NULL
-            13-[State] SMALLINT NULL
-            14-Owner
-            15-Animal
-            16-Professional
-            17-ServiceKind
-            18-Specie
-            19-Race
-            20-Local
-            21-LocalGPS
-            22-LocalName
+            10-[ProfessionalID] INT NOT NULL,
+            11-[Priority] SMALLINT NULL
+            12-[State] SMALLINT NULL
+            13-Owner
+            14-Animal
+            15-Professional
+            16-ServiceKind
+            17-Specie
+            18-Race
+            19-Local
+            20-LocalGPS
+            21-LocalName
              */
 
             String sql = "SELECT sh.*, o.Name Owner, a.Name Animal, p.Name Professional, sk.Description ServiceKind,"+
@@ -494,7 +492,7 @@ namespace AnimalCare
                 "   AND Present = @present AND State = @state";
 
             if (professionalID > 0)
-                str += " AND ProfessionalID = @professionalID";
+                str += " AND sh.ProfessionalID = @professionalID";
 
             // Executar comando
             SqlCommand cmd = new SqlCommand(str, Database.Connection);
@@ -522,17 +520,16 @@ namespace AnimalCare
             7-[Observation] VARCHAR(150) NULL,
             8-[ServiceKindID] INT NOT NULL,
             9-[AnimalID] INT NULL,
-            10-[AnimalGroupID] INT NULL,
-            11-[ProfessionalID] INT NOT NULL,
-            12-[ClinicID] INT NULL,
-            13-Owner
-            14-Animal
-            15-Professional
-            16-ServiceKind
-            17-Specie
-            18-Race
-            19-Clinic
-            20-Done
+            10-[ProfessionalID] INT NOT NULL,
+            11-[ClinicID] INT NULL,
+            12-Owner
+            13-Animal
+            14-Professional
+            15-ServiceKind
+            16-Specie
+            17-Race
+            18-Clinic
+            19-Done
              */
 
             String sql = "SELECT sr.*, o.Name Owner, a.Name Animal, p.Name Professional, " +
