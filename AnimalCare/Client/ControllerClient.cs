@@ -460,16 +460,6 @@ namespace AnimalCare.Client
             return cmd;
         }
 
-        public SqlCommand getDiaryInfo(int diaryID)
-        {
-            String str = "SELECT ad.*, adt.Description FROM AnimalDiary ad";
-            str += " INNER JOIN AnimalDiaryTypes adt ON ad.AnimalDiaryTypeID = adt.AnimalDiaryTypeID";
-            str += " WHERE [AnimalDiaryID] = @did";
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@did", diaryID);
-            return cmd;
-        }
-
         public bool isOwnerOfAnimal(int animalID)
         {
             int dbOwnerID;
@@ -738,33 +728,6 @@ namespace AnimalCare.Client
 
             if (animalID > 0)
                 cmd.Parameters.AddWithValue("@animalID", animalID);
-
-            return cmd;
-        }
-
-        public SqlCommand getAnimalDiary(int animalID)
-        {
-            String str = "SELECT ad.AnimalDiaryID, ad.DateDiaryStart, ad.DateDiaryEnd, adt.Description, ad.Value, ad.Observation FROM AnimalDiary ad";
-            str += " INNER JOIN AnimalDiaryTypes adt ON adt.AnimalDiaryTypeID = ad.AnimalDiaryTypeID";
-            str += " WHERE AnimalID = @animalID AND ServiceID IS NULL";
-            str += " ORDER BY ad.DateCreated DESC";
-
-
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@animalID", animalID);
-            return cmd;
-        }
-
-        public SqlCommand getAnimalDiaryByService(int animalID,int serviceID)
-        {
-            String str = "SELECT ad.AnimalDiaryID, ad.DateDiaryStart, ad.DateDiaryEnd, ad.Observation, ad.Comment FROM AnimalDiary ad";
-            str += " WHERE AnimalID = @animalID AND ServiceID = @serviceID";
-            str += " ORDER BY ad.DateCreated DESC";
-
-
-            SqlCommand cmd = new SqlCommand(str, Database.Connection);
-            cmd.Parameters.AddWithValue("@animalID", animalID);
-            cmd.Parameters.AddWithValue("@serviceID", serviceID);
 
             return cmd;
         }

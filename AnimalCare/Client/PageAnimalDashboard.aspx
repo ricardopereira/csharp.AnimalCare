@@ -11,6 +11,7 @@
                 <h1 class="page-header">Animais<small> dashboard</small></h1>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <h4>Proprietário</h4>
@@ -62,12 +63,12 @@
                                 <asp:Repeater ID="tabelaAnimais" runat="server">
                                     <ItemTemplate>
                                     <tr>
-                                            <td style="width: 400px;">
+                                            <td style="width: 280px;">
                                             <!-- Opcoes de linha -->
-                                                <a class="btn btn-primary btn-xs" href="PageAnimal.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-info-sign"> Info</span></a>
-                                                <a class="btn btn-warning btn-xs" href="PageAnimalEdit.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-edit"> Editar</span></a>
-                                                <a class="btn btn-info btn-xs" href="PageAnimalHistory.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-file"> Histórico</span></a>
-                                                <a class="btn btn-success btn-xs" href="PageAnimalDiary.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-paperclip"> Anotação</span></a>
+                                                <a class="btn btn-primary btn-xs" href="PageAnimal.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                                <a class="btn btn-warning btn-xs" href="PageAnimalEdit.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                                                <a class="btn btn-info btn-xs" href="PageAnimalHistory.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-file"></span> Histórico</a>
+                                                <a class="btn btn-success btn-xs" href="PageAnimalDiary.aspx?AnimalID=<%# Eval("AnimalID")%>" role="button"><span class="glyphicon glyphicon-paperclip"></span> Diário</a>
                                             </td>
                                             <td>
                                                 <%# Eval("AnimalID")%>
@@ -75,8 +76,8 @@
                                             <td>
                                                 <%# Eval("Name")%>
                                             </td>
-                                                <td><%# Eval("Race")%></td>
-                                                <td><%# Eval("Specie")%></td>
+                                            <td style="width: 120px;"><%# Eval("Race")%></td>
+                                            <td style="width: 120px;"><%# Eval("Specie")%></td>
                                             </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -88,6 +89,9 @@
 
             </div>
         </div>
+
+
+
     </div>
 
 </asp:Content>

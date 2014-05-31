@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client/MasterPageClient.Master" AutoEventWireup="true" CodeBehind="PageAnimalDiaryItem.aspx.cs" Inherits="AnimalCare.Client.PageAnimalDiaryItem" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client/MasterPageClient.Master" AutoEventWireup="true" CodeBehind="PageAnimalDiaryEdit.aspx.cs" Inherits="AnimalCare.Client.PageAnimalDiaryEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -11,7 +10,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Animais<small> registo do diário</small></h1>
+                <h1 class="page-header">Animais<small> feedback do serviço</small></h1>
             </div>
         </div>
 
@@ -83,7 +82,7 @@
                 <!--Filtro -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Registo</h3>
+                        <h3 class="panel-title">Feedback</h3>
                     </div>
                     <div class="panel-body">
 
@@ -91,6 +90,13 @@
                         <asp:Label ID="lblObs" runat="server" Text="Observações: "></asp:Label>
                         <asp:TextBox ID="boxObs" runat="server" class="form-control" MaxLength="45"></asp:TextBox>
                         </p>
+
+                        <div class="alert alert-info">
+                        <p>
+                          <strong>Comentário do profissional de saúde:</strong>
+                        </p>
+                        <p><asp:Label ID="boxComment" runat="server" Text="--"></asp:Label></p>
+                        </div>
 
                     </div>
                 </div>
@@ -108,7 +114,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Gravar" OnClick="btnSave_Click"></asp:Button>
-                                <asp:Button ID="btnBack" CssClass="btn btn-default" runat="server" Text="Voltar" OnClick="btnBack_Click"></asp:Button>
+                                <asp:Button ID="btnCancel" CssClass="btn btn-default" runat="server" Text="Cancelar" OnClick="btnCancel_Click"></asp:Button>
                             </div>
                         </div>
                     </div>

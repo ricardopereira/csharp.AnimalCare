@@ -43,7 +43,7 @@
                 <div class="table-responsive">
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Relatório do serviço</div>
+                        <div class="panel-heading">Feedback do Serviço</div>
                         <div class="panel-body">
                             <!-- Conteudo para o painel: Talvez colocar os botões -->
                             <p class="text-muted">Opções da grelha</p>
@@ -70,7 +70,7 @@
                                     <tr>
                                     <td>
                                         <!-- Opcoes de linha -->
-                                        <a class="btn btn-primary btn-xs" href="PageAnimalDiaryItem.aspx?DiaryItem=<%# Eval("AnimalDiaryID") %>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                        <a class="btn btn-primary btn-xs" href="PageAnimalDiaryEdit.aspx?DiaryItem=<%# Eval("AnimalDiaryID") %>" role="button"><span class="glyphicon glyphicon-info-sign"></span></a>
                                     </td>
                                         <td><%# Eval("AnimalDiaryID") %></td>
                                         <td><%# Eval("DateDiaryStart") %></td>
@@ -86,6 +86,24 @@
 
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                <!--Filtro -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- DADOS -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <asp:Button ID="btnBack" CssClass="btn btn-primary" runat="server" Text="Voltar" OnClick="btnBack_Click"></asp:Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+
     </div>
 
 </asp:Content>

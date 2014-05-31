@@ -67,15 +67,6 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.WebControls.Label lblDateDiaryEnd;
         
         /// <summary>
-        /// lblCreated control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCreated;
-        
-        /// <summary>
         /// lblValue control.
         /// </summary>
         /// <remarks>
@@ -83,24 +74,6 @@ namespace AnimalCare.Client {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblValue;
-        
-        /// <summary>
-        /// lblDiaryObs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiaryObs;
-        
-        /// <summary>
-        /// lblDiaryComment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiaryComment;
         
         /// <summary>
         /// itemImage control.
@@ -121,13 +94,31 @@ namespace AnimalCare.Client {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor linkImage;
         
         /// <summary>
-        /// btnDash control.
+        /// lblObs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDash;
+        protected global::System.Web.UI.WebControls.Label lblObs;
+        
+        /// <summary>
+        /// boxObs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox boxObs;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
         /// btnBack control.
