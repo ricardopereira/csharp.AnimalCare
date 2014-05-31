@@ -62,9 +62,9 @@ namespace AnimalCare.Doctor
 
             data.Read();
 
-            if (!data.IsDBNull(20))
+            if (!data.IsDBNull(19))
             {
-                serviceDone = Convert.ToBoolean(data.GetInt32(20));
+                serviceDone = Convert.ToBoolean(data.GetInt32(19));
                 lblDone.Visible = serviceDone;
 
                 boxDescription.Enabled = !serviceDone;
@@ -84,23 +84,23 @@ namespace AnimalCare.Doctor
                 listMinutesService.SelectedValue = Convert.ToString(dateAux.Minute);
             }
 
+            if (!data.IsDBNull(12))
+                lblOwner.Text = data.GetString(12);
+
             if (!data.IsDBNull(13))
-                lblOwner.Text = data.GetString(13);
-
-            if (!data.IsDBNull(14))
-                lblAnimal.Text = data.GetString(14);
-
-            if (!data.IsDBNull(18))
-                lblRace.Text = data.GetString(18);
+                lblAnimal.Text = data.GetString(13);
 
             if (!data.IsDBNull(17))
-                lblSpecie.Text = data.GetString(17);
+                lblRace.Text = data.GetString(17);
+
+            if (!data.IsDBNull(16))
+                lblSpecie.Text = data.GetString(16);
 
             if (!data.IsDBNull(8))
                 listServiceKind.SelectedValue = Convert.ToString(data.GetInt32(8));
 
-            if (!data.IsDBNull(12))
-                listClinic.SelectedValue = Convert.ToString(data.GetInt32(12));
+            if (!data.IsDBNull(11))
+                listClinic.SelectedValue = Convert.ToString(data.GetInt32(11));
 
             if (!data.IsDBNull(3))
                 boxDescription.Text = data.GetString(3);
@@ -109,6 +109,13 @@ namespace AnimalCare.Doctor
                 boxObs.Text = data.GetString(7);
 
             data.Close();
+
+            // Diário 
+            //SqlDataReader dr;
+            //dr = Ctrl.().ExecuteReader();
+            //tblDiary.DataSource = dr;
+            //tblDiary.DataBind();
+            //dr.Close();
         }
 
         private void loadParameters()

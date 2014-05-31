@@ -168,7 +168,7 @@ namespace AnimalCare.Doctor
 
         public SqlCommand getSchedules()
         {
-            return getAllSchedule(getMinDate(), getMaxDate());
+            return getAllSchedule(getMinDate(), getMaxDate(), false, Bf.ProfessionalID);
         }
 
         public SqlCommand getScheduleToday()

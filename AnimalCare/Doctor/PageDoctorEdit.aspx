@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Doutor<small> perfil</small></h1>
+                <h1 class="page-header">Profissional de Saúde<small> perfil</small></h1>
             </div>
         </div>
         <div class="row">
@@ -20,9 +20,6 @@
             <div class="col-md-9">
                 <h2><%: Ctrl.Bf.Name %></h2>
                 <span class="label label-danger">Modo edição</span>
-                <br />
-                <br />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
             </div>
         </div>
         <div class="row">

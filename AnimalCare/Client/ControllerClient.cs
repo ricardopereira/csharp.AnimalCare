@@ -553,8 +553,6 @@ namespace AnimalCare.Client
             }
         }
 
-
-
         public void deleteOwnerLocal(int ownerLocalID)
         {
             if (ownerLocalID <= 0)
@@ -648,8 +646,21 @@ namespace AnimalCare.Client
             if (dateAppointment == null || dateAppointment.ToBinary() == 0)
                 return;
 
+            /*
+            [AppointmentID] INT NOT NULL IDENTITY,
+            [OwnerID] INT NOT NULL,
+            [AnimalID] INT NULL,
+            [AppointmentTypeID] INT NOT NULL,
+            [DateAppointment] DATETIME NOT NULL,
+            [DateCreated] DATETIME NOT NULL,
+            [Reason] VARCHAR(45) NULL,
+            [Detail] VARCHAR(45) NULL,
+            [Urgent] BIT NULL,
+            [State] SMALLINT NULL,
+             */
+
             String str = "INSERT INTO Appointments VALUES " +
-                "(@ownerID,@animalID,NULL,@appointmentTypeID,@dateAppointment,CURRENT_TIMESTAMP,NULL,@detail,@urgent,@state)";
+                "(@ownerID,@animalID,@appointmentTypeID,@dateAppointment,CURRENT_TIMESTAMP,NULL,@detail,@urgent,@state)";
 
             // SQL Query
             SqlCommand cmd = new SqlCommand(str, Database.Connection);

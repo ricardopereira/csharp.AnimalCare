@@ -106,17 +106,17 @@ namespace AnimalCare.Doctor
             if (!dr.IsDBNull(9))
                 animalID = dr.GetInt32(9);
 
-            if (!dr.IsDBNull(15))
-                lblAnimal.Text = dr.GetString(15);
-            if (!dr.IsDBNull(19))
-                lblRace.Text = dr.GetString(19);
+            if (!dr.IsDBNull(14))
+                lblAnimal.Text = dr.GetString(14);
             if (!dr.IsDBNull(18))
-                lblSpecie.Text = dr.GetString(18);
+                lblRace.Text = dr.GetString(18);
+            if (!dr.IsDBNull(17))
+                lblSpecie.Text = dr.GetString(17);
 
             if (!dr.IsDBNull(1))
                 lblScheduleDescription.Text = dr.GetString(1);
-            if (!dr.IsDBNull(17))
-                lblScheduleServiceKind.Text = dr.GetString(17);
+            if (!dr.IsDBNull(16))
+                lblScheduleServiceKind.Text = dr.GetString(16);
 
             if (!dr.IsDBNull(7))
                 listServiceKind.SelectedValue = Convert.ToString(dr.GetInt32(7));

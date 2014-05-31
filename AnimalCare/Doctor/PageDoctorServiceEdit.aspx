@@ -129,6 +129,44 @@
         </div>
 
         <div class="row">
+
+            <div class="col-lg-12">
+                <!--Filtro -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Intervenção do Proprietário</h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <asp:Repeater ID="tblDiary" runat="server">
+                                <ItemTemplate>
+                                <tr>
+                                    <td>
+                                        <a class="btn btn-warning btn-xs" href="PageDoctorDiaryEdit.aspx?AnimalDiaryID=<%# Eval("AnimalDiaryID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                    </td>
+                                    <td><%# Eval("DateDiaryStart") %></td>
+                                </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
             <div class="col-lg-12">
                 <br />
                 <!--Filtro -->

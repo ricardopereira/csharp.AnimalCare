@@ -66,23 +66,23 @@ namespace AnimalCare.Employee
                 listMinutes.SelectedValue = Convert.ToString(dateAux.Minute);
             }
 
+            if (!data.IsDBNull(13))
+                lblOwner.Text = data.GetString(13);
+
             if (!data.IsDBNull(14))
-                lblOwner.Text = data.GetString(14);
-
-            if (!data.IsDBNull(15))
-                lblAnimal.Text = data.GetString(15);
-
-            if (!data.IsDBNull(19))
-                lblRace.Text = data.GetString(19);
+                lblAnimal.Text = data.GetString(14);
 
             if (!data.IsDBNull(18))
-                lblSpecie.Text = data.GetString(18);
+                lblRace.Text = data.GetString(18);
+
+            if (!data.IsDBNull(17))
+                lblSpecie.Text = data.GetString(17);
 
             if (!data.IsDBNull(7))
                 listServiceKind.SelectedValue = Convert.ToString(data.GetInt32(7));
 
-            if (!data.IsDBNull(11))
-                listProfessional.SelectedValue = Convert.ToString(data.GetInt32(11));
+            if (!data.IsDBNull(10))
+                listProfessional.SelectedValue = Convert.ToString(data.GetInt32(10));
 
             if (!data.IsDBNull(3))
                 chkNotified.Checked = data.GetBoolean(3);

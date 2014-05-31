@@ -128,41 +128,41 @@ namespace AnimalCare.Employee
                 animalID = data.GetInt32(2); //Animal
             }
 
-            if (!data.IsDBNull(5)) {
-                lblDate.Text = Convert.ToString(data.GetDateTime(5)); //Date
-                calDateEvent.SelectedDate = data.GetDateTime(5);
+            if (!data.IsDBNull(4)) {
+                lblDate.Text = Convert.ToString(data.GetDateTime(4)); //Date
+                calDateEvent.SelectedDate = data.GetDateTime(4);
             }
 
-            if (!data.IsDBNull(8))
-                lblDetail.Text = data.GetString(8); //Detail
+            if (!data.IsDBNull(7))
+                lblDetail.Text = data.GetString(7); //Detail
 
-            if (!data.IsDBNull(9))
+            if (!data.IsDBNull(8))
             {
-                if (!data.GetBoolean(9)) //Urgent
+                if (!data.GetBoolean(8)) //Urgent
                     lblUrgent.Visible = false;
             }
             else
                 lblUrgent.Visible = false;
 
-            if (!data.IsDBNull(10))
-                currentState = (AppointmentState)data.GetInt16(10); //State
+            if (!data.IsDBNull(9))
+                currentState = (AppointmentState)data.GetInt16(9); //State
             else
                 currentState = AppointmentState.astRejected;
 
+            if (!data.IsDBNull(10))
+                lblAnimal.Text = data.GetString(10); //Animal
+
             if (!data.IsDBNull(11))
-                lblAnimal.Text = data.GetString(11); //Animal
+                lblOwner.Text = data.GetString(11); //Owner
 
             if (!data.IsDBNull(12))
-                lblOwner.Text = data.GetString(12); //Owner
+                lblAppointmentType.Text = data.GetString(12); //AppointmentType
 
             if (!data.IsDBNull(13))
-                lblAppointmentType.Text = data.GetString(13); //AppointmentType
+                lblSpecie.Text = data.GetString(13); //Specie
 
             if (!data.IsDBNull(14))
-                lblSpecie.Text = data.GetString(14); //Specie
-
-            if (!data.IsDBNull(15))
-                lblRace.Text = data.GetString(15); //Race
+                lblRace.Text = data.GetString(14); //Race
 
             data.Close();
         }
