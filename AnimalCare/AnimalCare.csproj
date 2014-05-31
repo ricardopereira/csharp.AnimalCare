@@ -112,6 +112,7 @@
     <Content Include="Client\PageAnimal.aspx" />
     <Content Include="Client\PageAnimalDashboard.aspx" />
     <Content Include="Client\PageAnimalDiary.aspx" />
+    <Content Include="Client\PageAnimalDiaryEdit.aspx" />
     <Content Include="Client\PageAnimalDiaryItem.aspx" />
     <Content Include="Client\PageAnimalDiaryNew.aspx" />
     <Content Include="Client\PageAnimalEdit.aspx" />
@@ -272,6 +273,13 @@
     </Compile>
     <Compile Include="Client\PageAnimalDiary.aspx.designer.cs">
       <DependentUpon>PageAnimalDiary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\PageAnimalDiaryEdit.aspx.cs">
+      <DependentUpon>PageAnimalDiaryEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\PageAnimalDiaryEdit.aspx.designer.cs">
+      <DependentUpon>PageAnimalDiaryEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\PageAnimalDiaryItem.aspx.cs">
       <DependentUpon>PageAnimalDiaryItem.aspx</DependentUpon>

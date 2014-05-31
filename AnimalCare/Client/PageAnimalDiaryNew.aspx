@@ -64,7 +64,7 @@
 
                                                 <p>
                                                 <asp:Label ID="lblDiaryObs" runat="server" Text="Observações: "></asp:Label>
-                                                <asp:TextBox ID="boxDiaryObs" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="boxDiaryObs" runat="server" MaxLength="45"></asp:TextBox>
                                                 </p>
                                                 <p>
                                                 <asp:Label ID="lblUpload" Text="Anexar ficheiro:" runat="server"></asp:Label>

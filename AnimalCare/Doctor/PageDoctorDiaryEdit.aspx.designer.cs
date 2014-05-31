@@ -49,13 +49,67 @@ namespace AnimalCare.Doctor {
         protected global::System.Web.UI.WebControls.Label lblRace;
         
         /// <summary>
-        /// lblDone control.
+        /// lblDiaryType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDone;
+        protected global::System.Web.UI.WebControls.Label lblDiaryType;
+        
+        /// <summary>
+        /// lblDateDiaryStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDateDiaryStart;
+        
+        /// <summary>
+        /// lblDateDiaryEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDateDiaryEnd;
+        
+        /// <summary>
+        /// lblValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValue;
+        
+        /// <summary>
+        /// lblDiaryObs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDiaryObs;
+        
+        /// <summary>
+        /// itemImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage itemImage;
+        
+        /// <summary>
+        /// linkImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkImage;
         
         /// <summary>
         /// lblComment control.

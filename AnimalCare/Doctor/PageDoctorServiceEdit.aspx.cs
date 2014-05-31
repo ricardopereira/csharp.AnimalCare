@@ -84,8 +84,11 @@ namespace AnimalCare.Doctor
                 listMinutesService.SelectedValue = Convert.ToString(dateAux.Minute);
             }
 
+            int animalID = data.GetInt32(9);
+
             if (!data.IsDBNull(12))
                 lblOwner.Text = data.GetString(12);
+            lblFeedback.Text = lblOwner.Text;
 
             if (!data.IsDBNull(13))
                 lblAnimal.Text = data.GetString(13);
@@ -111,11 +114,11 @@ namespace AnimalCare.Doctor
             data.Close();
 
             // Diário 
-            //SqlDataReader dr;
-            //dr = Ctrl.().ExecuteReader();
-            //tblDiary.DataSource = dr;
-            //tblDiary.DataBind();
-            //dr.Close();
+            SqlDataReader dr;
+            dr = Ctrl.getAnimalDiaryByService(animalID, serviceID).ExecuteReader();
+            tblDiary.DataSource = dr;
+            tblDiary.DataBind();
+            dr.Close();
         }
 
         private void loadParameters()

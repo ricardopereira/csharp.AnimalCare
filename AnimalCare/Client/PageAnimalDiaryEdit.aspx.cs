@@ -9,10 +9,11 @@ using System.Web.UI.WebControls;
 
 namespace AnimalCare.Client
 {
-    public partial class PageAnimalDiaryItem : ClientPage
+    public partial class PageAnimalDiaryEdit : ClientPage
     {
         int itemID;
         int animalID;
+        int serviceID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -47,46 +48,55 @@ namespace AnimalCare.Client
                         Ctrl.Database.Connection.Close();
                         return;
                     }
-
                     diaryData.Read();
-                    animalID = diaryData.GetInt32(1);
+
+                    if (!diaryData.IsDBNull(9))
+                        serviceID = diaryData.GetInt32(9);
 
                     diaryData.Close();
                 }
-            } else
+            }
+            else
                 Response.Redirect("PageAnimalDashboard.aspx");
         }
 
 
         public void LoadItemInfo()
         {
-          SqlDataReader diaryData = Ctrl.getDiaryInfo(itemID).ExecuteReader();
+            SqlDataReader diaryData = Ctrl.getDiaryInfo(itemID).ExecuteReader();
 
-                if (!diaryData.HasRows)
-                {
-                    diaryData.Close();
-                    Ctrl.Database.Connection.Close();
-                    return;
-                }
-
-                diaryData.Read();
-                animalID = diaryData.GetInt32(1);
-
-                if (!diaryData.IsDBNull(10))
-                    lblDiaryType.Text = diaryData.GetString(10);
-
-                if (!diaryData.IsDBNull(7))
-                    boxObs.Text = diaryData.GetString(7);
-
-                if (!diaryData.IsDBNull(3))
-                    lblDateDiaryStart.Text = Convert.ToString(diaryData.GetDateTime(3));
-
-                if (!diaryData.IsDBNull(4))
-                    lblDateDiaryEnd.Text = Convert.ToString( diaryData.GetDateTime(4));
-
-                lblValue.Text = Convert.ToString(diaryData.GetDecimal(6));
-
+            if (!diaryData.HasRows)
+            {
                 diaryData.Close();
+                Ctrl.Database.Connection.Close();
+                return;
+            }
+
+            diaryData.Read();
+            animalID = diaryData.GetInt32(1);
+
+            if (!diaryData.IsDBNull(10))
+                lblDiaryType.Text = diaryData.GetString(10);
+
+            if (!diaryData.IsDBNull(7))
+                boxObs.Text = diaryData.GetString(7);
+
+            if (!diaryData.IsDBNull(8))
+                boxComment.Text = diaryData.GetString(8);
+
+            if (!diaryData.IsDBNull(3))
+                lblDateDiaryStart.Text = Convert.ToString(diaryData.GetDateTime(3));
+
+            if (!diaryData.IsDBNull(4))
+                lblDateDiaryEnd.Text = Convert.ToString(diaryData.GetDateTime(4));
+
+            lblValue.Text = Convert.ToString(diaryData.GetDecimal(6));
+
+
+            if (!diaryData.IsDBNull(9))
+                serviceID = diaryData.GetInt32(9);
+
+            diaryData.Close();
         }
 
         protected void setDiaryImage()
@@ -106,27 +116,27 @@ namespace AnimalCare.Client
 
         public void getAnimalInfo()
         {
-               SqlDataReader animalData = Ctrl.getAnimalInfo(animalID).ExecuteReader();
+            SqlDataReader animalData = Ctrl.getAnimalInfo(animalID).ExecuteReader();
 
-                if (!animalData.HasRows)
-                {
-                    animalData.Close();
-                    Ctrl.Database.Connection.Close();
-                    return;
-                }
-
-                animalData.Read();
-
-                if (!animalData.IsDBNull(0))
-                    lblAnimalName.Text = animalData.GetString(0);
-
-                if (!animalData.IsDBNull(3))
-                    lblAnimalRace.Text = animalData.GetString(3);
-
-                if (!animalData.IsDBNull(4))
-                    lblAnimalSpecie.Text = animalData.GetString(4);
-
+            if (!animalData.HasRows)
+            {
                 animalData.Close();
+                Ctrl.Database.Connection.Close();
+                return;
+            }
+
+            animalData.Read();
+
+            if (!animalData.IsDBNull(0))
+                lblAnimalName.Text = animalData.GetString(0);
+
+            if (!animalData.IsDBNull(3))
+                lblAnimalRace.Text = animalData.GetString(3);
+
+            if (!animalData.IsDBNull(4))
+                lblAnimalSpecie.Text = animalData.GetString(4);
+
+            animalData.Close();
         }
 
         public void ItemDiaryParam()
@@ -137,18 +147,18 @@ namespace AnimalCare.Client
                 itemID = 0;
         }
 
-        protected void btnBack_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("PageAnimalDiary.aspx?AnimalID=" + animalID);
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (itemID <= 0) return;
 
             Ctrl.updateObservationOfDiary(itemID, boxObs.Text.Trim());
 
-            Response.Redirect("PageAnimalDiary.aspx?AnimalID=" + animalID);
+            Response.Redirect("PageAnimalHistoryItem.aspx?ServiceID=" + serviceID);
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PageAnimalHistoryItem.aspx?ServiceID=" + serviceID);
         }
     }
 }

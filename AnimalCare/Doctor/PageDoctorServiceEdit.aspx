@@ -111,7 +111,7 @@
 
             <div class="col-lg-12">
                 <!--Filtro -->
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Relatório</h3>
                     </div>
@@ -119,7 +119,7 @@
 
                         <p>
                         <asp:Label ID="lblObs" runat="server" Text="Observações: "></asp:Label>
-                        <asp:TextBox ID="boxObs" runat="server" class="form-control" MaxLength="150" Height="300" Wrap="true" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="boxObs" runat="server" class="form-control" MaxLength="150" Height="200" Wrap="true" TextMode="MultiLine"></asp:TextBox>
                         </p>
 
                     </div>
@@ -134,17 +134,18 @@
                 <!--Filtro -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Intervenção do Proprietário</h3>
-                    </div>
-                    <div class="panel-body">
-
+                        <h3 class="panel-title">Feedback</h3>
                     </div>
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Data</th>
+                                <th>#</th>
+                                <th>Início</th>
+                                <th>Fim</th>
+                                <th>Registo do <asp:Label ID="lblFeedback" runat="server" Text="Proprietário"/></th>
+                                <th>Comentário</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -152,9 +153,13 @@
                                 <ItemTemplate>
                                 <tr>
                                     <td>
-                                        <a class="btn btn-warning btn-xs" href="PageDoctorDiaryEdit.aspx?AnimalDiaryID=<%# Eval("AnimalDiaryID")%>" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <a class="btn btn-warning btn-xs" href="PageDoctorDiaryEdit.aspx?AnimalDiaryID=<%# Eval("AnimalDiaryID")%>" role="button"><span class="glyphicon glyphicon-comment"></span> comentar</a>
                                     </td>
+                                    <td><%# Eval("AnimalDiaryID") %></td>
                                     <td><%# Eval("DateDiaryStart") %></td>
+                                    <td><%# Eval("DateDiaryEnd") %></td>
+                                    <td><%# Eval("Observation") %></td>
+                                    <td><%# Eval("Comment") %></td>
                                 </tr>
                                 </ItemTemplate>
                             </asp:Repeater>

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Animais<small> Histórico</small></h1>
+                <h1 class="page-header">Animais<small> histórico</small></h1>
             </div>
         </div>
         <div class="row well span2">
@@ -108,6 +108,25 @@
 
             </div>
         </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                <!--Filtro -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- DADOS -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <asp:Button ID="btnBack" CssClass="btn btn-primary" runat="server" Text="Voltar" PostBackUrl="~/Client/PageAnimalDashboard.aspx"></asp:Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+
     </div>
 
 
